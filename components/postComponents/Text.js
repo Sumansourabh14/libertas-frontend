@@ -1,6 +1,4 @@
 import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
-import { useState } from "react";
-import TextInput from "../formComponents/TextInput";
 
 const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
   return (

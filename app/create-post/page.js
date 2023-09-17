@@ -18,17 +18,18 @@ const CreatePost = () => {
   const handleTextPost = async () => {
     const data = await postPost(title, body);
 
-    if (data?.data?.success)
-      setPostMessage("Your post is live!!!!!!!!!!!!!!!!!!!!!!!");
+    if (data?.data?.success) setPostMessage("Your post is live!");
   };
 
   useEffect(() => {
     if (postMessage?.length !== undefined) setOpen(true);
   }, [postMessage]);
 
-  if (!user) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user]);
 
   return (
     <>

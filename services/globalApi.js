@@ -53,7 +53,14 @@ export const createPost = async (title, body) => {
       withCredentials: true,
     }
   );
-  console.log(data);
+
+  return data;
+};
+
+export const getPosts = async (userId) => {
+  const data = await axios.get(`${API_URL}/api/user/posts/${userId}`, {
+    withCredentials: true,
+  });
 
   return data;
 };
@@ -63,10 +70,3 @@ export const randomQuoteApi = async () => {
 
   return data;
 };
-
-// // Fetch a random quote from an author
-// export const getQuote = async () => {
-//   const data = await axios.get(`https://api.quotable.io/random`);
-
-//   return data;
-// };

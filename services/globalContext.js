@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import {
   createPost,
+  getPosts,
   loginApi,
   logoutApi,
   randomQuoteApi,
@@ -107,9 +108,20 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // create a post (text)
   const postPost = async (title, body) => {
     try {
       const data = await createPost(title, body);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchPosts = async (userId) => {
+    try {
+      const data = await getPosts(userId);
+      console.log(data.data);
       return data;
     } catch (error) {
       console.log(error);
@@ -138,6 +150,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         getRandomQuote,
         theme,
         postPost,
+        fetchPosts,
       }}
     >
       {children}
