@@ -45,6 +45,19 @@ export const userApi = async () => {
   return data;
 };
 
+export const createPost = async (title, body) => {
+  const data = await axios.post(
+    `${API_URL}/api/user/create-post`,
+    { title, body },
+    {
+      withCredentials: true,
+    }
+  );
+  console.log(data);
+
+  return data;
+};
+
 export const randomQuoteApi = async () => {
   const data = await axios.get(`${QUOTES_API_URL}/random/quote`);
 

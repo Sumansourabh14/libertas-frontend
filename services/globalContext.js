@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import {
+  createPost,
   loginApi,
   logoutApi,
   randomQuoteApi,
@@ -57,11 +58,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setIsAuthenticated(true);
       setLoading(false);
 
-      router.push("/profile");
+      router.push("/");
     } catch (error) {
       console.log(error);
 
-      setLoginError(error.response.data.message);
+      setLoginError(error?.response?.data.message);
       setLoading(false);
     }
   };
@@ -106,6 +107,15 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  const postPost = async (title, body) => {
+    try {
+      const data = await createPost(title, body);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getUser();
   }, [isAuthenticated]);
@@ -127,6 +137,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         user,
         getRandomQuote,
         theme,
+        postPost,
       }}
     >
       {children}
