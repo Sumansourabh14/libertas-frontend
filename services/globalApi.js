@@ -45,6 +45,14 @@ export const userApi = async () => {
   return data;
 };
 
+export const getUserById = async (id) => {
+  const data = await axios.get(`${API_URL}/api/user/${id}`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
 export const createPost = async (title, body) => {
   const data = await axios.post(
     `${API_URL}/api/user/create-post`,
@@ -65,10 +73,20 @@ export const getPosts = async (userId) => {
   return data;
 };
 
+export const getPost = async (postId) => {
+  const data = await axios.get(`${API_URL}/api/user/post/${postId}`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
 export const getAllPosts = async () => {
   const data = await axios.get(`${API_URL}/api/user/posts/`, {
     withCredentials: true,
   });
+
+  console.log(data);
 
   return data;
 };

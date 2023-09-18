@@ -5,7 +5,9 @@ import {
   createPost,
   deletePost,
   getAllPosts,
+  getPost,
   getPosts,
+  getUserById,
   loginApi,
   logoutApi,
   randomQuoteApi,
@@ -102,6 +104,15 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  const getSpecificUser = async (id) => {
+    try {
+      const data = await getUserById(id);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getRandomQuote = async () => {
     try {
       const data = await randomQuoteApi();
@@ -132,11 +143,22 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // fetch a certain post
+  const fetchPost = async (postId) => {
+    try {
+      const data = await getPost(postId);
+      // console.log(data.data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // fetch all posts (regardless of the user)
   const fetchAllPosts = async () => {
     try {
       const data = await getAllPosts();
-      console.log(data.data?.data);
+      console.log(data?.data?.data);
       setPosts(data?.data?.data);
       return data;
     } catch (error) {
@@ -162,9 +184,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
     console.log({ user });
   }, [user]);
 
-  useEffect(() => {
-    fetchAllPosts();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllPosts();
+  // }, []);
 
   return (
     <GlobalContext.Provider
@@ -177,10 +199,12 @@ export const GlobalContextProvider = ({ children, theme }) => {
         signUp,
         signUpError,
         user,
+        getSpecificUser,
         getRandomQuote,
         theme,
         postPost,
         fetchPosts,
+        fetchPost,
         removePost,
         posts,
         fetchAllPosts,
