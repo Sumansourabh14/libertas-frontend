@@ -77,6 +77,7 @@ const Header = ({ themeMode, handleTheme }) => {
             {/* <Link href="/about">About</Link> */}
             {isAuthenticated ? (
               <>
+                <Link href="/create-post">Create Post</Link>
                 <Link href="/profile">Profile</Link>
                 <Button
                   variant="contained"

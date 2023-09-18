@@ -54,7 +54,7 @@ const Post = ({ params }) => {
   }, [post, postData]);
 
   useEffect(() => {
-    document.title = postData?.post?.title;
+    document.title = `${postData?.post?.title} | Libertas`;
   }, [post, postData]);
 
   // calculate relative time
