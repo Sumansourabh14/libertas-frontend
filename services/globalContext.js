@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import {
   createPost,
   deletePost,
+  getAllPosts,
   getPosts,
   loginApi,
   logoutApi,
@@ -20,6 +21,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const [loginError, setLoginError] = useState(false);
   const [signUpError, setSignUpError] = useState(null);
   const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   const router = useRouter();
 
@@ -119,10 +121,23 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // fetch posts of a certain user
   const fetchPosts = async (userId) => {
     try {
       const data = await getPosts(userId);
       console.log(data.data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // fetch all posts (regardless of the user)
+  const fetchAllPosts = async () => {
+    try {
+      const data = await getAllPosts();
+      console.log(data.data?.data);
+      setPosts(data?.data?.data);
       return data;
     } catch (error) {
       console.log(error);
@@ -147,6 +162,10 @@ export const GlobalContextProvider = ({ children, theme }) => {
     console.log({ user });
   }, [user]);
 
+  useEffect(() => {
+    fetchAllPosts();
+  }, []);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -163,6 +182,8 @@ export const GlobalContextProvider = ({ children, theme }) => {
         postPost,
         fetchPosts,
         removePost,
+        posts,
+        fetchAllPosts,
       }}
     >
       {children}

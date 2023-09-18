@@ -65,6 +65,14 @@ export const getPosts = async (userId) => {
   return data;
 };
 
+export const getAllPosts = async () => {
+  const data = await axios.get(`${API_URL}/api/user/posts/`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
 export const deletePost = async (postId) => {
   const data = await axios.delete(`${API_URL}/api/user/post/${postId}`, {
     withCredentials: true,

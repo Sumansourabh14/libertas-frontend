@@ -1,7 +1,8 @@
 "use client";
+import User from "@/components/User";
 import Text from "@/components/postComponents/Text";
 import { GlobalContext } from "@/services/globalContext";
-import { Snackbar } from "@mui/material";
+import { Container, Snackbar, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -39,15 +40,27 @@ const CreatePost = () => {
 
   return (
     <>
-      <h1>Create a post</h1>
-      <Text
-        title={title}
-        setTitle={setTitle}
-        body={body}
-        setBody={setBody}
-        handleTextPost={handleTextPost}
-      />
-      <Snackbar open={open} message={postMessage} autoHideDuration={3000} />
+      <Container>
+        <Stack direction="row" spacing={4} style={{ paddingBottom: "1rem" }}>
+          <div style={{ flex: 1 }}>
+            <h1>Create a post</h1>
+            <Text
+              title={title}
+              setTitle={setTitle}
+              body={body}
+              setBody={setBody}
+              handleTextPost={handleTextPost}
+            />
+            <Snackbar
+              open={open}
+              message={postMessage}
+              autoHideDuration={3000}
+            />
+          </div>
+
+          <User />
+        </Stack>
+      </Container>
     </>
   );
 };
