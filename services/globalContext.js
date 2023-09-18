@@ -158,7 +158,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const fetchAllPosts = async () => {
     try {
       const data = await getAllPosts();
-      console.log(data?.data?.data);
+      console.log(data);
       setPosts(data?.data?.data);
       return data;
     } catch (error) {

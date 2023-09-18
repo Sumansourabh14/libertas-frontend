@@ -82,7 +82,7 @@ export const getPost = async (postId) => {
 };
 
 export const getAllPosts = async () => {
-  const data = await axios.get(`${API_URL}/api/user/posts/`, {
+  const data = await axios.get(`${API_URL}/api/user/submitted/posts`, {
     withCredentials: true,
   });
 
