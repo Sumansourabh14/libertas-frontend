@@ -4,8 +4,9 @@ import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { Button, Stack } from "@mui/material";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TextInput from "../../components/formComponents/TextInput";
+import { useRouter } from "next/navigation";
 
 export const metadata = {
   title: "Login | Libertas",
@@ -13,10 +14,12 @@ export const metadata = {
 };
 
 const Login = () => {
-  const { loading, login, loginError } = useContext(GlobalContext);
+  const { loading, login, loginError, user } = useContext(GlobalContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -24,6 +27,12 @@ const Login = () => {
     console.log(email, password);
     login(email, password);
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

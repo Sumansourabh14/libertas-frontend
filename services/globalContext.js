@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import {
   createPost,
+  deletePost,
   getPosts,
   loginApi,
   logoutApi,
@@ -128,6 +129,16 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  const removePost = async (postId) => {
+    try {
+      const data = await deletePost(postId);
+      console.log(data.data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getUser();
   }, [isAuthenticated]);
@@ -151,6 +162,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         theme,
         postPost,
         fetchPosts,
+        removePost,
       }}
     >
       {children}

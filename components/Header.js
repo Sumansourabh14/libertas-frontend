@@ -44,7 +44,7 @@ const Header = ({ themeMode, handleTheme }) => {
               color: theme.palette.mode === "light" ? "#000" : "#fff",
             }}
           >
-            Libertas
+            <Link href={"/"}>Libertas</Link>
           </h2>
           <Stack direction="row" alignItems="center" spacing={3}>
             <form onSubmit={handleSearch}>

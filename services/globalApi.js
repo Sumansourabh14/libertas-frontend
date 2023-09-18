@@ -65,6 +65,14 @@ export const getPosts = async (userId) => {
   return data;
 };
 
+export const deletePost = async (postId) => {
+  const data = await axios.delete(`${API_URL}/api/user/post/${postId}`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
 export const randomQuoteApi = async () => {
   const data = await axios.get(`${QUOTES_API_URL}/random/quote`);
 

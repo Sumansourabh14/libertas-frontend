@@ -1,12 +1,15 @@
 "use client";
 import { GlobalContext } from "@/services/globalContext";
-import { Stack } from "@mui/material";
+import { Box, Button, Modal, Snackbar, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
   const [posts, setPosts] = useState([]);
-  const { user, fetchPosts } = useContext(GlobalContext);
+  const [postId, setPostId] = useState(null);
+  const [isPostRemoved, setIsPostRemoved] = useState(false);
+  const [isPostRemove, setIsPostRemove] = useState(false);
+  const { user, fetchPosts, removePost } = useContext(GlobalContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,22 +29,120 @@ const Profile = () => {
     getAllPosts();
   }, [user]);
 
+  const handleDeletePost = async () => {
+    console.log(postId);
+    const data = await removePost(postId);
+    console.log(data);
+
+    if (data?.data.success) {
+      setIsPostRemoved(true);
+    }
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsPostRemove(false);
+  };
+
+  useEffect(() => {
+    if (user) document.title = `${user?.name} (${user?.username}) | Libertas`;
+  }, [user]);
+
   return (
     <div>
       <h1>Hi, {user?.name}!</h1>
+      {/* <p>{user?.createdAt}</p>
+      <p>{Date.parse(user?.createdAt)}</p> */}
 
-      <h2>Posts</h2>
+      <div style={{ padding: "1rem 0" }}>
+        <h2>Posts</h2>
 
-      {posts && (
-        <Stack spacing={3}>
-          {posts.map((post) => (
-            <div key={post?._id}>
-              <h3>{post?.post.title}</h3>
-              <p>{post?.post.body}</p>
+        {posts?.length !== 0 ? (
+          <Stack spacing={3} style={{ padding: "1rem 0" }}>
+            {posts?.map((post) => (
+              <Stack
+                key={post?._id}
+                style={{
+                  backgroundColor: "#f3f3f3",
+                  padding: 10,
+                  borderRadius: "0.5rem",
+                }}
+                spacing={1}
+              >
+                <h3>{post?.post.title}</h3>
+                <p>{post?.post.body}</p>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    // onClick={() => handleDeletePost(post?._id)}
+                    onClick={() => {
+                      setIsPostRemove(true);
+                      setPostId(post?._id);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Stack>
+            ))}
+          </Stack>
+        ) : (
+          <Stack spacing={2} style={{ padding: "1rem 0" }}>
+            <p>Oops! You do not have any posts!</p>
+            <div>
+              <Button
+                variant="contained"
+                onClick={() => router.push("/create-post")}
+              >
+                Create a post now!
+              </Button>
             </div>
-          ))}
-        </Stack>
-      )}
+          </Stack>
+        )}
+
+        <Snackbar
+          open={isPostRemoved}
+          message="Post removed successfully"
+          autoHideDuration={3000}
+        />
+
+        <Modal
+          open={isPostRemove}
+          onClose={handleDeleteModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 500,
+              bgcolor: "background.paper",
+              border: "2px solid #000",
+              boxShadow: 24,
+              padding: 30,
+            }}
+          >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Delete post?
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Are you sure you want to delete your post? You cannot undo this.
+            </Typography>
+            <div>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleDeletePost}
+              >
+                Delete Post
+              </Button>
+            </div>
+          </Box>
+        </Modal>
+      </div>
     </div>
   );
 };

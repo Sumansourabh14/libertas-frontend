@@ -19,11 +19,17 @@ const CreatePost = () => {
     const data = await postPost(title, body);
 
     if (data?.data?.success) setPostMessage("Your post is live!");
+
+    router.push("/profile");
   };
 
   useEffect(() => {
     if (postMessage?.length !== undefined) setOpen(true);
   }, [postMessage]);
+
+  useEffect(() => {
+    document.title = "Create a post | Libertas";
+  }, []);
 
   useEffect(() => {
     if (!user) {
