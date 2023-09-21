@@ -38,7 +38,7 @@ const Profile = () => {
   useEffect(() => {
     const getAllPosts = async () => {
       const data = await fetchPosts(user?._id);
-      console.log(data);
+      // console.log(data);
 
       if (data) setPosts(data?.data.posts);
     };
@@ -47,9 +47,9 @@ const Profile = () => {
   }, [user]);
 
   const handleDeletePost = async () => {
-    console.log(postId);
+    // console.log(postId);
     const data = await removePost(postId);
-    console.log(data);
+    // console.log(data);
 
     if (data?.data.success) {
       setIsPostRemoved(true);

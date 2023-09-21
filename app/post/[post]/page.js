@@ -5,10 +5,9 @@ import { useContext, useEffect, useState } from "react";
 
 const Post = ({ params }) => {
   const [postData, setPostData] = useState(null);
-  const [userData, setUserData] = useState(null);
   const [postedAgo, setPostedAgo] = useState(null);
 
-  const { fetchPost, getSpecificUser } = useContext(GlobalContext);
+  const { fetchPost } = useContext(GlobalContext);
 
   const { post } = params;
 
@@ -30,28 +29,6 @@ const Post = ({ params }) => {
       mounted = false;
     };
   }, []);
-
-  useEffect(() => {
-    let mounted = true;
-
-    async function fetchUser() {
-      if (postData?.userId) {
-        const data = await getSpecificUser(postData.userId);
-
-        if (mounted) {
-          setUserData(data?.data.user);
-        }
-      }
-    }
-
-    if (post) {
-      fetchUser();
-    }
-
-    return () => {
-      mounted = false;
-    };
-  }, [post, postData]);
 
   useEffect(() => {
     document.title = `${postData?.post?.title} | Libertas`;
@@ -118,10 +95,18 @@ const Post = ({ params }) => {
           borderRadius: "0.5rem",
         }}
       >
-        <p>{userData?.username}</p>
-        {postedAgo && <p>{postedAgo}</p>}
-        <h3>{postData?.post?.title}</h3>
-        <p>{postData?.post?.body}</p>
+        <Stack direction="row" spacing={2} justifyContent="space-between">
+          <p style={{ fontSize: "1rem", fontWeight: "600" }}>
+            {postData?.author?.username}
+          </p>
+          {postedAgo && (
+            <p style={{ fontSize: "0.875rem", fontWeight: "300" }}>
+              {postedAgo}
+            </p>
+          )}
+        </Stack>
+        <h2 style={{ fontSize: "1.7rem" }}>{postData?.post?.title}</h2>
+        <p style={{ fontSize: "0.9rem" }}>{postData?.post?.body}</p>
       </Stack>
     </div>
   );

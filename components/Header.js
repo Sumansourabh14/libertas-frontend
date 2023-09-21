@@ -36,7 +36,11 @@ const Header = ({ themeMode, handleTheme }) => {
 
   return (
     <Box>
-      <AppBar position="fixed" className="app-bar-backdrop">
+      <AppBar
+        position="fixed"
+        className="app-bar-backdrop"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
         <Toolbar>
           <h2
             style={{
