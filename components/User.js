@@ -1,7 +1,8 @@
 import { GlobalContext } from "@/services/globalContext";
 import { Button, Paper, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { relativeTime } from "./utils/relativeTime";
 
 const User = () => {
   const { user } = useContext(GlobalContext);
@@ -18,6 +19,7 @@ const User = () => {
           >
             <h1 style={{ fontSize: "1.5rem" }}>{user?.name}</h1>
             <p>{user?.username}</p>
+            <p>Joined {relativeTime(Date.parse(user?.createdAt))}</p>
             <p>
               Joined on{" "}
               {new Date(user?.createdAt)
