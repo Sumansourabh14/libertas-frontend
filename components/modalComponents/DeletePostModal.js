@@ -1,4 +1,5 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { Box, Button, IconButton, Modal, Stack } from "@mui/material";
 
 const DeletePostModal = ({
   isPostRemove,
@@ -19,23 +20,40 @@ const DeletePostModal = ({
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: 500,
-          bgcolor: "background.paper",
-          border: "2px solid #000",
+          backgroundColor: "#fff",
           boxShadow: 24,
-          padding: 30,
+          padding: 40,
+          borderRadius: "1rem",
         }}
       >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Delete post?
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Are you sure you want to delete your post? You cannot undo this.
-        </Typography>
-        <div>
-          <Button variant="contained" color="error" onClick={handleDeletePost}>
-            Delete Post
-          </Button>
+        <div style={{ position: "absolute", top: 10, right: 10 }}>
+          <IconButton onClick={handleDeleteModalClose}>
+            <HighlightOffIcon />
+          </IconButton>
         </div>
+        <Stack spacing={3} alignItems="center" style={{ textAlign: "center" }}>
+          <h2>Delete post?</h2>
+          <p>
+            Are you sure you want to delete your post? You cannot undo this.
+          </p>
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="outlined"
+              onClick={handleDeleteModalClose}
+              style={{ textTransform: "capitalize" }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDeletePost}
+              style={{ textTransform: "capitalize" }}
+            >
+              Delete
+            </Button>
+          </Stack>
+        </Stack>
       </Box>
     </Modal>
   );
