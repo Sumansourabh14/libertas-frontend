@@ -12,6 +12,7 @@ import {
   logoutApi,
   randomQuoteApi,
   signUpApi,
+  updatePost,
   userApi,
 } from "./globalApi";
 
@@ -132,6 +133,17 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // edit a post (text)
+  const editPost = async (id, title, body) => {
+    try {
+      const data = await updatePost(id, title, body);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // fetch posts of a certain user
   const fetchPosts = async (userId) => {
     try {
@@ -203,6 +215,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         getRandomQuote,
         theme,
         postPost,
+        editPost,
         fetchPosts,
         fetchPost,
         removePost,

@@ -65,6 +65,18 @@ export const createPost = async (title, body) => {
   return data;
 };
 
+export const updatePost = async (id, title, body) => {
+  const data = await axios.put(
+    `${API_URL}/api/user/edit-post/${id}`,
+    { title, body },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
 export const getPosts = async (userId) => {
   const data = await axios.get(`${API_URL}/api/user/posts/${userId}`, {
     withCredentials: true,
