@@ -79,48 +79,44 @@ const Feed = () => {
 
   return (
     <Container style={{ paddingBottom: 20 }}>
-      <GlobalSideBar />
-
-      <Stack direction="row">
-        <div style={{ width: 240 }}></div>
-
-        <div style={{ flex: 1 }}>
+      <Stack>
+        <div>
           <NewPost />
-
-          <Stack spacing={3} style={{ marginTop: 30 }}>
-            {posts?.length > 0 ? (
-              posts?.reverse()?.map((post) => (
-                <Link key={post?._id} href={`/post/${post?._id}`}>
-                  <Stack
-                    spacing={2}
-                    style={{
-                      backgroundColor: "#f3f3f3",
-                      padding: 12,
-                      borderRadius: "0.5rem",
-                    }}
-                  >
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      justifyContent="space-between"
-                    >
-                      <p style={{ fontSize: "1rem", fontWeight: "600" }}>
-                        {post?.author?.username}
-                      </p>
-                      <p style={{ fontSize: "0.875rem", fontWeight: "300" }}>
-                        {timeAgo(Date.parse(post?.createdAt))}
-                      </p>
-                    </Stack>
-                    <h3>{post?.post?.title}</h3>
-                    <p style={{ fontSize: "0.9rem" }}>{post?.post?.body}</p>
-                  </Stack>
-                </Link>
-              ))
-            ) : (
-              <p>You are all caught up!</p>
-            )}
-          </Stack>
         </div>
+
+        <Stack spacing={3} style={{ marginTop: 30 }}>
+          {posts?.length > 0 ? (
+            posts?.reverse()?.map((post) => (
+              <Link key={post?._id} href={`/post/${post?._id}`}>
+                <Stack
+                  spacing={2}
+                  style={{
+                    backgroundColor: "#f3f3f3",
+                    padding: 12,
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent="space-between"
+                  >
+                    <p style={{ fontSize: "1rem", fontWeight: "600" }}>
+                      {post?.author?.username}
+                    </p>
+                    <p style={{ fontSize: "0.875rem", fontWeight: "300" }}>
+                      {timeAgo(Date.parse(post?.createdAt))}
+                    </p>
+                  </Stack>
+                  <h3>{post?.post?.title}</h3>
+                  <p style={{ fontSize: "0.9rem" }}>{post?.post?.body}</p>
+                </Stack>
+              </Link>
+            ))
+          ) : (
+            <p>You are all caught up!</p>
+          )}
+        </Stack>
       </Stack>
     </Container>
   );

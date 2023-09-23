@@ -12,21 +12,43 @@ const Home = () => {
 
   return (
     <>
-      <h1>Libertas - Discuss about anything</h1>
-
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        style={{ padding: 20, backgroundColor: "#f3f3f3", margin: "2rem 0" }}
-      >
-        <h2>What is happening?</h2>
+      <Stack spacing={4} style={{ padding: "1rem 0" }}>
+        <Stack
+          alignItems="center"
+          spacing={6}
+          style={{ padding: 20, textAlign: "center", height: "100vh" }}
+        >
+          <h1 style={{ fontSize: "4rem" }}>
+            Libertas - Discuss about anything
+          </h1>
+          <h2>Create your account to get started</h2>
+          <div>
+            <Button
+              variant="contained"
+              onClick={() => router.push("/sign-up")}
+              style={{
+                borderRadius: "0.5rem",
+                padding: "1rem 2rem",
+                fontSize: "1rem",
+                textTransform: "capitalize",
+              }}
+            >
+              Create Account
+            </Button>
+          </div>
+        </Stack>
         <div>
           <Button
             variant="contained"
             onClick={() => router.push("/feed")}
-            style={{ borderRadius: "0.5rem" }}
+            style={{
+              borderRadius: "0.5rem",
+              padding: "1rem 2rem",
+              fontSize: "1rem",
+              textTransform: "capitalize",
+            }}
           >
-            Check your feed
+            Dive in now
           </Button>
         </div>
       </Stack>

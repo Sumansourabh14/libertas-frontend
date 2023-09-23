@@ -8,11 +8,6 @@ import { useContext, useEffect, useState } from "react";
 import TextInput from "../../components/formComponents/TextInput";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Login | Libertas",
-  description: "Login page",
-};
-
 const Login = () => {
   const { loading, login, loginError, user } = useContext(GlobalContext);
 
@@ -33,6 +28,10 @@ const Login = () => {
       router.push("/");
     }
   }, [user]);
+
+  useEffect(() => {
+    document.title = `Login | Libertas`;
+  }, []);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

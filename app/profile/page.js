@@ -58,10 +58,13 @@ const Profile = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={4} style={{ padding: "1rem 0" }}>
-        <User />
-
-        <div style={{ flex: 2 }}>
+      <Stack
+        direction="row"
+        spacing={4}
+        justifyContent="space-between"
+        style={{ padding: "1rem 0" }}
+      >
+        <div style={{ flex: 1 }}>
           <h2>Posts</h2>
 
           {posts?.length !== 0 ? (
@@ -121,6 +124,7 @@ const Profile = () => {
             handleDeletePost={handleDeletePost}
           />
         </div>
+        <User />
       </Stack>
     </>
   );

@@ -6,7 +6,7 @@ import { GlobalContext } from "@/services/globalContext";
 import { Button, Stack } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export const metadata = {
   title: "Sign Up",
@@ -25,6 +25,10 @@ const SignUp = () => {
 
     signUp(name, username, email, password);
   };
+
+  useEffect(() => {
+    document.title = `Sign Up | Libertas`;
+  }, []);
 
   return (
     <div>

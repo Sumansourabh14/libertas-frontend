@@ -5,6 +5,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import { GlobalContextProvider } from "../services/globalContext";
 import "./globals.css";
+import GlobalSideBar from "@/components/drawerComponents/GlobalSideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,11 @@ export default function RootLayout({ children }) {
           <CssBaseline />
           <body className={inter.className}>
             <Header themeMode={themeMode} handleTheme={handleThemeChange} />
+            {/* <main style={{ display: "flex" }}>
+              <GlobalSideBar />
+              <div style={{ padding: "6rem 2rem 0 2rem" }}>{children}</div>
+            </main> */}
+
             <main style={{ padding: "6rem 2rem 0 2rem" }}>{children}</main>
           </body>
         </ThemeProvider>
