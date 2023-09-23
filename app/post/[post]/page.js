@@ -1,6 +1,13 @@
 "use client";
+import DeletePostModal from "@/components/modalComponents/DeletePostModal";
 import { GlobalContext } from "@/services/globalContext";
-import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
+import {
+  Button,
+  Snackbar,
+  Stack,
+  TextField,
+  TextareaAutosize,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -10,10 +17,13 @@ const Post = ({ params }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [isPostRemove, setIsPostRemove] = useState(false);
+  // const [isPostRemoved, setIsPostRemoved] = useState(false);
 
-  const { fetchPost, editPost, user } = useContext(GlobalContext);
+  const { fetchPost, editPost, removePost, user } = useContext(GlobalContext);
 
   const { post } = params;
+  const router = useRouter();
 
   useEffect(() => {
     let mounted = true;
@@ -96,6 +106,19 @@ const Post = ({ params }) => {
     setBody(postData?.post?.body);
   }, [postData]);
 
+  const handleDeletePost = async () => {
+    const data = await removePost(post);
+
+    if (data?.data.success) {
+      // setIsPostRemoved(true);
+      router.back();
+    }
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsPostRemove(false);
+  };
+
   const handleEdit = () => {
     setIsEdit(true);
   };
@@ -103,8 +126,6 @@ const Post = ({ params }) => {
   const handleCancel = () => {
     setIsEdit(false);
   };
-
-  const router = useRouter();
 
   const handleSave = async () => {
     const isEdited = await editPost(post, title, body);
@@ -184,11 +205,20 @@ const Post = ({ params }) => {
         <Stack>
           {!isEdit ? (
             user?._id === postData?.author?._id && (
-              <div>
+              <Stack direction="row" spacing={2}>
                 <Button variant="contained" onClick={handleEdit}>
                   Edit
                 </Button>
-              </div>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => {
+                    setIsPostRemove(true);
+                  }}
+                >
+                  Delete
+                </Button>
+              </Stack>
             )
           ) : (
             <Stack direction="row" spacing={2}>
@@ -202,6 +232,18 @@ const Post = ({ params }) => {
           )}
         </Stack>
       </Stack>
+
+      {/* <Snackbar
+        open={isPostRemoved}
+        message="Post removed successfully"
+        autoHideDuration={3000}
+      /> */}
+
+      <DeletePostModal
+        isPostRemove={isPostRemove}
+        handleDeleteModalClose={handleDeleteModalClose}
+        handleDeletePost={handleDeletePost}
+      />
     </div>
   );
 };

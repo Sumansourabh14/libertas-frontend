@@ -1,16 +1,8 @@
 "use client";
 import User from "@/components/User";
+import DeletePostModal from "@/components/modalComponents/DeletePostModal";
 import { GlobalContext } from "@/services/globalContext";
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  Paper,
-  Snackbar,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, Snackbar, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -74,7 +66,7 @@ const Profile = () => {
 
           {posts?.length !== 0 ? (
             <Stack spacing={3} style={{ padding: "1rem 0" }}>
-              {posts?.map((post) => (
+              {posts?.reverse()?.map((post) => (
                 <Link key={post?._id} href={`/post/${post?._id}`}>
                   <Stack
                     style={{
@@ -123,42 +115,11 @@ const Profile = () => {
             autoHideDuration={3000}
           />
 
-          <Modal
-            open={isPostRemove}
-            onClose={handleDeleteModalClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 500,
-                bgcolor: "background.paper",
-                border: "2px solid #000",
-                boxShadow: 24,
-                padding: 30,
-              }}
-            >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Delete post?
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Are you sure you want to delete your post? You cannot undo this.
-              </Typography>
-              <div>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={handleDeletePost}
-                >
-                  Delete Post
-                </Button>
-              </div>
-            </Box>
-          </Modal>
+          <DeletePostModal
+            isPostRemove={isPostRemove}
+            handleDeleteModalClose={handleDeleteModalClose}
+            handleDeletePost={handleDeletePost}
+          />
         </div>
       </Stack>
     </>
