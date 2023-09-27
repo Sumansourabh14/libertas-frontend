@@ -77,6 +77,18 @@ export const upvotePost = async (id) => {
   return data;
 };
 
+export const downvotePost = async (id) => {
+  const data = await axios.post(
+    `${API_URL}/api/user/post/downvote/${id}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
 export const updatePost = async (id, title, body) => {
   const data = await axios.put(
     `${API_URL}/api/user/edit-post/${id}`,

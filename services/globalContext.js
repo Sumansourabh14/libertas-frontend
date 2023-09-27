@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import {
   createPost,
   deletePost,
+  downvotePost,
   getAllPosts,
   getPost,
   getPosts,
@@ -148,6 +149,20 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // downvote a post
+  const downvoteAPost = async (id) => {
+    try {
+      if (!user) {
+        router.push("/login");
+      }
+      const data = await downvotePost(id);
+      console.log("downvote: ", data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // edit a post (text)
   const editPost = async (id, title, body) => {
     try {
@@ -237,6 +252,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         posts,
         fetchAllPosts,
         upvoteAPost,
+        downvoteAPost,
       }}
     >
       {children}

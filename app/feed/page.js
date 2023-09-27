@@ -14,7 +14,8 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 const Feed = () => {
   const [posts, setPosts] = useState([]);
 
-  const { fetchAllPosts, upvoteAPost, user } = useContext(GlobalContext);
+  const { fetchAllPosts, upvoteAPost, downvoteAPost, user } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     console.log(posts);
@@ -49,6 +50,20 @@ const Feed = () => {
       setPosts(updatedPosts?.data?.data?.reverse());
     } catch (error) {
       console.error("Error upvoting post:", error);
+    }
+  };
+
+  // Function to handle downvoting a post
+  const handleDownvote = async (postId) => {
+    try {
+      // Call the upvoteAPost function
+      await downvoteAPost(postId);
+
+      // Fetch the updated list of posts after upvoting (re-render)
+      const updatedPosts = await fetchAllPosts();
+      setPosts(updatedPosts?.data?.data?.reverse());
+    } catch (error) {
+      console.error("Error downvoting post:", error);
     }
   };
 
@@ -88,7 +103,7 @@ const Feed = () => {
 
                         <p>{post?.upvotes?.length - post?.downvotes?.length}</p>
 
-                        <IconButton>
+                        <IconButton onClick={() => handleDownvote(post?._id)}>
                           {post?.downvotes?.includes(user?._id) ? (
                             <ThumbDownIcon />
                           ) : (
