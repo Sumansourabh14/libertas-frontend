@@ -13,6 +13,7 @@ import {
   randomQuoteApi,
   signUpApi,
   updatePost,
+  upvotePost,
   userApi,
 } from "./globalApi";
 
@@ -133,6 +134,20 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // upvote a post
+  const upvoteAPost = async (id) => {
+    try {
+      if (!user) {
+        router.push("/login");
+      }
+      const data = await upvotePost(id);
+      console.log("upvote: ", data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // edit a post (text)
   const editPost = async (id, title, body) => {
     try {
@@ -221,6 +236,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         removePost,
         posts,
         fetchAllPosts,
+        upvoteAPost,
       }}
     >
       {children}

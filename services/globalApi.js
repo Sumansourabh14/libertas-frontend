@@ -65,6 +65,18 @@ export const createPost = async (title, body) => {
   return data;
 };
 
+export const upvotePost = async (id) => {
+  const data = await axios.post(
+    `${API_URL}/api/user/post/upvote/${id}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
 export const updatePost = async (id, title, body) => {
   const data = await axios.put(
     `${API_URL}/api/user/edit-post/${id}`,
@@ -98,7 +110,7 @@ export const getAllPosts = async () => {
     withCredentials: true,
   });
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 };
