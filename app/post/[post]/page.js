@@ -1,5 +1,6 @@
 "use client";
 import DeletePostModal from "@/components/modalComponents/DeletePostModal";
+import PostComponent from "@/components/postComponents/PostComponent";
 import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
 import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
@@ -15,7 +16,15 @@ const Post = ({ params }) => {
   const [isPostRemove, setIsPostRemove] = useState(false);
   // const [isPostRemoved, setIsPostRemoved] = useState(false);
 
-  const { fetchPost, editPost, removePost, user } = useContext(GlobalContext);
+  const {
+    fetchPost,
+    editPost,
+    removePost,
+    upvoteAPost,
+    downvoteAPost,
+    fetchAllPosts,
+    user,
+  } = useContext(GlobalContext);
 
   const { post } = params;
   const router = useRouter();
@@ -93,96 +102,61 @@ const Post = ({ params }) => {
     }
   };
 
+  const handleDelete = () => {
+    setIsPostRemove(true);
+  };
+
   useEffect(() => {
     console.log({ isEdit });
   }, [isEdit]);
 
+  const handleUpvote = async (postId) => {
+    try {
+      // Call the upvoteAPost function
+      await upvoteAPost(postId);
+
+      // Fetch the updated list of posts after upvoting (re-render)
+      const updatedPost = await fetchPost(postId);
+      setPostData(updatedPost?.data?.post);
+    } catch (error) {
+      console.error("Error upvoting post:", error);
+    }
+  };
+
+  const handleDownvote = async (postId) => {
+    try {
+      // Call the downvoteAPost function
+      await downvoteAPost(postId);
+
+      // Fetch the updated list of posts after downvoting (re-render)
+      const updatedPost = await fetchPost(postId);
+
+      console.log(updatedPost);
+      setPostData(updatedPost?.data?.post);
+    } catch (error) {
+      console.error("Error downvoting post:", error);
+    }
+  };
+
   return (
     <div>
-      <Stack
-        spacing={2}
-        style={{
-          backgroundColor: "#f3f3f3",
-          padding: 12,
-          borderRadius: "0.5rem",
-        }}
-      >
-        <Stack direction="row" spacing={2} justifyContent="space-between">
-          <p style={{ fontSize: "1rem", fontWeight: "600" }}>
-            {postData?.author?.username}
-          </p>
-          {postedAgo && (
-            <p style={{ fontSize: "0.875rem", fontWeight: "300" }}>
-              {postedAgo}
-            </p>
-          )}
-        </Stack>
-        {isEdit ? (
-          <Stack
-            style={{
-              backgroundColor: "#f3f3f3",
-              borderRadius: 10,
-            }}
-            spacing={2}
-          >
-            <TextField
-              type="text"
-              placeholder="Enter title"
-              fullWidth
-              size="small"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <TextareaAutosize
-              aria-label="textarea for text body"
-              placeholder="Enter text"
-              minRows={10}
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              style={{
-                width: "100%",
-                fontFamily: "inherit",
-                fontSize: "1rem",
-                padding: 10,
-              }}
-            />
-          </Stack>
-        ) : (
-          <>
-            <h2 style={{ fontSize: "1.7rem" }}>{postData?.post?.title}</h2>
-            <p style={{ fontSize: "0.9rem" }}>{postData?.post?.body}</p>
-          </>
-        )}
-        <Stack>
-          {!isEdit ? (
-            user?._id === postData?.author?._id && (
-              <Stack direction="row" spacing={2}>
-                <Button variant="contained" onClick={handleEdit}>
-                  Edit
-                </Button>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    setIsPostRemove(true);
-                  }}
-                >
-                  Delete
-                </Button>
-              </Stack>
-            )
-          ) : (
-            <Stack direction="row" spacing={2}>
-              <Button variant="outlined" color="error" onClick={handleCancel}>
-                Cancel
-              </Button>
-              <Button variant="contained" onClick={handleSave}>
-                Save
-              </Button>
-            </Stack>
-          )}
-        </Stack>
-      </Stack>
+      <PostComponent
+        key={postData?._id}
+        post={postData}
+        id={postData?._id}
+        handleUpvote={() => handleUpvote(postData?._id)}
+        handleDownvote={() => handleDownvote(postData?._id)}
+        individualView={true}
+        isEdit={isEdit}
+        handleEdit={handleEdit}
+        handleCancel={handleCancel}
+        handleDelete={handleDelete}
+        handleSave={handleSave}
+        title={title}
+        body={body}
+        handleBody={(e) => setBody(e.target.value)}
+        handleTitle={(e) => setTitle(e.target.value)}
+      />
 
       {/* <Snackbar
         open={isPostRemoved}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import GlobalSideBar from "./drawerComponents/GlobalSideBar";
 import { GlobalContext } from "@/services/globalContext";
+import { Container } from "@mui/material";
 
 const SideBarLayout = ({ children }) => {
   const { user } = useContext(GlobalContext);
@@ -8,9 +9,9 @@ const SideBarLayout = ({ children }) => {
   return (
     <>
       {user ? (
-        <section>
+        <Container>
           <div>{children}</div>
-        </section>
+        </Container>
       ) : (
         <section style={{ display: "flex" }}>
           <GlobalSideBar />

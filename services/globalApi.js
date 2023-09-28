@@ -40,7 +40,7 @@ export const userApi = async () => {
   const data = await axios.get(`${API_URL}/api/user/user`, {
     withCredentials: true,
   });
-  console.log(data);
+  // console.log(data);
 
   return data;
 };

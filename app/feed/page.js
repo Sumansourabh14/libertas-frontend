@@ -1,20 +1,15 @@
 "use client";
 import NewPost from "@/components/buttonComponents/NewPost";
+import PostComponent from "@/components/postComponents/PostComponent";
 import RecentPosts from "@/components/postComponents/RecentPosts";
-import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
-import { Container, IconButton, Stack } from "@mui/material";
-import Link from "next/link";
+import { Container, Stack } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
 
-  const { fetchAllPosts, upvoteAPost, downvoteAPost, user } =
+  const { fetchAllPosts, upvoteAPost, downvoteAPost } =
     useContext(GlobalContext);
 
   useEffect(() => {
@@ -72,7 +67,11 @@ const Feed = () => {
   }, []);
 
   return (
-    <Container style={{ paddingBottom: 20 }}>
+    <Container
+      style={{
+        paddingBottom: 20,
+      }}
+    >
       <Stack direction="row" spacing={3}>
         <Stack>
           <div>
@@ -82,63 +81,14 @@ const Feed = () => {
           <Stack spacing={3} style={{ marginTop: 24 }}>
             {posts?.length > 0 ? (
               posts?.map((post) => (
-                <Stack key={post?._id}>
-                  <Stack
-                    spacing={2}
-                    style={{
-                      backgroundColor: "#f3f3f3",
-                      padding: 12,
-                      borderRadius: "0.5rem",
-                    }}
-                  >
-                    <Stack direction="row" spacing={3}>
-                      <Stack alignItems="center">
-                        <IconButton onClick={() => handleUpvote(post?._id)}>
-                          {post?.upvotes?.includes(user?._id) ? (
-                            <ThumbUpIcon />
-                          ) : (
-                            <ThumbUpOutlinedIcon />
-                          )}
-                        </IconButton>
-
-                        <p>{post?.upvotes?.length - post?.downvotes?.length}</p>
-
-                        <IconButton onClick={() => handleDownvote(post?._id)}>
-                          {post?.downvotes?.includes(user?._id) ? (
-                            <ThumbDownIcon />
-                          ) : (
-                            <ThumbDownOutlinedIcon />
-                          )}
-                        </IconButton>
-                      </Stack>
-                      <Link key={post?._id} href={`/post/${post?._id}`}>
-                        <Stack spacing={2}>
-                          <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            spacing={2}
-                          >
-                            <p style={{ fontSize: "1rem", fontWeight: "600" }}>
-                              {post?.author?.username}
-                            </p>
-                            <p
-                              style={{
-                                fontSize: "0.875rem",
-                                fontWeight: "300",
-                              }}
-                            >
-                              {relativeTime(Date.parse(post?.createdAt))}
-                            </p>
-                          </Stack>
-                          <h3>{post?.post?.title}</h3>
-                          <p style={{ fontSize: "0.9rem" }}>
-                            {post?.post?.body}
-                          </p>
-                        </Stack>
-                      </Link>
-                    </Stack>
-                  </Stack>
-                </Stack>
+                <PostComponent
+                  key={post?._id}
+                  post={post}
+                  id={post?._id}
+                  handleUpvote={() => handleUpvote(post?._id)}
+                  handleDownvote={() => handleDownvote(post?._id)}
+                  individualView={false}
+                />
               ))
             ) : (
               <p>You are all caught up!</p>

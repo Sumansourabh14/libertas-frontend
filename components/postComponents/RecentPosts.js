@@ -16,7 +16,7 @@ const RecentPosts = () => {
       const data = await fetchAllPosts();
 
       if (mounted) {
-        setPosts(data?.data?.data);
+        setPosts(data?.data?.data?.reverse());
       }
     }
 
@@ -41,7 +41,7 @@ const RecentPosts = () => {
           <h4>Recent Posts</h4>
 
           {posts?.length > 0 &&
-            posts?.reverse()?.map((post) => (
+            posts?.map((post) => (
               <Link key={post?._id} href={`/post/${post?._id}`}>
                 <Stack
                   spacing={2}

@@ -200,7 +200,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const fetchAllPosts = async () => {
     try {
       const data = await getAllPosts();
-      console.log(data);
+      // console.log(data);
       setPosts(data?.data?.data);
       return data;
     } catch (error) {
@@ -222,9 +222,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
     getUser();
   }, [isAuthenticated]);
 
-  useEffect(() => {
-    console.log({ user });
-  }, [user]);
+  // useEffect(() => {
+  //   console.log({ user });
+  // }, [user]);
 
   // useEffect(() => {
   //   fetchAllPosts();

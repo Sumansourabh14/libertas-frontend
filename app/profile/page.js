@@ -1,6 +1,7 @@
 "use client";
 import User from "@/components/User";
 import DeletePostModal from "@/components/modalComponents/DeletePostModal";
+import PostComponent from "@/components/postComponents/PostComponent";
 import { GlobalContext } from "@/services/globalContext";
 import { Button, Snackbar, Stack } from "@mui/material";
 import Link from "next/link";
@@ -13,7 +14,14 @@ const Profile = () => {
   const [isPostRemoved, setIsPostRemoved] = useState(false);
   const [isPostRemove, setIsPostRemove] = useState(false);
 
-  const { user, fetchPosts, removePost } = useContext(GlobalContext);
+  const {
+    user,
+    fetchPosts,
+    removePost,
+    fetchPost,
+    upvoteAPost,
+    downvoteAPost,
+  } = useContext(GlobalContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +40,7 @@ const Profile = () => {
       const data = await fetchPosts(user?._id);
       // console.log(data);
 
-      if (data) setPosts(data?.data.posts);
+      if (data) setPosts(data?.data.posts?.reverse());
     };
 
     getAllPosts();
@@ -52,6 +60,32 @@ const Profile = () => {
     setIsPostRemove(false);
   };
 
+  const handleUpvote = async (postId) => {
+    try {
+      // Call the upvoteAPost function
+      await upvoteAPost(postId);
+
+      // Fetch the updated list of posts after upvoting (re-render)
+      const updatedPosts = await fetchPosts(user?._id);
+      setPosts(updatedPosts?.data?.posts?.reverse());
+    } catch (error) {
+      console.error("Error upvoting post:", error);
+    }
+  };
+
+  const handleDownvote = async (postId) => {
+    try {
+      // Call the downvoteAPost function
+      await downvoteAPost(postId);
+
+      // Fetch the updated list of posts after downvoting (re-render)
+      const updatedPosts = await fetchPosts(user?._id);
+      setPosts(updatedPosts?.data?.posts?.reverse());
+    } catch (error) {
+      console.error("Error downvoting post:", error);
+    }
+  };
+
   useEffect(() => {
     if (user) document.title = `${user?.name} (${user?.username}) | Libertas`;
   }, [user]);
@@ -69,33 +103,15 @@ const Profile = () => {
 
           {posts?.length !== 0 ? (
             <Stack spacing={3} style={{ padding: "1rem 0" }}>
-              {posts?.reverse()?.map((post) => (
-                <Link key={post?._id} href={`/post/${post?._id}`}>
-                  <Stack
-                    style={{
-                      backgroundColor: "#f3f3f3",
-                      padding: 10,
-                      borderRadius: "0.5rem",
-                    }}
-                    spacing={1}
-                  >
-                    <h3>{post?.post.title}</h3>
-                    <p>{post?.post.body}</p>
-                    <div>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        // onClick={() => handleDeletePost(post?._id)}
-                        onClick={() => {
-                          setIsPostRemove(true);
-                          setPostId(post?._id);
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </Stack>
-                </Link>
+              {posts?.map((post) => (
+                <PostComponent
+                  key={post?._id}
+                  post={post}
+                  id={post?._id}
+                  handleUpvote={() => handleUpvote(post?._id)}
+                  handleDownvote={() => handleDownvote(post?._id)}
+                  individualView={false}
+                />
               ))}
             </Stack>
           ) : (
