@@ -2,6 +2,8 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { Box, Button, IconButton, Modal, Stack } from "@mui/material";
 
 const DeletePostModal = ({
+  title,
+  body,
   isPostRemove,
   handleDeleteModalClose,
   handleDeletePost,
@@ -32,10 +34,8 @@ const DeletePostModal = ({
           </IconButton>
         </div>
         <Stack spacing={3} alignItems="center" style={{ textAlign: "center" }}>
-          <h2>Delete post?</h2>
-          <p>
-            Are you sure you want to delete your post? You cannot undo this.
-          </p>
+          <h2>{title}</h2>
+          <p>{body}</p>
           <Stack direction="row" spacing={2}>
             <Button
               variant="outlined"

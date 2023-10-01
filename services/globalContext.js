@@ -2,10 +2,13 @@
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import {
+  addComment,
   createPost,
+  deleteComment,
   deletePost,
   downvotePost,
   getAllPosts,
+  getComments,
   getPost,
   getPosts,
   getUserById,
@@ -174,6 +177,36 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  const createComment = async (id, body) => {
+    try {
+      const data = await addComment(id, body);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCommentsByPostId = async (id) => {
+    try {
+      const data = await getComments(id);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeComment = async (id, commentId) => {
+    try {
+      const data = await deleteComment(id, commentId);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // fetch posts of a certain user
   const fetchPosts = async (userId) => {
     try {
@@ -246,6 +279,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
         theme,
         postPost,
         editPost,
+        getCommentsByPostId,
+        createComment,
+        removeComment,
         fetchPosts,
         fetchPost,
         removePost,

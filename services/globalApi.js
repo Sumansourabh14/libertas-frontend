@@ -101,6 +101,38 @@ export const updatePost = async (id, title, body) => {
   return data;
 };
 
+export const addComment = async (id, body) => {
+  const data = await axios.post(
+    `${API_URL}/api/user/post/comment/${id}`,
+    { body },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
+export const getComments = async (id) => {
+  const data = await axios.get(`${API_URL}/api/user/post/comments/${id}`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
+export const deleteComment = async (id, commentId) => {
+  const data = await axios.put(
+    `${API_URL}/api/user/post/comment/${id}`,
+    { commentId },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
 export const getPosts = async (userId) => {
   const data = await axios.get(`${API_URL}/api/user/posts/${userId}`, {
     withCredentials: true,

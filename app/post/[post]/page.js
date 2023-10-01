@@ -1,9 +1,10 @@
 "use client";
 import DeletePostModal from "@/components/modalComponents/DeletePostModal";
+import CommentInput from "@/components/postComponents/CommentInput";
+import Comments from "@/components/postComponents/Comments";
 import PostComponent from "@/components/postComponents/PostComponent";
 import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
-import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -13,8 +14,10 @@ const Post = ({ params }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [commentText, setCommentText] = useState("");
   const [isPostRemove, setIsPostRemove] = useState(false);
   // const [isPostRemoved, setIsPostRemoved] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const {
     fetchPost,
@@ -22,7 +25,9 @@ const Post = ({ params }) => {
     removePost,
     upvoteAPost,
     downvoteAPost,
+    createComment,
     fetchAllPosts,
+    getCommentsByPostId,
     user,
   } = useContext(GlobalContext);
 
@@ -49,12 +54,26 @@ const Post = ({ params }) => {
   }, []);
 
   useEffect(() => {
-    document.title = `${postData?.post?.title} | Libertas`;
-  }, [post, postData]);
+    let mounted = true;
+
+    const fetchComments = async () => {
+      const data = await getCommentsByPostId(postData?._id);
+
+      if (mounted) {
+        setComments(data?.data?.data);
+      }
+    };
+
+    fetchComments();
+
+    return () => {
+      mounted = false;
+    };
+  }, [postData]);
 
   useEffect(() => {
-    console.log({ user });
-  }, [user]);
+    document.title = `${postData?.post?.title} | Libertas`;
+  }, [post, postData]);
 
   useEffect(() => {
     const timestamp = Date.parse(postData?.createdAt);
@@ -138,6 +157,13 @@ const Post = ({ params }) => {
     }
   };
 
+  const handleAddComment = async () => {
+    await createComment(postData?._id, commentText);
+
+    const data = await fetchPost(postData?._id);
+    setPostData(data?.data?.post);
+  };
+
   return (
     <div>
       <PostComponent
@@ -158,6 +184,14 @@ const Post = ({ params }) => {
         handleTitle={(e) => setTitle(e.target.value)}
       />
 
+      <CommentInput
+        commentText={commentText}
+        handleCommentText={(e) => setCommentText(e.target.value)}
+        handleAddComment={handleAddComment}
+      />
+
+      <Comments comments={comments} />
+
       {/* <Snackbar
         open={isPostRemoved}
         message="Post removed successfully"
@@ -165,6 +199,8 @@ const Post = ({ params }) => {
       /> */}
 
       <DeletePostModal
+        title="Delete post?"
+        body="Are you sure you want to delete your post? You cannot undo this."
         isPostRemove={isPostRemove}
         handleDeleteModalClose={handleDeleteModalClose}
         handleDeletePost={handleDeletePost}

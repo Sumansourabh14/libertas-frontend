@@ -128,30 +128,35 @@ const PostComponent = ({
                 <Stack>
                   {!isEdit ? (
                     user?._id === post?.author?._id && (
-                      <Stack
-                        direction="row"
-                        spacing={2}
-                        style={{
-                          backgroundColor: "#fff",
-                          width: "100px",
-                          borderRadius: "0.5rem",
-                          padding: 2,
-                        }}
-                      >
-                        <Tooltip title="Edit" arrow>
-                          <IconButton onClick={handleEdit} aria-label="edit">
-                            <EditIcon />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Delete" arrow>
-                          <IconButton
-                            onClick={handleDelete}
-                            aria-label="delete"
-                            color="error"
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </Tooltip>
+                      <Stack direction="row" alignItems="center" spacing={2}>
+                        {post?.comments?.length > 0 && (
+                          <p>{post?.comments?.length} comments</p>
+                        )}
+                        <Stack
+                          direction="row"
+                          spacing={2}
+                          style={{
+                            backgroundColor: "#fff",
+                            width: "100px",
+                            borderRadius: "0.5rem",
+                            padding: 2,
+                          }}
+                        >
+                          <Tooltip title="Edit" arrow>
+                            <IconButton onClick={handleEdit} aria-label="edit">
+                              <EditIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete" arrow>
+                            <IconButton
+                              onClick={handleDelete}
+                              aria-label="delete"
+                              color="error"
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </Stack>
                       </Stack>
                     )
                   ) : (
