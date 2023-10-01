@@ -1,9 +1,10 @@
-import { Button, Stack } from "@mui/material";
+import { Button, IconButton, Stack, Tooltip } from "@mui/material";
 import { relativeTime } from "../utils/relativeTime";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/services/globalContext";
 import DeletePostModal from "../modalComponents/DeletePostModal";
 import { useRouter } from "next/navigation";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CommentSingle = ({ comment }) => {
   const [isCommentRemove, setIsCommentRemove] = useState(false);
@@ -54,9 +55,22 @@ const CommentSingle = ({ comment }) => {
       {comment.author === user?._id && (
         <Stack>
           <div>
-            <Button variant="contained" onClick={handleOpenDeleteCommentModal}>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleOpenDeleteCommentModal}
+            >
               Delete
             </Button>
+            {/* <Tooltip title="Delete" arrow>
+              <IconButton
+                onClick={handleOpenDeleteCommentModal}
+                aria-label="delete comment"
+                color="error"
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip> */}
           </div>
         </Stack>
       )}

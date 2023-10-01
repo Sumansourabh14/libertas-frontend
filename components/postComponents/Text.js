@@ -4,7 +4,12 @@ const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
   return (
     <div>
       <Stack
-        style={{ padding: 20, backgroundColor: "#f3f3f3", borderRadius: 10 }}
+        style={{
+          padding: 20,
+          backgroundColor: "#f3f3f3",
+          borderRadius: 10,
+          boxShadow: `rgba(0, 0, 0, 0.16) 0px 1px 4px`,
+        }}
         spacing={2}
       >
         <TextField
@@ -14,6 +19,13 @@ const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
           placeholder="Enter title"
           fullWidth
           size="small"
+          InputProps={{
+            style: {
+              backgroundColor: "#fff",
+              fontFamily: "inherit",
+              fontSize: "1rem",
+            },
+          }}
         />
         <TextareaAutosize
           aria-label="textarea for text body"
@@ -32,8 +44,8 @@ const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
           <Button
             variant="contained"
             type="submit"
-            color="success"
             onClick={handleTextPost}
+            style={{ backgroundColor: "#000" }}
           >
             Post
           </Button>

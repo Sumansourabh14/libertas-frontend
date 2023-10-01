@@ -237,7 +237,18 @@ const PostComponent = ({
                   </p>
                 </Stack>
                 <h3>{post?.post?.title}</h3>
-                <p style={{ fontSize: "0.9rem" }}>{post?.post?.body}</p>
+                <p
+                  style={{
+                    fontSize: "0.9rem",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: "8", // how many lines we want to show
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  {post?.post?.body}
+                </p>
                 {post?.comments?.length !== 0 ? (
                   post?.comments?.length === 1 ? (
                     <p
