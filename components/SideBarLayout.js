@@ -15,7 +15,9 @@ const SideBarLayout = ({ children }) => {
       ) : (
         <section style={{ display: "flex" }}>
           <GlobalSideBar />
-          <div>{children}</div>
+          <Container>
+            <div>{children}</div>
+          </Container>
         </section>
       )}
     </>

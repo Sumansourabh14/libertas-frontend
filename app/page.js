@@ -16,7 +16,7 @@ const Home = () => {
         <Stack
           alignItems="center"
           spacing={6}
-          style={{ padding: 20, textAlign: "center", height: "100vh" }}
+          style={{ padding: 20, textAlign: "center", height: "60vh" }}
         >
           <h1 style={{ fontSize: "4rem" }}>
             Libertas - Discuss about anything

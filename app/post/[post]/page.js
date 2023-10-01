@@ -5,6 +5,7 @@ import Comments from "@/components/postComponents/Comments";
 import PostComponent from "@/components/postComponents/PostComponent";
 import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
+import { Container, Divider, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -58,6 +59,7 @@ const Post = ({ params }) => {
 
     const fetchComments = async () => {
       const data = await getCommentsByPostId(postData?._id);
+      console.log(data);
 
       if (mounted) {
         setComments(data?.data?.data);
@@ -158,6 +160,10 @@ const Post = ({ params }) => {
   };
 
   const handleAddComment = async () => {
+    if (!user) {
+      router.push("/login");
+    }
+
     await createComment(postData?._id, commentText);
 
     const data = await fetchPost(postData?._id);
@@ -165,7 +171,7 @@ const Post = ({ params }) => {
   };
 
   return (
-    <div>
+    <Stack spacing={4} style={{ paddingBottom: 20 }}>
       <PostComponent
         key={postData?._id}
         post={postData}
@@ -184,13 +190,25 @@ const Post = ({ params }) => {
         handleTitle={(e) => setTitle(e.target.value)}
       />
 
-      <CommentInput
-        commentText={commentText}
-        handleCommentText={(e) => setCommentText(e.target.value)}
-        handleAddComment={handleAddComment}
-      />
+      <Container maxWidth="md" style={{ paddingLeft: 0 }}>
+        <CommentInput
+          commentText={commentText}
+          handleCommentText={(e) => setCommentText(e.target.value)}
+          handleAddComment={handleAddComment}
+        />
 
-      <Comments comments={comments} />
+        <Divider variant="fullWidth" style={{ padding: "0.875rem 0" }} />
+
+        <Stack spacing={2} style={{ marginTop: 20 }}>
+          <h3>
+            {comments?.length === 1
+              ? `1 comment`
+              : `${comments?.length} comments`}
+          </h3>
+
+          <Comments comments={comments} />
+        </Stack>
+      </Container>
 
       {/* <Snackbar
         open={isPostRemoved}
@@ -205,7 +223,7 @@ const Post = ({ params }) => {
         handleDeleteModalClose={handleDeleteModalClose}
         handleDeletePost={handleDeletePost}
       />
-    </div>
+    </Stack>
   );
 };
 

@@ -40,9 +40,16 @@ const CommentSingle = ({ comment }) => {
   }, [comment]);
 
   return (
-    <Stack spacing={1}>
+    <Stack
+      spacing={1}
+      style={{
+        backgroundColor: "#F1F6F9",
+        padding: 16,
+        borderRadius: "0.5rem",
+        boxShadow: `rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px`,
+      }}
+    >
       <strong>{author?.username}</strong>
-      <p>{relativeTime(comment.createdAt)}</p>
       <p>{comment.body}</p>
       {comment.author === user?._id && (
         <Stack>
@@ -53,6 +60,9 @@ const CommentSingle = ({ comment }) => {
           </div>
         </Stack>
       )}
+      <p style={{ fontSize: "0.875rem", fontWeight: "300", color: "gray" }}>
+        {relativeTime(comment.createdAt)}
+      </p>
       <DeletePostModal
         title="Delete comment?"
         body="Are you sure you want to delete your comment? You cannot undo this."

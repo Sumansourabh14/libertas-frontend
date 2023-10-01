@@ -51,7 +51,7 @@ const Header = ({ themeMode, handleTheme }) => {
             <Link href={"/"}>Libertas</Link>
           </h2>
           <Stack direction="row" alignItems="center" spacing={3}>
-            <form onSubmit={handleSearch}>
+            {/* <form onSubmit={handleSearch}>
               <TextField
                 type="text"
                 value={searchTerm}
@@ -62,7 +62,7 @@ const Header = ({ themeMode, handleTheme }) => {
               <IconButton type="submit">
                 <SearchIcon />
               </IconButton>
-            </form>
+            </form> */}
             <IconButton onClick={handleTheme}>
               {themeMode === "light" ? (
                 <Tooltip title="Change theme to Dark mode">

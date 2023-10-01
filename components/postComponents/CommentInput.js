@@ -1,11 +1,12 @@
-import { Button, TextareaAutosize } from "@mui/material";
+import { Button, Stack, TextareaAutosize } from "@mui/material";
 
 const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
   return (
-    <>
+    <Stack spacing={2}>
+      <h3>Add a comment</h3>
       <TextareaAutosize
         aria-label="textarea for comment"
-        placeholder="Add a comment"
+        placeholder="Let your thoughts pour in!"
         minRows={4}
         value={commentText}
         onChange={handleCommentText}
@@ -16,10 +17,12 @@ const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
           padding: 10,
         }}
       />
-      <Button variant="contained" onClick={handleAddComment}>
-        Add
-      </Button>
-    </>
+      <div>
+        <Button variant="contained" onClick={handleAddComment}>
+          Add
+        </Button>
+      </div>
+    </Stack>
   );
 };
 

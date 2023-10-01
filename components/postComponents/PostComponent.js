@@ -43,6 +43,8 @@ const PostComponent = ({
           backgroundColor: "#f3f3f3",
           padding: 12,
           borderRadius: "0.5rem",
+
+          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
         }}
       >
         <Stack direction="row" spacing={3}>
@@ -80,6 +82,7 @@ const PostComponent = ({
                   style={{
                     fontSize: "0.875rem",
                     fontWeight: "300",
+                    color: "gray",
                   }}
                 >
                   {relativeTime(Date.parse(post?.createdAt))}
@@ -123,15 +126,45 @@ const PostComponent = ({
                     <p style={{ fontSize: individualView ? "1rem" : "0.9rem" }}>
                       {post?.post?.body}
                     </p>
+                    {post?.comments?.length !== 0 ? (
+                      post?.comments?.length === 1 ? (
+                        <p
+                          style={{
+                            fontSize: "0.9rem",
+                            fontWeight: "300",
+                            color: "gray",
+                          }}
+                        >
+                          1 comment
+                        </p>
+                      ) : (
+                        <p
+                          style={{
+                            fontSize: "0.9rem",
+                            fontWeight: "300",
+                            color: "gray",
+                          }}
+                        >
+                          {post?.comments?.length} comments
+                        </p>
+                      )
+                    ) : (
+                      <p
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: "300",
+                          color: "gray",
+                        }}
+                      >
+                        0 comments
+                      </p>
+                    )}
                   </>
                 )}
                 <Stack>
                   {!isEdit ? (
                     user?._id === post?.author?._id && (
                       <Stack direction="row" alignItems="center" spacing={2}>
-                        {post?.comments?.length > 0 && (
-                          <p>{post?.comments?.length} comments</p>
-                        )}
                         <Stack
                           direction="row"
                           spacing={2}
@@ -184,13 +217,20 @@ const PostComponent = ({
                   justifyContent="space-between"
                   spacing={2}
                 >
-                  <p style={{ fontSize: "1rem", fontWeight: "600" }}>
+                  <p
+                    style={{
+                      fontSize: "1rem",
+                      fontWeight: "600",
+                      color: "gray",
+                    }}
+                  >
                     {post?.author?.username}
                   </p>
                   <p
                     style={{
                       fontSize: "0.875rem",
                       fontWeight: "300",
+                      color: "gray",
                     }}
                   >
                     {relativeTime(Date.parse(post?.createdAt))}
@@ -198,6 +238,39 @@ const PostComponent = ({
                 </Stack>
                 <h3>{post?.post?.title}</h3>
                 <p style={{ fontSize: "0.9rem" }}>{post?.post?.body}</p>
+                {post?.comments?.length !== 0 ? (
+                  post?.comments?.length === 1 ? (
+                    <p
+                      style={{
+                        fontSize: "0.9rem",
+                        fontWeight: "300",
+                        color: "gray",
+                      }}
+                    >
+                      1 comment
+                    </p>
+                  ) : (
+                    <p
+                      style={{
+                        fontSize: "0.9rem",
+                        fontWeight: "300",
+                        color: "gray",
+                      }}
+                    >
+                      {post?.comments?.length} comments
+                    </p>
+                  )
+                ) : (
+                  <p
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "300",
+                      color: "gray",
+                    }}
+                  >
+                    0 comments
+                  </p>
+                )}
               </Stack>
             </Link>
           )}
