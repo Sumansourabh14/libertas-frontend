@@ -1,8 +1,8 @@
+import { GlobalContext } from "@/services/globalContext";
 import { Stack } from "@mui/material";
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { relativeTime } from "../utils/relativeTime";
-import { GlobalContext } from "@/services/globalContext";
 
 const RecentPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -65,6 +65,39 @@ const RecentPosts = () => {
                     </p>
                   </Stack>
                   <h5>{post?.post?.title}</h5>
+                  {post?.comments?.length !== 0 ? (
+                    post?.comments?.length === 1 ? (
+                      <p
+                        style={{
+                          fontSize: "0.7rem",
+                          fontWeight: "300",
+                          color: "gray",
+                        }}
+                      >
+                        1 comment
+                      </p>
+                    ) : (
+                      <p
+                        style={{
+                          fontSize: "0.7rem",
+                          fontWeight: "300",
+                          color: "gray",
+                        }}
+                      >
+                        {post?.comments?.length} comments
+                      </p>
+                    )
+                  ) : (
+                    <p
+                      style={{
+                        fontSize: "0.7rem",
+                        fontWeight: "300",
+                        color: "gray",
+                      }}
+                    >
+                      0 comments
+                    </p>
+                  )}
                 </Stack>
               </Link>
             ))}

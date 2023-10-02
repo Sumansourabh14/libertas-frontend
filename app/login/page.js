@@ -35,7 +35,9 @@ const Login = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
+    >
       <div>
         <Stack
           alignItems="center"

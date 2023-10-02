@@ -45,10 +45,9 @@ const PostComponent = ({
       <Stack
         spacing={2}
         style={{
-          backgroundColor: "#f3f3f3",
+          backgroundColor: "#F0F0F0",
           padding: 12,
           borderRadius: "0.5rem",
-
           boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
         }}
       >
@@ -87,7 +86,7 @@ const PostComponent = ({
                   style={{
                     fontSize: "0.875rem",
                     fontWeight: "300",
-                    color: "gray",
+                    color: "grey",
                   }}
                 >
                   {relativeTime(Date.parse(post?.createdAt))}
@@ -241,8 +240,8 @@ const PostComponent = ({
                     style={{
                       fontSize: "0.875rem",
                       fontWeight: "300",
-                      color: "gray",
-                      padding: 2,
+                      color: "#000",
+                      padding: 4,
                       borderRadius: "0.2rem",
                       backgroundColor: "#C3C5BF",
                     }}

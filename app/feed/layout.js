@@ -6,7 +6,7 @@ export default function FeedLayout({ children }) {
   return (
     <section style={{ display: "flex" }}>
       <GlobalSideBar />
-      <Container>{children}</Container>
+      <Container style={{ padding: "2rem 0" }}>{children}</Container>
     </section>
   );
 }

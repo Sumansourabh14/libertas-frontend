@@ -40,6 +40,7 @@ const Header = ({ themeMode, handleTheme }) => {
         position="fixed"
         className="app-bar-backdrop"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        // sx={{ backgroundColor: "#000" }}
       >
         <Toolbar>
           <h2
@@ -84,9 +85,12 @@ const Header = ({ themeMode, handleTheme }) => {
                 <Link href="/create-post">Create Post</Link>
                 <Link href="/profile">Profile</Link>
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   onClick={handleLogout}
-                  color="error"
+                  style={{
+                    color: "#000",
+                    border: "1px solid grey",
+                  }}
                 >
                   Logout
                 </Button>
@@ -108,6 +112,7 @@ const Header = ({ themeMode, handleTheme }) => {
                     backgroundColor: "#F4E869",
                     borderRadius: "0.2rem",
                     fontWeight: "600",
+                    border: "1px solid grey",
                   }}
                 >
                   Sign Up

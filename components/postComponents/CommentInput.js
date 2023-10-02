@@ -1,4 +1,6 @@
 import { Button, Stack, TextareaAutosize } from "@mui/material";
+import OptionButton from "../buttonComponents/OptionButton";
+import InsertCommentIcon from "@mui/icons-material/InsertComment";
 
 const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
   return (
@@ -18,9 +20,13 @@ const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
         }}
       />
       <div>
-        <Button variant="contained" onClick={handleAddComment}>
-          Add
-        </Button>
+        <OptionButton
+          title={`Add`}
+          handleClick={handleAddComment}
+          color="#000"
+          bgColor="#F4E869"
+          icon={<InsertCommentIcon />}
+        />
       </div>
     </Stack>
   );

@@ -5,7 +5,6 @@ import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import { Button, Stack } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
@@ -32,7 +31,7 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ padding: "4rem 0" }}>
       <Stack
         direction={{
           xs: "column",

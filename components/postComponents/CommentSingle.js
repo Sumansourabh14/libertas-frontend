@@ -5,6 +5,7 @@ import { GlobalContext } from "@/services/globalContext";
 import DeletePostModal from "../modalComponents/DeletePostModal";
 import { useRouter } from "next/navigation";
 import DeleteIcon from "@mui/icons-material/Delete";
+import OptionButton from "../buttonComponents/OptionButton";
 
 const CommentSingle = ({ comment }) => {
   const [isCommentRemove, setIsCommentRemove] = useState(false);
@@ -42,7 +43,7 @@ const CommentSingle = ({ comment }) => {
 
   return (
     <Stack
-      spacing={1}
+      spacing={2}
       style={{
         backgroundColor: "#F1F6F9",
         padding: 16,
@@ -52,31 +53,24 @@ const CommentSingle = ({ comment }) => {
     >
       <strong>{author?.username}</strong>
       <p>{comment.body}</p>
-      {comment.author === user?._id && (
-        <Stack>
-          <div>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={handleOpenDeleteCommentModal}
-            >
-              Delete
-            </Button>
-            {/* <Tooltip title="Delete" arrow>
-              <IconButton
-                onClick={handleOpenDeleteCommentModal}
-                aria-label="delete comment"
-                color="error"
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip> */}
-          </div>
-        </Stack>
-      )}
-      <p style={{ fontSize: "0.875rem", fontWeight: "300", color: "gray" }}>
-        {relativeTime(comment.createdAt)}
-      </p>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <p style={{ fontSize: "0.875rem", fontWeight: "300", color: "gray" }}>
+          {relativeTime(comment.createdAt)}
+        </p>
+
+        {comment.author === user?._id && (
+          <Stack>
+            <div>
+              <OptionButton
+                title="Delete"
+                icon={<DeleteIcon />}
+                handleClick={handleOpenDeleteCommentModal}
+                bgColor="red"
+              />
+            </div>
+          </Stack>
+        )}
+      </Stack>
       <DeletePostModal
         title="Delete comment?"
         body="Are you sure you want to delete your comment? You cannot undo this."

@@ -41,7 +41,7 @@ const CreatePost = () => {
     console.log(data);
 
     if (data) {
-      alert("Image uploaded!");
+      // alert("Image uploaded!");
       const url = await getDownloadURL(data.ref);
       setImageUrl(url);
     }
@@ -80,6 +80,7 @@ const CreatePost = () => {
               image={image}
               handleImageFile={handleImageFile}
               handleImageUpload={uploadImage}
+              imageUrl={imageUrl}
             />
             <Snackbar
               open={open}
