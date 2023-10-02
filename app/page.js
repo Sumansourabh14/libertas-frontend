@@ -1,5 +1,7 @@
 "use client";
+import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import { Button, Stack } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -16,41 +18,25 @@ const Home = () => {
         <Stack
           alignItems="center"
           spacing={6}
-          style={{ padding: 20, textAlign: "center", height: "60vh" }}
+          style={{ padding: 20, textAlign: "center" }}
         >
-          <h1 style={{ fontSize: "4rem" }}>
-            Libertas - Discuss about anything
+          <h1 style={{ fontSize: "4rem", fontWeight: "900" }}>
+            Discuss about anything
           </h1>
-          <h2>Create your account to get started</h2>
-          <div>
-            <Button
-              variant="contained"
-              onClick={() => router.push("/sign-up")}
-              style={{
-                borderRadius: "0.5rem",
-                padding: "1rem 2rem",
-                fontSize: "1rem",
-                textTransform: "capitalize",
-              }}
-            >
-              Create Account
-            </Button>
-          </div>
+          <h2 style={{ fontSize: "1.8rem", fontWeight: "400" }}>
+            Create your account to get started
+          </h2>
+          <Stack direction="row" spacing={4} alignItems="center">
+            <PrimaryButton
+              title="Create Account"
+              handleClick={() => router.push("/sign-up")}
+              bgColor="#F4E869"
+            />
+            <Link href={"/feed"} style={{ textDecoration: "underline" }}>
+              or check what&apos;s happening!
+            </Link>
+          </Stack>
         </Stack>
-        <div>
-          <Button
-            variant="contained"
-            onClick={() => router.push("/feed")}
-            style={{
-              borderRadius: "0.5rem",
-              padding: "1rem 2rem",
-              fontSize: "1rem",
-              textTransform: "capitalize",
-            }}
-          >
-            Dive in now
-          </Button>
-        </div>
       </Stack>
     </>
   );

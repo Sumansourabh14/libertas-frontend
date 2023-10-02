@@ -2,7 +2,8 @@ export const colors = {
   background: {
     lightMode: "#fff",
     darkMode: "#000",
-    authorGridItem: "yellow",
-    bookGridItem: "#f3f3f3",
   },
+  primary: "#000",
+  secondary: "#fff",
+  accent: "#F4E869",
 };

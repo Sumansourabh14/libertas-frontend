@@ -3,6 +3,7 @@ import ErrorText from "@/components/errorComponents/ErrorText";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
+import { colors } from "@/theme/colors";
 import { Button, Stack } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -81,7 +82,16 @@ const SignUp = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required={true}
               />
-              <Button variant="contained" type="submit" color="success">
+              <Button
+                variant="contained"
+                type="submit"
+                style={{
+                  color: "#000",
+                  textTransform: "capitalize",
+                  backgroundColor: colors.accent,
+                  fontWeight: "600",
+                }}
+              >
                 Sign Up
                 {loading && (
                   <div style={{ marginLeft: "0.6rem" }}>
@@ -90,9 +100,12 @@ const SignUp = () => {
                 )}
               </Button>
               <div style={{ textAlign: "center" }}>
-                <p>
+                <p style={{ fontSize: "0.875rem" }}>
                   Already have an account?{" "}
-                  <Link href="/login" style={{ color: "#1db954" }}>
+                  <Link
+                    href="/login"
+                    style={{ color: "#000", textDecoration: "underline" }}
+                  >
                     Login
                   </Link>
                 </p>

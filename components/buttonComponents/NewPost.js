@@ -1,13 +1,14 @@
-import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import PrimaryButton from "./PrimaryButton";
 
 const NewPost = () => {
   const router = useRouter();
 
   return (
-    <Button variant="contained" onClick={() => router.push("/create-post")}>
-      New Post
-    </Button>
+    <PrimaryButton
+      title="New Post"
+      handleClick={() => router.push("/create-post")}
+    />
   );
 };
 

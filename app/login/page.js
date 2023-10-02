@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import TextInput from "../../components/formComponents/TextInput";
 import { useRouter } from "next/navigation";
+import { colors } from "@/theme/colors";
 
 const Login = () => {
   const { loading, login, loginError, user } = useContext(GlobalContext);
@@ -62,7 +63,16 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required={true}
             />
-            <Button variant="contained" type="submit" color="success">
+            <Button
+              variant="contained"
+              type="submit"
+              style={{
+                color: "#000",
+                textTransform: "capitalize",
+                backgroundColor: colors.accent,
+                fontWeight: "600",
+              }}
+            >
               Login
               {loading && (
                 <div style={{ marginLeft: "0.6rem" }}>
@@ -70,9 +80,12 @@ const Login = () => {
                 </div>
               )}
             </Button>
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center", fontSize: "0.875rem" }}>
               Don&apos;t have an account?{" "}
-              <Link href="/sign-up" style={{ color: "#1db954" }}>
+              <Link
+                href="/sign-up"
+                style={{ color: "#000", textDecoration: "underline" }}
+              >
                 Sign up
               </Link>
             </p>

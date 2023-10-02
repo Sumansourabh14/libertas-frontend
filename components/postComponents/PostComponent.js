@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
+import CircleIcon from "@mui/icons-material/Circle";
 import {
   Button,
   IconButton,
@@ -218,13 +219,15 @@ const PostComponent = ({
               </>
             </Stack>
           ) : (
-            <Link key={post?._id} href={`/post/${post?._id}`}>
+            <Link
+              key={post?._id}
+              href={`/post/${post?._id}`}
+              style={{
+                width: "100%",
+              }}
+            >
               <Stack spacing={2}>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  spacing={2}
-                >
+                <Stack direction="row" alignItems="center" spacing={2}>
                   <p
                     style={{
                       fontSize: "1rem",
@@ -239,6 +242,9 @@ const PostComponent = ({
                       fontSize: "0.875rem",
                       fontWeight: "300",
                       color: "gray",
+                      padding: 2,
+                      borderRadius: "0.2rem",
+                      backgroundColor: "#C3C5BF",
                     }}
                   >
                     {relativeTime(Date.parse(post?.createdAt))}

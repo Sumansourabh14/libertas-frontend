@@ -41,7 +41,7 @@ const RecentPosts = () => {
           <h4>Recent Posts</h4>
 
           {posts?.length > 0 &&
-            posts?.map((post) => (
+            posts?.slice(0, 4)?.map((post) => (
               <Link key={post?._id} href={`/post/${post?._id}`}>
                 <Stack
                   spacing={2}

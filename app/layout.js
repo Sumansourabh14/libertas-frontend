@@ -34,7 +34,13 @@ export default function RootLayout({ children }) {
               <div style={{ padding: "6rem 2rem 0 2rem" }}>{children}</div>
             </main> */}
 
-            <main style={{ padding: "6rem 1rem 0 1rem" }}>{children}</main>
+            <main
+              style={{
+                padding: "6rem 1rem 0 1rem",
+              }}
+            >
+              {children}
+            </main>
           </body>
         </ThemeProvider>
       </GlobalContextProvider>

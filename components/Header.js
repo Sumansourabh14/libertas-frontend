@@ -63,7 +63,7 @@ const Header = ({ themeMode, handleTheme }) => {
                 <SearchIcon />
               </IconButton>
             </form> */}
-            <IconButton onClick={handleTheme}>
+            {/* <IconButton onClick={handleTheme}>
               {themeMode === "light" ? (
                 <Tooltip title="Change theme to Dark mode">
                   <div>
@@ -77,7 +77,7 @@ const Header = ({ themeMode, handleTheme }) => {
                   </div>
                 </Tooltip>
               )}
-            </IconButton>
+            </IconButton> */}
             {/* <Link href="/about">About</Link> */}
             {isAuthenticated ? (
               <>
@@ -93,12 +93,19 @@ const Header = ({ themeMode, handleTheme }) => {
               </>
             ) : (
               <>
-                <Link href="/login">Login</Link>
+                <Link
+                  href="/login"
+                  style={{
+                    fontWeight: "500",
+                  }}
+                >
+                  Login
+                </Link>
                 <Link
                   href="/sign-up"
                   style={{
-                    padding: "0.8rem 1rem",
-                    backgroundColor: "#1db954",
+                    padding: "0.5rem 1rem",
+                    backgroundColor: "#F4E869",
                     borderRadius: "0.2rem",
                     fontWeight: "600",
                   }}
