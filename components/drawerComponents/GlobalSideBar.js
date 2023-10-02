@@ -47,7 +47,7 @@ const GlobalSideBar = () => {
             <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={() => router.push("/profile")}>
+        <ListItem disablePadding onClick={() => router.push("/about")}>
           <ListItemButton>
             <ListItemIcon>
               <InfoIcon />

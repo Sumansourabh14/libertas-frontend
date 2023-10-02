@@ -98,6 +98,14 @@ const Header = ({ themeMode, handleTheme }) => {
             ) : (
               <>
                 <Link
+                  href="/about"
+                  style={{
+                    fontWeight: "500",
+                  }}
+                >
+                  About
+                </Link>
+                <Link
                   href="/login"
                   style={{
                     fontWeight: "500",
