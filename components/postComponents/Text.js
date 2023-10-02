@@ -1,6 +1,17 @@
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
+import Image from "next/image";
 
-const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
+const Text = ({
+  title,
+  body,
+  setTitle,
+  setBody,
+  handleTextPost,
+  image,
+  handleImageFile,
+  handleImageUpload,
+}) => {
   return (
     <div>
       <Stack
@@ -27,6 +38,30 @@ const Text = ({ title, body, setTitle, setBody, handleTextPost }) => {
             },
           }}
         />
+
+        <Stack direction="row" spacing={2}>
+          {/* <TextField type="file" onChange={handleImageFile} /> */}
+          <input type="file" onChange={handleImageFile} accept="image/*" />
+          <div>
+            <Button
+              variant="contained"
+              onClick={handleImageUpload}
+              startIcon={<AddPhotoAlternateIcon />}
+            >
+              Upload image
+            </Button>
+          </div>
+        </Stack>
+
+        {image && (
+          <Image
+            src={URL.createObjectURL(image)}
+            width={600}
+            height={300}
+            alt=""
+          />
+        )}
+
         <TextareaAutosize
           aria-label="textarea for text body"
           placeholder="Enter text"

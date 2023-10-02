@@ -129,9 +129,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
   };
 
   // create a post (text)
-  const postPost = async (title, body) => {
+  const postPost = async (title, body, imageUrl) => {
     try {
-      const data = await createPost(title, body);
+      const data = await createPost(title, body, imageUrl);
       return data;
     } catch (error) {
       console.log(error);
@@ -190,7 +190,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const getCommentsByPostId = async (id) => {
     try {
       const data = await getComments(id);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error);

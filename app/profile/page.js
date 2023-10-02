@@ -134,11 +134,11 @@ const Profile = () => {
             autoHideDuration={3000}
           />
 
-          <DeletePostModal
+          {/* <DeletePostModal
             isPostRemove={isPostRemove}
             handleDeleteModalClose={handleDeleteModalClose}
             handleDeletePost={handleDeletePost}
-          />
+          /> */}
         </div>
         <User />
       </Stack>

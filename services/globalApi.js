@@ -53,10 +53,10 @@ export const getUserById = async (id) => {
   return data;
 };
 
-export const createPost = async (title, body) => {
+export const createPost = async (title, body, imageUrl) => {
   const data = await axios.post(
     `${API_URL}/api/user/create-post`,
-    { title, body },
+    { title, body, imageUrl },
     {
       withCredentials: true,
     }

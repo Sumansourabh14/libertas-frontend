@@ -5,6 +5,8 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from "@mui/icons-material/Save";
+import CancelIcon from "@mui/icons-material/Cancel";
 import {
   Button,
   IconButton,
@@ -16,6 +18,8 @@ import {
 import Link from "next/link";
 import { useContext } from "react";
 import { relativeTime } from "../utils/relativeTime";
+import Image from "next/image";
+import OptionButton from "../buttonComponents/OptionButton";
 
 const PostComponent = ({
   id,
@@ -123,6 +127,15 @@ const PostComponent = ({
                 ) : (
                   <>
                     <h2 style={{ fontSize: "1.7rem" }}>{post?.post?.title}</h2>
+                    {post?.post?.imageUrl && (
+                      <Image
+                        src={post?.post?.imageUrl}
+                        alt=""
+                        width={640}
+                        height={335}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
+                    )}
                     <p style={{ fontSize: individualView ? "1rem" : "0.9rem" }}>
                       {post?.post?.body}
                     </p>
@@ -169,41 +182,36 @@ const PostComponent = ({
                           direction="row"
                           spacing={2}
                           style={{
-                            backgroundColor: "#fff",
-                            width: "100px",
-                            borderRadius: "0.5rem",
                             padding: 2,
                           }}
                         >
-                          <Tooltip title="Edit" arrow>
-                            <IconButton onClick={handleEdit} aria-label="edit">
-                              <EditIcon />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Delete" arrow>
-                            <IconButton
-                              onClick={handleDelete}
-                              aria-label="delete"
-                              color="error"
-                            >
-                              <DeleteIcon />
-                            </IconButton>
-                          </Tooltip>
+                          <OptionButton
+                            title="Edit"
+                            icon={<EditIcon />}
+                            handleClick={handleEdit}
+                          />
+                          <OptionButton
+                            title="Delete"
+                            icon={<DeleteIcon />}
+                            handleClick={handleDelete}
+                            bgColor="red"
+                          />
                         </Stack>
                       </Stack>
                     )
                   ) : (
                     <Stack direction="row" spacing={2}>
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        onClick={handleCancel}
-                      >
-                        Cancel
-                      </Button>
-                      <Button variant="contained" onClick={handleSave}>
-                        Save
-                      </Button>
+                      <OptionButton
+                        title="Cancel"
+                        icon={<CancelIcon />}
+                        handleClick={handleCancel}
+                        bgColor="red"
+                      />
+                      <OptionButton
+                        title="Save"
+                        icon={<SaveIcon />}
+                        handleClick={handleSave}
+                      />
                     </Stack>
                   )}
                 </Stack>
@@ -237,6 +245,14 @@ const PostComponent = ({
                   </p>
                 </Stack>
                 <h3>{post?.post?.title}</h3>
+                {post?.post?.imageUrl && (
+                  <Image
+                    src={post?.post?.imageUrl}
+                    alt=""
+                    width={500}
+                    height={260}
+                  />
+                )}
                 <p
                   style={{
                     fontSize: "0.9rem",

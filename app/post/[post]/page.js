@@ -59,7 +59,7 @@ const Post = ({ params }) => {
 
     const fetchComments = async () => {
       const data = await getCommentsByPostId(postData?._id);
-      console.log(data);
+      // console.log(data);
 
       if (mounted) {
         setComments(data?.data?.data);
@@ -127,9 +127,9 @@ const Post = ({ params }) => {
     setIsPostRemove(true);
   };
 
-  useEffect(() => {
-    console.log({ isEdit });
-  }, [isEdit]);
+  // useEffect(() => {
+  //   console.log({ isEdit });
+  // }, [isEdit]);
 
   const handleUpvote = async (postId) => {
     try {
