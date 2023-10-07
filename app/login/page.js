@@ -69,9 +69,8 @@ const Login = () => {
               variant="contained"
               type="submit"
               style={{
-                color: "#000",
                 textTransform: "capitalize",
-                backgroundColor: colors.accent,
+                backgroundColor: colors.button.background,
                 fontWeight: "600",
               }}
             >

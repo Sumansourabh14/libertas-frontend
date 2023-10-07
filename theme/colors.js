@@ -3,7 +3,11 @@ export const colors = {
     lightMode: "#fff",
     darkMode: "#000",
   },
-  primary: "#000",
-  secondary: "#fff",
+  primary: "#000000",
+  secondary: "#FFFFFF",
   accent: "#F4E869",
+  button: {
+    background: "#000000",
+    text: "#FFFFFF",
+  },
 };

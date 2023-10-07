@@ -7,7 +7,7 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 const steps = [
   {
     title: "Sign up",
-    body: "Create posts, add text and images, edit them whenver you wish to",
+    body: "Create an account on Libertas by choosing a username of your choice",
     icon: <AppRegistrationIcon />,
     image: "",
   },

@@ -1,5 +1,6 @@
 "use client";
 import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
+import Footer from "@/components/pageComponents/Footer";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
 import { Button, Stack } from "@mui/material";
 import Link from "next/link";
@@ -12,8 +13,6 @@ const Home = () => {
   useEffect(() => {
     document.title = "Libertas - Discuss about anything";
   }, []);
-
-  const year = new Date().getFullYear();
 
   return (
     <>
@@ -43,18 +42,7 @@ const Home = () => {
           </Stack>
         </Stack>
         <HowItWorks />
-        <footer style={{ backgroundColor: "#F4E869" }}>
-          <Stack style={{ padding: 40 }}>
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "0.875rem",
-              }}
-            >
-              <p>Libertas © {year}. All rights reserved.</p>
-            </div>
-          </Stack>
-        </footer>
+        <Footer />
       </Stack>
     </>
   );

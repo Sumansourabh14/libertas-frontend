@@ -89,7 +89,10 @@ const Header = ({ themeMode, handleTheme }) => {
                   onClick={handleLogout}
                   style={{
                     color: "#000",
-                    border: "1px solid grey",
+                    border: "1px solid black",
+                    textTransform: "capitalize",
+                    fontSize: "1rem",
+                    fontWeight: "500",
                   }}
                 >
                   Logout

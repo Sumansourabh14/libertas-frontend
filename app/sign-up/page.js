@@ -6,6 +6,7 @@ import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import { Button, Stack } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 export const metadata = {
@@ -13,7 +14,8 @@ export const metadata = {
 };
 
 const SignUp = () => {
-  const { loading, signUp, signUpError } = useContext(GlobalContext);
+  const { loading, signUp, signUpError, user } = useContext(GlobalContext);
+  const router = useRouter();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,6 +31,10 @@ const SignUp = () => {
   useEffect(() => {
     document.title = `Sign Up | Libertas`;
   }, []);
+
+  useEffect(() => {
+    if (user) router.push("/feed");
+  }, [user]);
 
   return (
     <div style={{ padding: "4rem 0" }}>
@@ -85,9 +91,8 @@ const SignUp = () => {
                 variant="contained"
                 type="submit"
                 style={{
-                  color: "#000",
                   textTransform: "capitalize",
-                  backgroundColor: colors.accent,
+                  backgroundColor: colors.button.background,
                   fontWeight: "600",
                 }}
               >

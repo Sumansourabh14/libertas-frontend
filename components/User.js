@@ -3,6 +3,7 @@ import { Button, Paper, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { relativeTime } from "./utils/relativeTime";
+import NewPost from "./buttonComponents/NewPost";
 
 const User = () => {
   const { user } = useContext(GlobalContext);
@@ -28,12 +29,7 @@ const User = () => {
                 .splice(1, 3)
                 .join(" ")}
             </p>
-            <Button
-              variant="contained"
-              onClick={() => router.push("/create-post")}
-            >
-              New Post
-            </Button>
+            <NewPost />
           </Stack>
         </Paper>
       )}
