@@ -171,7 +171,7 @@ const Post = ({ params }) => {
   };
 
   return (
-    <Stack spacing={4} style={{ paddingBottom: 20 }}>
+    <Stack spacing={4} style={{ paddingTop: 30, paddingBottom: 20 }}>
       <PostComponent
         key={postData?._id}
         post={postData}

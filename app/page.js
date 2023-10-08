@@ -2,7 +2,7 @@
 import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import Footer from "@/components/pageComponents/Footer";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
-import { Button, Stack } from "@mui/material";
+import { Button, Container, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -21,7 +21,7 @@ const Home = () => {
           className="homepage-hero-section"
           alignItems="center"
           spacing={6}
-          style={{ padding: 100, textAlign: "center", minHeight: "90vh" }}
+          style={{ padding: 100, textAlign: "center", minHeight: "550px" }}
         >
           <h1 style={{ fontSize: "4rem", fontWeight: "900" }}>
             Discuss about anything
@@ -41,7 +41,9 @@ const Home = () => {
             </Link>
           </Stack>
         </Stack>
-        <HowItWorks />
+        <Container>
+          <HowItWorks />
+        </Container>
         <Footer />
       </Stack>
     </>

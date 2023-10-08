@@ -1,7 +1,14 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const TextInput = ({ type, placeholder, value, onChange, required }) => {
+const TextInput = ({
+  type,
+  placeholder,
+  value,
+  onChange,
+  required,
+  nameOfInput,
+}) => {
   return (
     <TextField
       type={type}
@@ -11,6 +18,7 @@ const TextInput = ({ type, placeholder, value, onChange, required }) => {
       fullWidth
       // required={required}
       size="small"
+      name={nameOfInput}
     />
   );
 };

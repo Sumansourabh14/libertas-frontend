@@ -53,6 +53,17 @@ export const getUserById = async (id) => {
   return data;
 };
 
+export const updateUser = async (id, formData) => {
+  const data = await axios.put(`${API_URL}/api/user/user/${id}`, formData, {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return data;
+};
+
 export const createPost = async (title, body, imageUrl) => {
   const data = await axios.post(
     `${API_URL}/api/user/create-post`,

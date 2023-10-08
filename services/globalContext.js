@@ -17,6 +17,7 @@ import {
   randomQuoteApi,
   signUpApi,
   updatePost,
+  updateUser,
   upvotePost,
   userApi,
 } from "./globalApi";
@@ -116,6 +117,19 @@ export const GlobalContextProvider = ({ children, theme }) => {
       return data;
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const updateUserDetails = async (id, body) => {
+    try {
+      setLoading(true);
+      const data = await updateUser(id, body);
+      console.log(data);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
   };
 
@@ -275,6 +289,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         signUpError,
         user,
         getSpecificUser,
+        updateUserDetails,
         getRandomQuote,
         theme,
         postPost,

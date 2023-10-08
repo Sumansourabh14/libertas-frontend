@@ -1,13 +1,11 @@
 import { GlobalContext } from "@/services/globalContext";
-import { Button, Paper, Stack } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { Paper, Stack } from "@mui/material";
 import { useContext } from "react";
-import { relativeTime } from "./utils/relativeTime";
 import NewPost from "./buttonComponents/NewPost";
+import { relativeTime } from "./utils/relativeTime";
 
 const User = () => {
   const { user } = useContext(GlobalContext);
-  const router = useRouter();
 
   return (
     <>
@@ -20,15 +18,17 @@ const User = () => {
           >
             <h1 style={{ fontSize: "1.5rem" }}>{user?.name}</h1>
             <p>{user?.username}</p>
-            <p>Joined {relativeTime(Date.parse(user?.createdAt))}</p>
-            <p>
-              Joined on{" "}
-              {new Date(user?.createdAt)
-                .toDateString()
-                .split(" ")
-                .splice(1, 3)
-                .join(" ")}
-            </p>
+            <Stack>
+              <p>Joined {relativeTime(Date.parse(user?.createdAt))}</p>
+              <p>
+                Joined on{" "}
+                {new Date(user?.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .splice(1, 3)
+                  .join(" ")}
+              </p>
+            </Stack>
             <NewPost />
           </Stack>
         </Paper>

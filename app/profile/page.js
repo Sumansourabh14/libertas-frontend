@@ -30,15 +30,15 @@ const Profile = () => {
     );
     console.log(new Date(user?.createdAt).toDateString());
 
-    // if (!user) {
-    //   router.push("/login");
-    // }
+    if (!user) {
+      router.push("/login");
+    }
   }, [user]);
 
   useEffect(() => {
     const getAllPosts = async () => {
       const data = await fetchPosts(user?._id);
-      // console.log(data);
+      console.log(data);
 
       if (data) setPosts(data?.data.posts?.reverse());
     };

@@ -18,16 +18,7 @@ const Text = ({
 }) => {
   return (
     <div>
-      <Stack
-        style={{
-          padding: 20,
-          backgroundColor: "#d1d1d1",
-          // backgroundColor: "#F5FCCD",
-          borderRadius: 10,
-          boxShadow: `rgba(0, 0, 0, 0.16) 0px 1px 4px`,
-        }}
-        spacing={2}
-      >
+      <Stack spacing={2}>
         <TextField
           type="text"
           value={title}

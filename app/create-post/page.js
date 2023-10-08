@@ -67,7 +67,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <Container>
+      <Container style={{ paddingTop: 20 }}>
         <Stack direction="row" spacing={4} style={{ paddingBottom: "1rem" }}>
           <div style={{ flex: 1 }}>
             <h1 style={{ marginBottom: "1rem" }}>Create a post</h1>
