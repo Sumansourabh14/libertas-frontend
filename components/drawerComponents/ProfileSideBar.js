@@ -10,6 +10,13 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGear,
+  faNewspaper,
+  faScrewdriverWrench,
+  faTableColumns,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileSideBar = () => {
   const router = useRouter();
@@ -30,11 +37,27 @@ const ProfileSideBar = () => {
       <Toolbar />
       <Divider />
       <List>
+        <ListItem
+          disablePadding
+          onClick={() => router.push("/feed")}
+          style={{ backgroundColor: "#000", color: "#FFF" }}
+        >
+          <ListItemButton>
+            <FontAwesomeIcon
+              icon={faNewspaper}
+              style={{ paddingRight: 20 }}
+              size="lg"
+            />
+            <ListItemText primary="Feed" />
+          </ListItemButton>
+        </ListItem>
         <ListItem disablePadding onClick={() => router.push("/profile")}>
           <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
+            <FontAwesomeIcon
+              icon={faTableColumns}
+              style={{ paddingRight: 20 }}
+              size="lg"
+            />
             <ListItemText primary="Dashboard" />
           </ListItemButton>
         </ListItem>
@@ -43,10 +66,25 @@ const ProfileSideBar = () => {
           onClick={() => router.push("/profile/update-profile")}
         >
           <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
+            <FontAwesomeIcon
+              icon={faGear}
+              style={{ paddingRight: 20 }}
+              size="lg"
+            />
             <ListItemText primary="Profile settings" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          onClick={() => router.push("/profile/account-settings")}
+        >
+          <ListItemButton>
+            <FontAwesomeIcon
+              icon={faScrewdriverWrench}
+              style={{ paddingRight: 20 }}
+              size="lg"
+            />
+            <ListItemText primary="Account settings" />
           </ListItemButton>
         </ListItem>
       </List>

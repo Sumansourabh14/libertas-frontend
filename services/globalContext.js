@@ -6,6 +6,7 @@ import {
   createPost,
   deleteComment,
   deletePost,
+  deleteUser,
   downvotePost,
   getAllPosts,
   getComments,
@@ -124,6 +125,19 @@ export const GlobalContextProvider = ({ children, theme }) => {
     try {
       setLoading(true);
       const data = await updateUser(id, body);
+      console.log(data);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const deleteUserAccount = async (id) => {
+    try {
+      setLoading(true);
+      const data = await deleteUser(id);
       console.log(data);
       setLoading(false);
       return data;
@@ -290,6 +304,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         user,
         getSpecificUser,
         updateUserDetails,
+        deleteUserAccount,
         getRandomQuote,
         theme,
         postPost,

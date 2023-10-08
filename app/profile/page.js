@@ -1,10 +1,10 @@
 "use client";
 import User from "@/components/User";
-import DeletePostModal from "@/components/modalComponents/DeletePostModal";
 import PostComponent from "@/components/postComponents/PostComponent";
 import { GlobalContext } from "@/services/globalContext";
+import { faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Snackbar, Stack } from "@mui/material";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -115,12 +115,32 @@ const Profile = () => {
               ))}
             </Stack>
           ) : (
-            <Stack spacing={2} style={{ padding: "1rem 0" }}>
-              <p>Oops! You do not have any posts!</p>
+            <Stack
+              spacing={2}
+              justifyContent="center"
+              alignItems="center"
+              style={{
+                padding: "1rem 0",
+                minHeight: "300px",
+                textAlign: "center",
+              }}
+            >
+              <FontAwesomeIcon icon={faFaceSadTear} size="4x" />
+              <p style={{ fontSize: "2rem" }}>
+                Oops! You do not have any posts!
+              </p>
               <div>
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   onClick={() => router.push("/create-post")}
+                  style={{
+                    borderRadius: "0.4rem",
+                    padding: "0.5rem 2rem",
+                    fontWeight: "600",
+                    textTransform: "none",
+                    borderColor: "#000",
+                    color: "#000",
+                  }}
                 >
                   Create a post now!
                 </Button>

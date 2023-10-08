@@ -64,6 +64,14 @@ export const updateUser = async (id, formData) => {
   return data;
 };
 
+export const deleteUser = async (id) => {
+  const data = await axios.delete(`${API_URL}/api/user/user/${id}`, {
+    withCredentials: true,
+  });
+
+  return data;
+};
+
 export const createPost = async (title, body, imageUrl) => {
   const data = await axios.post(
     `${API_URL}/api/user/create-post`,

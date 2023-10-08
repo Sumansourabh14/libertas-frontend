@@ -1,9 +1,10 @@
 "use client";
 import TextInput from "@/components/formComponents/TextInput";
+import ConfirmedModal from "@/components/modalComponents/ConfirmedModal";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, Snackbar, Stack, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -14,6 +15,7 @@ const ProfileUpdate = () => {
   const [bio, setBio] = useState("");
   const [website, setWebsite] = useState("");
   const [twitter, setTwitter] = useState("");
+  const [isChangesSaved, setIsChangesSaved] = useState(false);
 
   const { user, updateUserDetails, loading } = useContext(GlobalContext);
   const router = useRouter();
@@ -36,7 +38,7 @@ const ProfileUpdate = () => {
     }
   }, [user]);
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -49,7 +51,12 @@ const ProfileUpdate = () => {
     formData.append("twitter", twitter);
 
     console.log(...formData);
-    updateUserDetails(user?._id, formData);
+
+    const data = await updateUserDetails(user?._id, formData);
+
+    if (data?.data?.success) {
+      setIsChangesSaved(true);
+    }
   };
 
   return (
@@ -118,6 +125,14 @@ const ProfileUpdate = () => {
           </Button>
         </Stack>
       </form>
+
+      <ConfirmedModal
+        title="Changes saved"
+        body="Your profile changes have been updated successfully."
+        isOpen={isChangesSaved}
+        handleClose={() => setIsChangesSaved(false)}
+        handleConfirmation={() => router.push("/profile")}
+      />
     </Stack>
   );
 };
