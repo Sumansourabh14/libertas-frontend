@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import {
   addComment,
+  checkUsernameApi,
   createPost,
   deleteComment,
   deletePost,
@@ -30,6 +31,8 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [signUpError, setSignUpError] = useState(null);
+  const [usernameMessage, setUsernameMessage] = useState(null);
+  const [usernameErrorCode, setUsernameErrorCode] = useState(null);
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
 
@@ -55,6 +58,30 @@ export const GlobalContextProvider = ({ children, theme }) => {
         setSignUpError(error.response?.data.message);
       }
 
+      setLoading(false);
+    }
+  };
+
+  const checkUsername = async (username) => {
+    setUsernameMessage(null);
+    setUsernameErrorCode(null);
+
+    try {
+      setLoading(true);
+      const data = await checkUsernameApi(username);
+
+      if (data?.data?.success) {
+        setUsernameErrorCode(data?.status);
+        setUsernameMessage(data?.data?.message);
+      }
+
+      // console.log(data);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      console.log(error);
+      setUsernameMessage(error?.response?.data?.message);
+      setUsernameErrorCode(error?.response?.status);
       setLoading(false);
     }
   };
@@ -301,6 +328,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
         logout,
         signUp,
         signUpError,
+        checkUsername,
+        usernameMessage,
+        usernameErrorCode,
         user,
         getSpecificUser,
         updateUserDetails,

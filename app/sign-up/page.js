@@ -1,5 +1,6 @@
 "use client";
 import ErrorText from "@/components/errorComponents/ErrorText";
+import UsernameError from "@/components/errorComponents/UsernameError";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
@@ -9,12 +10,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Sign Up",
-};
-
 const SignUp = () => {
-  const { loading, signUp, signUpError, user } = useContext(GlobalContext);
+  const {
+    loading,
+    signUp,
+    signUpError,
+    user,
+    checkUsername,
+    usernameMessage,
+    usernameErrorCode,
+  } = useContext(GlobalContext);
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -35,6 +40,10 @@ const SignUp = () => {
   useEffect(() => {
     if (user) router.push("/feed");
   }, [user]);
+
+  useEffect(() => {
+    if (username) checkUsername(username);
+  }, [username]);
 
   return (
     <div style={{ padding: "4rem 0" }}>
@@ -73,6 +82,12 @@ const SignUp = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 required={true}
               />
+              {usernameMessage && (
+                <UsernameError
+                  color={usernameErrorCode === 201 ? "green" : "red"}
+                  message={usernameMessage}
+                />
+              )}
               <TextInput
                 type="email"
                 placeholder="Email"

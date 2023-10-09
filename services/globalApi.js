@@ -15,6 +15,14 @@ export const signUpApi = async (name, username, email, password) => {
   return data;
 };
 
+export const checkUsernameApi = async (username) => {
+  const data = await axios.post(`${API_URL}/api/user/check-username`, {
+    username,
+  });
+
+  return data;
+};
+
 export const loginApi = async (email, password) => {
   const data = await axios.post(
     `${API_URL}/api/auth/login`,
