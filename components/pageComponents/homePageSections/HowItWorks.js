@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import Heading from "../Heading";
 import CreateIcon from "@mui/icons-material/Create";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
@@ -26,14 +26,19 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
+
   return (
     <Stack
       alignItems="center"
       spacing={6}
-      style={{ padding: 100, textAlign: "center" }}
+      style={{
+        padding: mobileScreenSize ? "100px 30px" : "150px 60px",
+        textAlign: "center",
+      }}
     >
       <Heading title={`How it works?`} />
-      <Stack direction="row" spacing={4}>
+      <Stack direction={mobileScreenSize ? "column" : "row"} spacing={4}>
         {steps.map((step) => (
           <Stack
             spacing={2}

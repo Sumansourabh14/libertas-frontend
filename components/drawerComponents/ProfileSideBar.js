@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
+  useMediaQuery,
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useRouter } from "next/navigation";
@@ -18,16 +19,40 @@ import {
   faTableColumns,
 } from "@fortawesome/free-solid-svg-icons";
 
+const menuItems = [
+  {
+    title: "Feed",
+    icon: faNewspaper,
+    handleClick: "/feed",
+  },
+  {
+    title: "Dashboard",
+    icon: faTableColumns,
+    handleClick: "/profile",
+  },
+  {
+    title: "Profile Settings",
+    icon: faGear,
+    handleClick: "/profile/update-profile",
+  },
+  {
+    title: "Account Settings",
+    icon: faScrewdriverWrench,
+    handleClick: "/profile/account-settings",
+  },
+];
+
 const ProfileSideBar = () => {
   const router = useRouter();
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   return (
     <Drawer
       sx={{
-        width: 240,
+        width: mobileScreenSize ? 50 : 240,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: 240,
+          width: mobileScreenSize ? 50 : 240,
           boxSizing: "border-box",
         },
       }}
@@ -37,56 +62,23 @@ const ProfileSideBar = () => {
       <Toolbar />
       <Divider />
       <List>
-        <ListItem
-          disablePadding
-          onClick={() => router.push("/feed")}
-          style={{ backgroundColor: "#000", color: "#FFF" }}
-        >
-          <ListItemButton>
-            <FontAwesomeIcon
-              icon={faNewspaper}
-              style={{ paddingRight: 20 }}
-              size="lg"
-            />
-            <ListItemText primary="Feed" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding onClick={() => router.push("/profile")}>
-          <ListItemButton>
-            <FontAwesomeIcon
-              icon={faTableColumns}
-              style={{ paddingRight: 20 }}
-              size="lg"
-            />
-            <ListItemText primary="Dashboard" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem
-          disablePadding
-          onClick={() => router.push("/profile/update-profile")}
-        >
-          <ListItemButton>
-            <FontAwesomeIcon
-              icon={faGear}
-              style={{ paddingRight: 20 }}
-              size="lg"
-            />
-            <ListItemText primary="Profile settings" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem
-          disablePadding
-          onClick={() => router.push("/profile/account-settings")}
-        >
-          <ListItemButton>
-            <FontAwesomeIcon
-              icon={faScrewdriverWrench}
-              style={{ paddingRight: 20 }}
-              size="lg"
-            />
-            <ListItemText primary="Account settings" />
-          </ListItemButton>
-        </ListItem>
+        {menuItems.map((item) => (
+          <ListItem
+            key={item.title}
+            disablePadding
+            onClick={() => router.push(item.handleClick)}
+            style={{ paddingBottom: mobileScreenSize ? 10 : 0 }}
+          >
+            <ListItemButton>
+              <FontAwesomeIcon
+                icon={item.icon}
+                style={{ paddingRight: mobileScreenSize ? 0 : 20 }}
+                size="lg"
+              />
+              {!mobileScreenSize && <ListItemText primary={item.title} />}
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
       {/* <div
         style={{

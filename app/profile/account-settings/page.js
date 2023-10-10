@@ -9,13 +9,15 @@ import { useContext, useState } from "react";
 
 const AccountSettings = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const { loading, user, deleteUserAccount } = useContext(GlobalContext);
+  const { loading, user, deleteUserAccount, logout } =
+    useContext(GlobalContext);
   const router = useRouter();
 
   const handleDeleteUser = async () => {
     const data = await deleteUserAccount(user?._id);
 
     if (data) {
+      await logout();
       router.push("/sign-up");
     }
   };

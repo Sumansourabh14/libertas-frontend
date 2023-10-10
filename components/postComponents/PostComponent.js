@@ -15,6 +15,7 @@ import {
   TextField,
   TextareaAutosize,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import Link from "next/link";
 import { useContext } from "react";
@@ -39,6 +40,7 @@ const PostComponent = ({
   handleBody,
 }) => {
   const { user } = useContext(GlobalContext);
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   return (
     <Stack key={id}>
@@ -126,7 +128,13 @@ const PostComponent = ({
                   </Stack>
                 ) : (
                   <>
-                    <h2 style={{ fontSize: "1.7rem" }}>{post?.post?.title}</h2>
+                    <h2
+                      style={{
+                        fontSize: mobileScreenSize ? "1.2rem" : "1.7rem",
+                      }}
+                    >
+                      {post?.post?.title}
+                    </h2>
                     {post?.post?.imageUrl && (
                       <Image
                         src={post?.post?.imageUrl}

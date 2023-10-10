@@ -1,5 +1,12 @@
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { Box, Button, IconButton, Modal, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Modal,
+  Stack,
+  useMediaQuery,
+} from "@mui/material";
 
 const DeletePostModal = ({
   title,
@@ -8,6 +15,8 @@ const DeletePostModal = ({
   handleDeleteModalClose,
   handleDeletePost,
 }) => {
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
+
   return (
     <Modal
       open={isPostRemove}
@@ -21,7 +30,7 @@ const DeletePostModal = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 500,
+          width: mobileScreenSize ? 350 : 500,
           backgroundColor: "#fff",
           boxShadow: 24,
           padding: 40,

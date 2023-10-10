@@ -4,7 +4,7 @@ import PostComponent from "@/components/postComponents/PostComponent";
 import { GlobalContext } from "@/services/globalContext";
 import { faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Snackbar, Stack } from "@mui/material";
+import { Button, Snackbar, Stack, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -23,6 +23,7 @@ const Profile = () => {
     downvoteAPost,
   } = useContext(GlobalContext);
   const router = useRouter();
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   useEffect(() => {
     console.log(
@@ -99,7 +100,10 @@ const Profile = () => {
         style={{ padding: "1rem 0" }}
       >
         <div style={{ flex: 1 }}>
-          <h2>Posts</h2>
+          <h1 style={{ fontSize: "2rem", marginBottom: 20 }}>
+            Hi {user?.name}!
+          </h1>
+          <h2>Your Posts</h2>
 
           {posts?.length !== 0 ? (
             <Stack spacing={3} style={{ padding: "1rem 0" }}>
@@ -160,7 +164,7 @@ const Profile = () => {
             handleDeletePost={handleDeletePost}
           /> */}
         </div>
-        <User />
+        {!mobileScreenSize && <User />}
       </Stack>
     </>
   );

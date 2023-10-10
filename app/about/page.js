@@ -10,7 +10,7 @@ const About = () => {
   return (
     <Stack>
       <Stack style={{ padding: 80 }} alignItems="center">
-        <Stack spacing={3} style={{ textAlign: "center", minHeight: "50vh" }}>
+        <Stack spacing={3} style={{ textAlign: "center", minHeight: "600px" }}>
           <h1 style={{ fontSize: "3rem", fontWeight: "900" }}>
             About Libertas
           </h1>

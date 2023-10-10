@@ -3,7 +3,7 @@ import NewPost from "@/components/buttonComponents/NewPost";
 import PostComponent from "@/components/postComponents/PostComponent";
 import RecentPosts from "@/components/postComponents/RecentPosts";
 import { GlobalContext } from "@/services/globalContext";
-import { Container, Stack } from "@mui/material";
+import { Container, Stack, useMediaQuery } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 
 const Feed = () => {
@@ -11,6 +11,7 @@ const Feed = () => {
 
   const { fetchAllPosts, upvoteAPost, downvoteAPost } =
     useContext(GlobalContext);
+  const matches = useMediaQuery("(min-width:550px)");
 
   useEffect(() => {
     console.log(posts);
@@ -96,9 +97,11 @@ const Feed = () => {
           </Stack>
         </Stack>
 
-        <div style={{ flex: 1 }}>
-          <RecentPosts />
-        </div>
+        {matches && (
+          <div style={{ flex: 1 }}>
+            <RecentPosts />
+          </div>
+        )}
       </Stack>
     </Container>
   );

@@ -3,7 +3,7 @@ import User from "@/components/User";
 import Text from "@/components/postComponents/Text";
 import { GlobalContext } from "@/services/globalContext";
 import { storage } from "@/utils/firebase";
-import { Container, Snackbar, Stack } from "@mui/material";
+import { Container, Snackbar, Stack, useMediaQuery } from "@mui/material";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -18,6 +18,7 @@ const CreatePost = () => {
   const [postMessage, setPostMessage] = useState(false);
 
   const { postPost, user } = useContext(GlobalContext);
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   const router = useRouter();
 
@@ -89,7 +90,7 @@ const CreatePost = () => {
             />
           </div>
 
-          <User />
+          {!mobileScreenSize && <User />}
         </Stack>
       </Container>
     </>

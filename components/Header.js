@@ -12,6 +12,7 @@ import {
   TextField,
   Toolbar,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -21,6 +22,7 @@ const Header = ({ themeMode, handleTheme }) => {
     useContext(GlobalContext);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const matches = useMediaQuery("(min-width:600px)");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -82,7 +84,7 @@ const Header = ({ themeMode, handleTheme }) => {
             {/* <Link href="/about">About</Link> */}
             {isAuthenticated ? (
               <>
-                <Link href="/create-post">Create Post</Link>
+                {matches && <Link href="/create-post">Create Post</Link>}
                 <Link href="/profile">Profile</Link>
                 <Button
                   variant="outlined"
