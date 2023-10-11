@@ -64,7 +64,7 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    document.title = "Home | Libertas";
+    document.title = "What's Happening | Libertas";
   }, []);
 
   return (

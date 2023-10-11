@@ -5,7 +5,7 @@ import { GlobalContext } from "@/services/globalContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Container, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const AccountSettings = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -22,6 +22,10 @@ const AccountSettings = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "Account Settings | Libertas";
+  }, []);
+
   return (
     <Container>
       <h1>Account Settings</h1>
@@ -35,6 +39,7 @@ const AccountSettings = () => {
             fontWeight: "600",
             width: "200px",
             color: "#000",
+            borderRadius: 0,
           }}
           startIcon={<DeleteIcon />}
         >

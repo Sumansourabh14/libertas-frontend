@@ -40,9 +40,8 @@ const Header = ({ themeMode, handleTheme }) => {
     <Box>
       <AppBar
         position="fixed"
-        className="app-bar-backdrop"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        // sx={{ backgroundColor: "#000" }}
+        style={{ backgroundColor: "#000" }}
       >
         <Toolbar>
           <h2
@@ -51,7 +50,21 @@ const Header = ({ themeMode, handleTheme }) => {
               color: theme.palette.mode === "light" ? "#000" : "#fff",
             }}
           >
-            <Link href={"/"}>Libertas</Link>
+            <Link
+              href={"/"}
+              style={{
+                color: "#FFF",
+              }}
+            >
+              <span
+                style={{
+                  color: "#FFC700",
+                }}
+              >
+                L
+              </span>
+              ibertas
+            </Link>
           </h2>
           <Stack direction="row" alignItems="center" spacing={3}>
             {/* <form onSubmit={handleSearch}>
@@ -90,11 +103,12 @@ const Header = ({ themeMode, handleTheme }) => {
                   variant="outlined"
                   onClick={handleLogout}
                   style={{
-                    color: "#000",
-                    border: "1px solid black",
+                    color: "#FFF",
+                    border: "1px solid #FFF",
                     textTransform: "capitalize",
                     fontSize: "1rem",
                     fontWeight: "500",
+                    borderRadius: 0,
                   }}
                 >
                   Logout
@@ -106,6 +120,7 @@ const Header = ({ themeMode, handleTheme }) => {
                   href="/about"
                   style={{
                     fontWeight: "500",
+                    color: "#FFF",
                   }}
                 >
                   About
@@ -114,6 +129,7 @@ const Header = ({ themeMode, handleTheme }) => {
                   href="/login"
                   style={{
                     fontWeight: "500",
+                    color: "#FFF",
                   }}
                 >
                   Login
@@ -122,10 +138,9 @@ const Header = ({ themeMode, handleTheme }) => {
                   href="/sign-up"
                   style={{
                     padding: "0.5rem 1rem",
-                    backgroundColor: "#F4E869",
-                    borderRadius: "0.2rem",
+                    backgroundColor: "#FFC700",
+                    borderRadius: "0rem",
                     fontWeight: "600",
-                    border: "1px solid grey",
                   }}
                 >
                   Sign Up

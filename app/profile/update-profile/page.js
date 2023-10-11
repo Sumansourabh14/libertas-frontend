@@ -59,6 +59,10 @@ const ProfileUpdate = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "Profile Settings | Libertas";
+  }, []);
+
   return (
     <Stack spacing={3}>
       <h1>Update Profile</h1>

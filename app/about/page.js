@@ -8,9 +8,9 @@ const About = () => {
   const router = useRouter();
 
   return (
-    <Stack>
+    <Stack justifyContent="space-between" style={{ minHeight: "100vh" }}>
       <Stack style={{ padding: 80 }} alignItems="center">
-        <Stack spacing={3} style={{ textAlign: "center", minHeight: "600px" }}>
+        <Stack spacing={3} style={{ textAlign: "center", padding: "50px 0" }}>
           <h1 style={{ fontSize: "3rem", fontWeight: "900" }}>
             About Libertas
           </h1>

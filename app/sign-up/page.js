@@ -46,93 +46,87 @@ const SignUp = () => {
   }, [username]);
 
   return (
-    <div style={{ padding: "4rem 0" }}>
-      <Stack
-        direction={{
-          xs: "column",
-          sm: "row",
-        }}
-        justifyContent="center"
-        spacing={10}
-      >
-        <div>
-          <Stack
-            alignItems="center"
-            spacing={2}
-            style={{ marginBottom: "2rem", textAlign: "center" }}
-          >
-            <h1>Sign Up</h1>
-            <p>Create an account to join Libertas</p>
-          </Stack>
+    <div
+      style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
+    >
+      <div>
+        <Stack
+          alignItems="center"
+          spacing={2}
+          style={{ marginBottom: "2rem", textAlign: "center" }}
+        >
+          <h1>Sign Up</h1>
+          <p>Create an account to join Libertas</p>
+        </Stack>
 
-          <form onSubmit={handleSignUp}>
-            <Stack spacing={2} style={{ textAlign: "center" }}>
-              {signUpError && <ErrorText message={signUpError} />}
-              <TextInput
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required={true}
+        <form onSubmit={handleSignUp}>
+          <Stack spacing={2} style={{ textAlign: "center" }}>
+            {signUpError && <ErrorText message={signUpError} />}
+            <TextInput
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required={true}
+            />
+            <TextInput
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required={true}
+            />
+            {usernameMessage && (
+              <UsernameError
+                color={usernameErrorCode === 201 ? "green" : "red"}
+                message={usernameMessage}
               />
-              <TextInput
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required={true}
-              />
-              {usernameMessage && (
-                <UsernameError
-                  color={usernameErrorCode === 201 ? "green" : "red"}
-                  message={usernameMessage}
-                />
+            )}
+            <TextInput
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required={true}
+            />
+            <TextInput
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required={true}
+            />
+            <Button
+              variant="contained"
+              type="submit"
+              style={{
+                textTransform: "capitalize",
+                backgroundColor: colors.button.background,
+                fontWeight: "600",
+                borderRadius: "0rem",
+              }}
+            >
+              Sign Up
+              {loading && (
+                <div style={{ marginLeft: "0.6rem" }}>
+                  <LoadingButton />
+                </div>
               )}
-              <TextInput
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required={true}
-              />
-              <TextInput
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required={true}
-              />
-              <Button
-                variant="contained"
-                type="submit"
-                style={{
-                  textTransform: "capitalize",
-                  backgroundColor: colors.button.background,
-                  fontWeight: "600",
-                }}
-              >
-                Sign Up
-                {loading && (
-                  <div style={{ marginLeft: "0.6rem" }}>
-                    <LoadingButton />
-                  </div>
-                )}
-              </Button>
-              <div style={{ textAlign: "center" }}>
-                <p style={{ fontSize: "0.875rem" }}>
-                  Already have an account?{" "}
-                  <Link
-                    href="/login"
-                    style={{ color: "#000", textDecoration: "underline" }}
-                  >
-                    Login
-                  </Link>
-                </p>
-              </div>
-            </Stack>
-          </form>
-        </div>
-      </Stack>
+            </Button>
+            <div style={{ textAlign: "center" }}>
+              <p style={{ fontSize: "0.875rem" }}>
+                Already have an account?{" "}
+                <Link
+                  href="/login"
+                  style={{ color: "#000", textDecoration: "underline" }}
+                >
+                  Login
+                </Link>
+              </p>
+            </div>
+          </Stack>
+        </form>
+      </div>
     </div>
   );
 };

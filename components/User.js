@@ -91,7 +91,7 @@ const User = () => {
                   variant="contained"
                   onClick={() => router.push("/create-post")}
                   style={{
-                    borderRadius: "0.4rem",
+                    borderRadius: 0,
                     padding: "0.3rem 1rem",
                     fontWeight: "600",
                     textTransform: "capitalize",
@@ -104,7 +104,7 @@ const User = () => {
                   variant="outlined"
                   onClick={() => router.push("/profile/update-profile")}
                   style={{
-                    borderRadius: "0.4rem",
+                    borderRadius: 0,
                     padding: "0.3rem 1rem",
                     fontWeight: "600",
                     textTransform: "capitalize",

@@ -7,7 +7,7 @@ const PrimaryButton = ({ color, handleClick, title, bgColor }) => {
       onClick={handleClick}
       style={{
         color: color ? color : "#000",
-        borderRadius: "0.4rem",
+        borderRadius: "0rem",
         padding: "0.5rem 2rem",
         fontSize: "1rem",
         fontWeight: "600",

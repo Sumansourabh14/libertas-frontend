@@ -3,7 +3,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import InfoIcon from "@mui/icons-material/Info";
 import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
 import Image from "next/image";
-import OptionButton from "../buttonComponents/OptionButton";
 
 const Text = ({
   title,
@@ -115,6 +114,7 @@ const Text = ({
               backgroundColor: "#000",
               fontWeight: "600",
               width: 100,
+              borderRadius: 0,
             }}
           >
             Post

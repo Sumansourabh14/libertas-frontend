@@ -10,6 +10,7 @@ import { useEffect } from "react";
 const Home = () => {
   const router = useRouter();
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
+  const tabletScreenSize = useMediaQuery("(max-width:1300px)");
 
   useEffect(() => {
     document.title = "Libertas - Discuss about anything";
@@ -21,11 +22,15 @@ const Home = () => {
         <Stack
           className="homepage-hero-section"
           alignItems="center"
+          justifyContent="center"
           spacing={6}
           style={{
-            padding: mobileScreenSize ? "100px 30px" : "150px 60px",
+            padding: mobileScreenSize
+              ? "100px 30px"
+              : tabletScreenSize
+              ? "130px 60px"
+              : "150px 60px",
             textAlign: "center",
-            minHeight: "550px",
           }}
         >
           <h1

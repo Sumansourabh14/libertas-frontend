@@ -72,6 +72,7 @@ const Login = () => {
                 textTransform: "capitalize",
                 backgroundColor: colors.button.background,
                 fontWeight: "600",
+                borderRadius: "0rem",
               }}
             >
               Login

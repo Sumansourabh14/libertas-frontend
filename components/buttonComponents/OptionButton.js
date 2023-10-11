@@ -19,6 +19,7 @@ const OptionButton = ({
         textTransform: "capitalize",
         backgroundColor: bgColor ? bgColor : "blue",
         color: color ? color : "#fff",
+        borderRadius: 0,
       }}
     >
       {title}

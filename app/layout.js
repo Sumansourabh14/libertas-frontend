@@ -1,5 +1,10 @@
 "use client";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import Header from "../components/Header";
@@ -11,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [themeMode, setThemeMode] = useState("light");
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   const theme = createTheme({
     palette: {
@@ -36,7 +42,7 @@ export default function RootLayout({ children }) {
 
             <main
               style={{
-                padding: "4rem 0 0 0",
+                padding: mobileScreenSize ? "3rem 0 0 0" : "4rem 0 0 0",
               }}
             >
               {children}
