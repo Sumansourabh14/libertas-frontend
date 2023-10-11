@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import GlobalSideBar from "./drawerComponents/GlobalSideBar";
 import { GlobalContext } from "@/services/globalContext";
-import { Container } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 
 const SideBarLayout = ({ children }) => {
   const { user } = useContext(GlobalContext);
+  const matches = useMediaQuery("(min-width: 600px)");
 
   return (
     <>
@@ -14,7 +15,7 @@ const SideBarLayout = ({ children }) => {
         </Container>
       ) : (
         <section style={{ display: "flex" }}>
-          <GlobalSideBar />
+          {matches && <GlobalSideBar />}
           <Container>
             <div>{children}</div>
           </Container>
