@@ -1,8 +1,9 @@
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CheckIcon from "@mui/icons-material/Check";
 import InfoIcon from "@mui/icons-material/Info";
-import { Button, Stack, TextField, TextareaAutosize } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 import Image from "next/image";
+import TextEditor from "../textEditor/TextEditor";
 
 const Text = ({
   title,
@@ -91,7 +92,7 @@ const Text = ({
           </div>
         </Stack>
 
-        <TextareaAutosize
+        {/* <TextareaAutosize
           aria-label="textarea for text body"
           placeholder="Enter text *"
           minRows={10}
@@ -104,7 +105,8 @@ const Text = ({
             padding: 10,
           }}
           required
-        />
+        /> */}
+        <TextEditor value={body} setValue={setBody} />
         <div>
           <Button
             variant="contained"

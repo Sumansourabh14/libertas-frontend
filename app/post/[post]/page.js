@@ -186,7 +186,8 @@ const Post = ({ params }) => {
         handleSave={handleSave}
         title={title}
         body={body}
-        handleBody={(e) => setBody(e.target.value)}
+        // handleBody={(e) => setBody(e.target.value)}
+        handleBody={(e) => setBody(e)}
         handleTitle={(e) => setTitle(e.target.value)}
       />
 

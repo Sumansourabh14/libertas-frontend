@@ -22,6 +22,7 @@ import { useContext } from "react";
 import { relativeTime } from "../utils/relativeTime";
 import Image from "next/image";
 import OptionButton from "../buttonComponents/OptionButton";
+import TextEditor from "../textEditor/TextEditor";
 
 const PostComponent = ({
   id,
@@ -112,7 +113,7 @@ const PostComponent = ({
                       value={title}
                       onChange={handleTitle}
                     />
-                    <TextareaAutosize
+                    {/* <TextareaAutosize
                       aria-label="textarea for text body"
                       placeholder="Enter text"
                       minRows={10}
@@ -124,7 +125,8 @@ const PostComponent = ({
                         fontSize: "1rem",
                         padding: 10,
                       }}
-                    />
+                    /> */}
+                    <TextEditor value={body} setValue={handleBody} />
                   </Stack>
                 ) : (
                   <>
@@ -144,9 +146,12 @@ const PostComponent = ({
                         style={{ maxWidth: "100%", height: "auto" }}
                       />
                     )}
-                    <p style={{ fontSize: individualView ? "1rem" : "0.9rem" }}>
+                    {/* <p style={{ fontSize: individualView ? "1rem" : "0.9rem" }}>
                       {post?.post?.body}
-                    </p>
+                    </p> */}
+                    <div
+                      dangerouslySetInnerHTML={{ __html: post?.post?.body }}
+                    />
                     {post?.comments?.length !== 0 ? (
                       post?.comments?.length === 1 ? (
                         <p
@@ -208,7 +213,11 @@ const PostComponent = ({
                       </Stack>
                     )
                   ) : (
-                    <Stack direction="row" spacing={2}>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      style={{ marginTop: 40 }}
+                    >
                       <OptionButton
                         title="Cancel"
                         icon={<CancelIcon />}
@@ -267,7 +276,7 @@ const PostComponent = ({
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
                 )}
-                <p
+                {/* <p
                   style={{
                     fontSize: "0.9rem",
                     overflow: "hidden",
@@ -278,7 +287,9 @@ const PostComponent = ({
                   }}
                 >
                   {post?.post?.body}
-                </p>
+                </p> */}
+                <div dangerouslySetInnerHTML={{ __html: post?.post?.body }} />
+
                 {post?.comments?.length !== 0 ? (
                   post?.comments?.length === 1 ? (
                     <p
