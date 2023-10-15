@@ -273,7 +273,7 @@ const PostComponent = ({
                     alt=""
                     width={500}
                     height={260}
-                    style={{ maxWidth: "100%", height: "auto" }}
+                    style={{ width: "100%", height: "auto" }}
                   />
                 )}
                 {/* <p

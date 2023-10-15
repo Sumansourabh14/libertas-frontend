@@ -1,7 +1,10 @@
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const TextEditor = ({ value, setValue }) => {
+  // avoid ReferenceError: document is not defined
+  const ReactQuill =
+    typeof window === "object" ? require("react-quill") : () => false;
+
   const modules = {
     toolbar: {
       container: [
