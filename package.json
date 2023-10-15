@@ -27,5 +27,8 @@
     "react-dom": "18.2.0",
     "react-quill": "^2.0.0",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }
