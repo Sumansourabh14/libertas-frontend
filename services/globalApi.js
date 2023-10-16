@@ -23,6 +23,14 @@ export const checkUsernameApi = async (username) => {
   return data;
 };
 
+export const passwordRecoveryEmailApi = async (emailOrUsername) => {
+  const data = await axios.post(`${API_URL}/api/user/recover-password-email`, {
+    emailOrUsername,
+  });
+
+  return data;
+};
+
 export const loginApi = async (email, password) => {
   const data = await axios.post(
     `${API_URL}/api/auth/login`,
@@ -57,6 +65,33 @@ export const getUserById = async (id) => {
   const data = await axios.get(`${API_URL}/api/user/${id}`, {
     withCredentials: true,
   });
+
+  return data;
+};
+
+export const getUserByEmailOrUsername = async (emailOrUsername) => {
+  const data = await axios.get(
+    `${API_URL}/api/user/email-or-username/${emailOrUsername}`,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
+
+export const resetPassword = async (id, password, confirmPassword) => {
+  const data = await axios.put(
+    `${API_URL}/api/user/reset-password`,
+    {
+      id,
+      password,
+      confirmPassword,
+    },
+    {
+      withCredentials: true,
+    }
+  );
 
   return data;
 };

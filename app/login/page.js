@@ -65,6 +65,18 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required={true}
             />
+            <Stack alignItems="flex-end">
+              <Link
+                href="/recover-password"
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#000",
+                  textDecoration: "underline",
+                }}
+              >
+                Forgot password?
+              </Link>
+            </Stack>
             <Button
               variant="contained"
               type="submit"

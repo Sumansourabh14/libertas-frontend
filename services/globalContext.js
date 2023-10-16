@@ -13,10 +13,13 @@ import {
   getComments,
   getPost,
   getPosts,
+  getUserByEmailOrUsername,
   getUserById,
   loginApi,
   logoutApi,
+  passwordRecoveryEmailApi,
   randomQuoteApi,
+  resetPassword,
   signUpApi,
   updatePost,
   updateUser,
@@ -31,6 +34,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [signUpError, setSignUpError] = useState(null);
+  const [passwordRecoveryEmailError, setPasswordRecoveryEmailError] =
+    useState(null);
+  const [passwordResetError, setPasswordResetError] = useState(null);
+  const [isPasswordRecoveryEmailSuccess, setIsPasswordRecoveryEmailSuccess] =
+    useState(false);
   const [usernameMessage, setUsernameMessage] = useState(null);
   const [usernameErrorCode, setUsernameErrorCode] = useState(null);
   const [user, setUser] = useState(null);
@@ -67,7 +75,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
     setUsernameErrorCode(null);
 
     try {
-      setLoading(true);
+      // setLoading(true);
       const data = await checkUsernameApi(username);
 
       if (data?.data?.success) {
@@ -76,12 +84,63 @@ export const GlobalContextProvider = ({ children, theme }) => {
       }
 
       // console.log(data);
-      setLoading(false);
+      // setLoading(false);
       return data;
     } catch (error) {
       console.log(error);
       setUsernameMessage(error?.response?.data?.message);
       setUsernameErrorCode(error?.response?.status);
+      setLoading(false);
+    }
+  };
+
+  const sendPasswordRecoveryEmail = async (emailOrUsername) => {
+    try {
+      setLoading(true);
+      setIsPasswordRecoveryEmailSuccess(false);
+
+      const data = await passwordRecoveryEmailApi(emailOrUsername);
+
+      if (data?.data?.success) {
+        setIsPasswordRecoveryEmailSuccess(true);
+
+        const fetchUser = await getSpecificUserByEmailOrUsername(
+          emailOrUsername
+        );
+        console.log(fetchUser);
+
+        if (fetchUser?.data?.success) {
+          router.push("/password-recovery-email-sent");
+        }
+      }
+
+      console.log(data);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      console.log(error);
+      setPasswordRecoveryEmailError(error?.response?.data?.message);
+      setLoading(false);
+    }
+  };
+
+  const resetUserPassword = async (id, password, confirmPassword) => {
+    try {
+      setLoading(true);
+      setPasswordResetError(null);
+
+      const data = await resetPassword(id, password, confirmPassword);
+      console.log(data);
+
+      if (data?.data?.success) {
+        router.push("/reset-password-success");
+      }
+
+      setLoading(false);
+      return data;
+    } catch (error) {
+      console.log(error);
+      setPasswordResetError(error?.response?.data?.message);
       setLoading(false);
     }
   };
@@ -142,6 +201,15 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const getSpecificUser = async (id) => {
     try {
       const data = await getUserById(id);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSpecificUserByEmailOrUsername = async (emailOrUsername) => {
+    try {
+      const data = await getUserByEmailOrUsername(emailOrUsername);
       return data;
     } catch (error) {
       console.log(error);
@@ -310,6 +378,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
     getUser();
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    setPasswordRecoveryEmailError(null);
+    setPasswordResetError(null);
+  }, []);
+
   // useEffect(() => {
   //   console.log({ user });
   // }, [user]);
@@ -329,6 +402,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
         signUp,
         signUpError,
         checkUsername,
+        sendPasswordRecoveryEmail,
+        passwordRecoveryEmailError,
+        isPasswordRecoveryEmailSuccess,
+        resetUserPassword,
+        passwordResetError,
         usernameMessage,
         usernameErrorCode,
         user,
