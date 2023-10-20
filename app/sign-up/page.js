@@ -1,6 +1,7 @@
 "use client";
 import ErrorText from "@/components/errorComponents/ErrorText";
 import UsernameError from "@/components/errorComponents/UsernameError";
+import PasswordInput from "@/components/formComponents/PasswordInput";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
@@ -89,12 +90,9 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
               required={true}
             />
-            <TextInput
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required={true}
+            <PasswordInput
+              password={password}
+              handlePassword={(e) => setPassword(e.target.value)}
             />
             <Button
               variant="contained"

@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import TextInput from "../../components/formComponents/TextInput";
 import { useRouter } from "next/navigation";
 import { colors } from "@/theme/colors";
+import PasswordInput from "@/components/formComponents/PasswordInput";
 
 const Login = () => {
   const { loading, login, loginError, user } = useContext(GlobalContext);
@@ -58,12 +59,9 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required={true}
             />
-            <TextInput
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required={true}
+            <PasswordInput
+              password={password}
+              handlePassword={(e) => setPassword(e.target.value)}
             />
             <Stack alignItems="flex-end">
               <Link

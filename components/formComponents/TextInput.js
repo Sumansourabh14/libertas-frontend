@@ -16,7 +16,7 @@ const TextInput = ({
       value={value}
       onChange={onChange}
       fullWidth
-      // required={required}
+      required={required ? required : false}
       size="small"
       name={nameOfInput}
     />

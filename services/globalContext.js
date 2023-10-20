@@ -152,13 +152,13 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setLoading(true);
       const data = await loginApi(email, password);
 
-      console.log(data);
-      console.log("Logged in");
+      // console.log(data);
+      // console.log("Logged in");
 
       setIsAuthenticated(true);
       setLoading(false);
 
-      router.push("/");
+      router.push("/feed");
     } catch (error) {
       console.log(error);
 
