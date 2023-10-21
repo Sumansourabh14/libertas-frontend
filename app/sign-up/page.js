@@ -93,6 +93,7 @@ const SignUp = () => {
             <PasswordInput
               password={password}
               handlePassword={(e) => setPassword(e.target.value)}
+              showCapsLockOnMessage={true}
             />
             <Button
               variant="contained"

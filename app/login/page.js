@@ -62,6 +62,7 @@ const Login = () => {
             <PasswordInput
               password={password}
               handlePassword={(e) => setPassword(e.target.value)}
+              showCapsLockOnMessage={true}
             />
             <Stack alignItems="flex-end">
               <Link
