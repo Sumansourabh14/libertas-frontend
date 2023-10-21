@@ -64,7 +64,7 @@ const Login = () => {
               handlePassword={(e) => setPassword(e.target.value)}
               showCapsLockOnMessage={true}
             />
-            <Stack alignItems="flex-end">
+            <Stack alignItems="flex-end" style={{ marginTop: 8 }}>
               <Link
                 href="/recover-password"
                 style={{
@@ -84,6 +84,7 @@ const Login = () => {
                 backgroundColor: colors.button.background,
                 fontWeight: "600",
                 borderRadius: "0rem",
+                marginTop: 30,
               }}
             >
               Login
