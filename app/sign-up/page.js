@@ -131,7 +131,7 @@ const SignUp = () => {
               handlePassword={handlePasswordChange}
               showCapsLockOnMessage={true}
             />
-            <Stack>
+            <Stack style={{ marginTop: 8 }}>
               <PasswordChecks
                 condition={isPasswordLength}
                 trueIcon={faCircleCheck}
@@ -159,6 +159,7 @@ const SignUp = () => {
                 backgroundColor: colors.button.background,
                 fontWeight: "600",
                 borderRadius: "0rem",
+                marginTop: 30,
               }}
               sx={{
                 "&.Mui-disabled": {
