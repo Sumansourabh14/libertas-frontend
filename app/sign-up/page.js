@@ -1,11 +1,16 @@
 "use client";
 import ErrorText from "@/components/errorComponents/ErrorText";
 import UsernameError from "@/components/errorComponents/UsernameError";
+import PasswordChecks from "@/components/formComponents/PasswordChecks";
 import PasswordInput from "@/components/formComponents/PasswordInput";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
+import {
+  faCircleCheck,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { Button, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,6 +32,34 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordLength, setIsPasswordLength] = useState(false);
+  const [isAnyLowerCase, setIsAnyLowerCase] = useState(false);
+  const [isAnyUpperCase, setIsAnyUpperCase] = useState(false);
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+
+    if (e.target.value.length > 7) {
+      setIsPasswordLength(true);
+    } else {
+      setIsPasswordLength(false);
+    }
+
+    const checkLowerCase = new RegExp("(?=.*[a-z])");
+    const checkUpperCase = new RegExp("(?=.*[A-Z])");
+
+    if (checkLowerCase.test(e.target.value)) {
+      setIsAnyLowerCase(true);
+    } else {
+      setIsAnyLowerCase(false);
+    }
+
+    if (checkUpperCase.test(e.target.value)) {
+      setIsAnyUpperCase(true);
+    } else {
+      setIsAnyUpperCase(false);
+    }
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -48,7 +81,7 @@ const SignUp = () => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
+      style={{ display: "flex", justifyContent: "center", padding: "2rem 0" }}
     >
       <div>
         <Stack
@@ -79,10 +112,13 @@ const SignUp = () => {
             />
             {usernameMessage && (
               <UsernameError
-                color={usernameErrorCode === 201 ? "green" : "red"}
+                condition={usernameErrorCode}
                 message={usernameMessage}
               />
             )}
+            {/* <p style={{ fontSize: "0.8rem", color: "grey", marginTop: 2 }}>
+              People on Libertas will remember you by this
+            </p> */}
             <TextInput
               type="email"
               placeholder="Email"
@@ -92,9 +128,29 @@ const SignUp = () => {
             />
             <PasswordInput
               password={password}
-              handlePassword={(e) => setPassword(e.target.value)}
+              handlePassword={handlePasswordChange}
               showCapsLockOnMessage={true}
             />
+            <Stack>
+              <PasswordChecks
+                condition={isPasswordLength}
+                trueIcon={faCircleCheck}
+                falseIcon={faCircleXmark}
+                message="At least 8 characters"
+              />
+              <PasswordChecks
+                condition={isAnyLowerCase}
+                trueIcon={faCircleCheck}
+                falseIcon={faCircleXmark}
+                message="1 lowercase letter"
+              />
+              <PasswordChecks
+                condition={isAnyUpperCase}
+                trueIcon={faCircleCheck}
+                falseIcon={faCircleXmark}
+                message="1 uppercase letter"
+              />
+            </Stack>
             <Button
               variant="contained"
               type="submit"
@@ -104,6 +160,13 @@ const SignUp = () => {
                 fontWeight: "600",
                 borderRadius: "0rem",
               }}
+              sx={{
+                "&.Mui-disabled": {
+                  background: "#eaeaea",
+                  color: "#c0c0c0",
+                },
+              }}
+              disabled={!(isPasswordLength && isAnyLowerCase && isAnyUpperCase)}
             >
               Sign Up
               {loading && (
