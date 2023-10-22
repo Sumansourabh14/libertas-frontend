@@ -11,11 +11,16 @@ const Footer = () => {
     <footer style={{ backgroundColor: colors.accent }}>
       <Stack style={{ padding: 40 }} alignItems="center" spacing={3}>
         <Stack direction="row" spacing={2}>
-          <Link href="https://twitter.com/libertas_nextjs" target="_blank">
+          <Link
+            href="https://twitter.com/libertas_nextjs"
+            target="_blank"
+            aria-label="Libertas Twitter account"
+          >
             <FontAwesomeIcon icon={faXTwitter} size="xl" />
           </Link>
           <Link
             href="https://github.com/Sumansourabh14/libertas-frontend"
+            aria-label="Libertas GitHub profile"
             target="_blank"
           >
             <FontAwesomeIcon icon={faGithub} size="xl" />
