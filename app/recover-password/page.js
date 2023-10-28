@@ -2,6 +2,7 @@
 import ErrorText from "@/components/errorComponents/ErrorText";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
+import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import { Button, Stack } from "@mui/material";
@@ -33,14 +34,10 @@ const RecoverPassword = () => {
       style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
     >
       <div>
-        <Stack
-          alignItems="center"
-          spacing={2}
-          style={{ marginBottom: "2rem", textAlign: "center" }}
-        >
-          <h1>Recover Password</h1>
-          <p>It&apos;s okay, we have got this!</p>
-        </Stack>
+        <TitleText
+          title="Recover Password"
+          text="It's okay, we have got this!"
+        />
 
         <form onSubmit={submitHandler}>
           <Stack spacing={2} style={{ textAlign: "center" }}>

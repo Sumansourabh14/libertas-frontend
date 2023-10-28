@@ -2,6 +2,7 @@
 import ErrorText from "@/components/errorComponents/ErrorText";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
+import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import { Button, Stack } from "@mui/material";
@@ -44,14 +45,7 @@ const ResetPassword = ({ params }) => {
       style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
     >
       <div>
-        <Stack
-          alignItems="center"
-          spacing={2}
-          style={{ marginBottom: "2rem", textAlign: "center" }}
-        >
-          <h1>Reset Password</h1>
-          {/* <p>It&apos;s okay, we have got this!</p> */}
-        </Stack>
+        <TitleText title="Reset Password" />
 
         <form onSubmit={submitHandler}>
           <Stack spacing={2} style={{ textAlign: "center" }}>

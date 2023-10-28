@@ -9,6 +9,7 @@ import TextInput from "../../components/formComponents/TextInput";
 import { useRouter } from "next/navigation";
 import { colors } from "@/theme/colors";
 import PasswordInput from "@/components/formComponents/PasswordInput";
+import TitleText from "@/components/pageComponents/TitleText";
 
 const Login = () => {
   const { loading, login, loginError, user } = useContext(GlobalContext);
@@ -40,14 +41,7 @@ const Login = () => {
       style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}
     >
       <div>
-        <Stack
-          alignItems="center"
-          spacing={2}
-          style={{ marginBottom: "2rem", textAlign: "center" }}
-        >
-          <h1>Login</h1>
-          <p>Sign in to your account on Libertas</p>
-        </Stack>
+        <TitleText title="Login" text="Sign in to your account on Libertas" />
 
         <form onSubmit={submitHandler}>
           <Stack spacing={2} style={{ textAlign: "center" }}>

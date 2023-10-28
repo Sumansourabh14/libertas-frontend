@@ -5,6 +5,7 @@ import PasswordChecks from "@/components/formComponents/PasswordChecks";
 import PasswordInput from "@/components/formComponents/PasswordInput";
 import TextInput from "@/components/formComponents/TextInput";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
+import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import {
@@ -84,14 +85,7 @@ const SignUp = () => {
       style={{ display: "flex", justifyContent: "center", padding: "2rem 0" }}
     >
       <div>
-        <Stack
-          alignItems="center"
-          spacing={2}
-          style={{ marginBottom: "2rem", textAlign: "center" }}
-        >
-          <h1>Sign Up</h1>
-          <p>Create an account to join Libertas</p>
-        </Stack>
+        <TitleText title="Sign Up" text="Create an account to join Libertas" />
 
         <form onSubmit={handleSignUp}>
           <Stack spacing={2} style={{ textAlign: "center" }}>
