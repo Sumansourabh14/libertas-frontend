@@ -21,7 +21,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log(email, password);
+    // console.log(email, password);
     login(email, password);
   };
 

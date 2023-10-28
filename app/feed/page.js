@@ -1,17 +1,9 @@
 "use client";
-import NewPost from "@/components/buttonComponents/NewPost";
-import PostComponent from "@/components/postComponents/PostComponent";
-import RecentPosts from "@/components/postComponents/RecentPosts";
-import { GlobalContext } from "@/services/globalContext";
+import FeedPresentation from "@/components/postComponents/FeedPresentation";
 import useFetchPosts from "@/utils/customHooks/useFetchPosts";
-import { Container, Stack, useMediaQuery } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 const Feed = () => {
-  const { upvoteAPost, downvoteAPost } = useContext(GlobalContext);
-
-  const matches = useMediaQuery("(min-width:550px)");
-
   // fetching all the posts from the custom hook
   const [posts, updatePosts] = useFetchPosts();
 
@@ -31,44 +23,7 @@ const Feed = () => {
     document.title = "What's Happening | Libertas";
   }, []);
 
-  return (
-    <Container
-      style={{
-        paddingBottom: 20,
-      }}
-    >
-      <Stack direction="row" spacing={3}>
-        <Stack>
-          <div>
-            <NewPost />
-          </div>
-
-          <Stack spacing={3} style={{ marginTop: 24 }}>
-            {!!posts.length ? (
-              posts.map((post) => (
-                <PostComponent
-                  key={post._id}
-                  post={post}
-                  id={post._id}
-                  handleUpvote={() => handleVote(upvoteAPost, post._id)}
-                  handleDownvote={() => handleVote(downvoteAPost, post._id)}
-                  individualView={false}
-                />
-              ))
-            ) : (
-              <p>You are all caught up!</p>
-            )}
-          </Stack>
-        </Stack>
-
-        {matches && (
-          <div style={{ flex: 1 }}>
-            <RecentPosts />
-          </div>
-        )}
-      </Stack>
-    </Container>
-  );
+  return <FeedPresentation posts={posts} handleVote={handleVote} />;
 };
 
 export default Feed;
