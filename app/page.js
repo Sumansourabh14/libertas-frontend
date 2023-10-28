@@ -2,7 +2,8 @@
 import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import Footer from "@/components/pageComponents/Footer";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
-import { Button, Container, Stack, useMediaQuery } from "@mui/material";
+import HomePageTitle from "@/components/textComponents/HomePageTitle";
+import { Container, Stack, useMediaQuery } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -10,7 +11,12 @@ import { useEffect } from "react";
 const Home = () => {
   const router = useRouter();
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
-  const tabletScreenSize = useMediaQuery("(max-width:1300px)");
+  const tabletScreenSize = useMediaQuery(
+    "(min-width:600px) and (max-width:1200px)"
+  );
+  // const laptopScreenSize = useMediaQuery(
+  //   "(min-width:1200px) and (max-width:1536px)"
+  // );
 
   useEffect(() => {
     document.title = "Libertas - Discuss about anything";
@@ -29,19 +35,17 @@ const Home = () => {
               ? "100px 30px"
               : tabletScreenSize
               ? "130px 60px"
-              : "150px 60px",
+              : "140px 60px",
             textAlign: "center",
           }}
         >
-          <h1
+          <HomePageTitle title={`Discuss about anything`} />
+          <h2
             style={{
-              fontSize: mobileScreenSize ? "3rem" : "4rem",
-              fontWeight: "900",
+              fontSize: mobileScreenSize ? "1.3rem" : "1.8rem",
+              fontWeight: "400",
             }}
           >
-            Discuss about anything
-          </h1>
-          <h2 style={{ fontSize: "1.8rem", fontWeight: "400" }}>
             Create your account to get started
           </h2>
           <Stack

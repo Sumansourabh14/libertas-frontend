@@ -10,6 +10,9 @@ const Footer = () => {
   return (
     <footer style={{ backgroundColor: colors.accent }}>
       <Stack style={{ padding: 40 }} alignItems="center" spacing={3}>
+        <Stack>
+          <Link href={`/about`}>About</Link>
+        </Stack>
         <Stack direction="row" spacing={2}>
           <Link
             href="https://twitter.com/libertas_nextjs"

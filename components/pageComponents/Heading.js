@@ -1,5 +1,20 @@
+import { openSans } from "@/theme/fonts";
+import { useMediaQuery } from "@mui/material";
+
 const Heading = ({ title }) => {
-  return <h1 style={{ fontSize: "2rem", fontWeight: "800" }}>{title}</h1>;
+  const mobileScreenSize = useMediaQuery("(max-width:600px)");
+
+  return (
+    <h2
+      className={openSans.className}
+      style={{
+        fontSize: mobileScreenSize ? "2rem" : "3rem",
+        fontWeight: "800",
+      }}
+    >
+      {title}
+    </h2>
+  );
 };
 
 export default Heading;

@@ -1,28 +1,20 @@
 import { GlobalContext } from "@/services/globalContext";
+import { openSans } from "@/theme/fonts";
+import CancelIcon from "@mui/icons-material/Cancel";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SaveIcon from "@mui/icons-material/Save";
-import CancelIcon from "@mui/icons-material/Cancel";
-import CircleIcon from "@mui/icons-material/Circle";
-import {
-  Button,
-  IconButton,
-  Stack,
-  TextField,
-  TextareaAutosize,
-  Tooltip,
-  useMediaQuery,
-} from "@mui/material";
+import { IconButton, Stack, TextField, useMediaQuery } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
-import { relativeTime } from "../utils/relativeTime";
-import Image from "next/image";
 import OptionButton from "../buttonComponents/OptionButton";
 import TextEditor from "../textEditor/TextEditor";
+import { relativeTime } from "../utils/relativeTime";
 
 const PostComponent = ({
   id,
@@ -131,6 +123,7 @@ const PostComponent = ({
                 ) : (
                   <>
                     <h2
+                      className={openSans.className}
                       style={{
                         fontSize: mobileScreenSize ? "1.2rem" : "1.7rem",
                       }}
@@ -266,7 +259,7 @@ const PostComponent = ({
                     {relativeTime(Date.parse(post?.createdAt))}
                   </p>
                 </Stack>
-                <h3>{post?.post?.title}</h3>
+                <h3 className={openSans.className}>{post?.post?.title}</h3>
                 {post?.post?.imageUrl && (
                   <Image
                     src={post?.post?.imageUrl}
