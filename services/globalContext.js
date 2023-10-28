@@ -188,11 +188,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const getUser = async () => {
     try {
       const data = await userApi();
-      console.log(data.data.user);
+      // console.log(data.data.user);
       setUser(data.data.user);
       setIsAuthenticated(true);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setUser(null);
       setIsAuthenticated(false);
     }

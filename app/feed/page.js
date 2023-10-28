@@ -3,37 +3,18 @@ import NewPost from "@/components/buttonComponents/NewPost";
 import PostComponent from "@/components/postComponents/PostComponent";
 import RecentPosts from "@/components/postComponents/RecentPosts";
 import { GlobalContext } from "@/services/globalContext";
+import useFetchPosts from "@/utils/customHooks/useFetchPosts";
 import { Container, Stack, useMediaQuery } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 const Feed = () => {
-  const [posts, setPosts] = useState([]);
-
   const { fetchAllPosts, upvoteAPost, downvoteAPost } =
     useContext(GlobalContext);
+
   const matches = useMediaQuery("(min-width:550px)");
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
-
-  useEffect(() => {
-    let mounted = true;
-
-    async function fetchPosts() {
-      const data = await fetchAllPosts();
-
-      if (mounted) {
-        setPosts(data?.data?.data?.reverse());
-      }
-    }
-
-    fetchPosts();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // fetching all the posts from the custom hook
+  const posts = useFetchPosts();
 
   // Function to handle upvoting a post
   const handleUpvote = async (postId) => {
