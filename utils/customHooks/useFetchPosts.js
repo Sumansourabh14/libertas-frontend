@@ -24,7 +24,12 @@ const useFetchPosts = () => {
     };
   }, []);
 
-  return posts;
+  const updatePosts = async () => {
+    const data = await fetchAllPosts();
+    setPosts(data?.data?.data?.reverse());
+  };
+
+  return [posts, updatePosts];
 };
 
 export default useFetchPosts;

@@ -8,39 +8,22 @@ import { Container, Stack, useMediaQuery } from "@mui/material";
 import { useContext, useEffect } from "react";
 
 const Feed = () => {
-  const { fetchAllPosts, upvoteAPost, downvoteAPost } =
-    useContext(GlobalContext);
+  const { upvoteAPost, downvoteAPost } = useContext(GlobalContext);
 
   const matches = useMediaQuery("(min-width:550px)");
 
   // fetching all the posts from the custom hook
-  const posts = useFetchPosts();
+  const [posts, updatePosts] = useFetchPosts();
 
-  // Function to handle upvoting a post
-  const handleUpvote = async (postId) => {
+  const handleVote = async (method, postId) => {
     try {
-      // Call the upvoteAPost function
-      await upvoteAPost(postId);
+      // Call the upvote/downvote function
+      await method(postId);
 
-      // Fetch the updated list of posts after upvoting (re-render)
-      const updatedPosts = await fetchAllPosts();
-      setPosts(updatedPosts?.data?.data?.reverse());
+      // Fetch the updated list of posts after upvoting/downvoting (re-render)
+      await updatePosts();
     } catch (error) {
-      console.error("Error upvoting post:", error);
-    }
-  };
-
-  // Function to handle downvoting a post
-  const handleDownvote = async (postId) => {
-    try {
-      // Call the upvoteAPost function
-      await downvoteAPost(postId);
-
-      // Fetch the updated list of posts after upvoting (re-render)
-      const updatedPosts = await fetchAllPosts();
-      setPosts(updatedPosts?.data?.data?.reverse());
-    } catch (error) {
-      console.error("Error downvoting post:", error);
+      console.error(error);
     }
   };
 
@@ -61,14 +44,14 @@ const Feed = () => {
           </div>
 
           <Stack spacing={3} style={{ marginTop: 24 }}>
-            {posts?.length > 0 ? (
-              posts?.map((post) => (
+            {!!posts.length ? (
+              posts.map((post) => (
                 <PostComponent
-                  key={post?._id}
+                  key={post._id}
                   post={post}
-                  id={post?._id}
-                  handleUpvote={() => handleUpvote(post?._id)}
-                  handleDownvote={() => handleDownvote(post?._id)}
+                  id={post._id}
+                  handleUpvote={() => handleVote(upvoteAPost, post._id)}
+                  handleDownvote={() => handleVote(downvoteAPost, post._id)}
                   individualView={false}
                 />
               ))
