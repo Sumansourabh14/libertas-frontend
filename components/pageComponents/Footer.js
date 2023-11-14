@@ -8,16 +8,21 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={{ backgroundColor: colors.accent }}>
+    <footer
+      style={{ backgroundColor: colors.primary, color: colors.secondary }}
+    >
       <Stack style={{ padding: 40 }} alignItems="center" spacing={3}>
         <Stack>
-          <Link href={`/about`}>About</Link>
+          <Link href={`/about`} style={{ color: colors.secondary }}>
+            About
+          </Link>
         </Stack>
         <Stack direction="row" spacing={2}>
           <Link
             href="https://twitter.com/libertas_nextjs"
             target="_blank"
             aria-label="Libertas Twitter account"
+            style={{ color: colors.secondary }}
           >
             <FontAwesomeIcon icon={faXTwitter} size="xl" />
           </Link>
@@ -25,6 +30,7 @@ const Footer = () => {
             href="https://github.com/Sumansourabh14/libertas-frontend"
             aria-label="Libertas GitHub profile"
             target="_blank"
+            style={{ color: colors.secondary }}
           >
             <FontAwesomeIcon icon={faGithub} size="xl" />
           </Link>

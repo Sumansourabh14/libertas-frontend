@@ -88,11 +88,6 @@ a {
 }
 /* Loading Button Circle - END */
 
-.homepage-hero-section {
-  background: rgb(252,249,217);
-  background: linear-gradient(90deg, rgba(252,249,217,1) 0%, rgba(242,234,62,1) 74%);
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

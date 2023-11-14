@@ -34,8 +34,8 @@ const Home = () => {
             padding: mobileScreenSize
               ? "100px 30px"
               : tabletScreenSize
-              ? "130px 60px"
-              : "140px 60px",
+              ? "110px 60px"
+              : "120px 60px",
             textAlign: "center",
           }}
         >
@@ -46,7 +46,7 @@ const Home = () => {
               fontWeight: "400",
             }}
           >
-            Create your account to get started
+            No moderators. No corporate rules. Created only for people.
           </h2>
           <Stack
             direction={mobileScreenSize ? "column" : "row"}
