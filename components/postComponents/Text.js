@@ -4,6 +4,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import { Button, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import TextEditor from "../textEditor/TextEditor";
+import { FileUploader } from "react-drag-drop-files";
 
 const Text = ({
   title,
@@ -37,7 +38,17 @@ const Text = ({
         />
 
         <Stack spacing={2} alignItems="center">
-          <input type="file" onChange={handleImageFile} accept="image/*" />
+          <FileUploader
+            handleChange={handleImageFile}
+            name="file"
+            types={["PNG", "JPG"]}
+          >
+            <Stack style={{ border: "1px dashed black", padding: "1rem 8rem" }}>
+              <Button sx={{ textTransform: "none", color: "#000" }}>
+                Drag and drop an image here
+              </Button>
+            </Stack>
+          </FileUploader>
           {image && (
             <Stack spacing={4} alignItems="center">
               <Image
@@ -45,6 +56,7 @@ const Text = ({
                 width={600}
                 height={300}
                 alt=""
+                style={{ maxWidth: "100%", height: "auto" }}
               />
               {imageUrl ? (
                 <Stack
