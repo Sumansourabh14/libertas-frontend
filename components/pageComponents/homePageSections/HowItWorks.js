@@ -33,7 +33,7 @@ const HowItWorks = () => {
       alignItems="center"
       spacing={6}
       style={{
-        padding: mobileScreenSize ? "100px 30px" : "150px 60px",
+        padding: mobileScreenSize ? "100px 30px" : "120px 60px",
         textAlign: "center",
       }}
     >
