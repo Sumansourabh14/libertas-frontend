@@ -1,9 +1,11 @@
 "use client";
 import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import Footer from "@/components/pageComponents/Footer";
+import CommentFeature from "@/components/pageComponents/homePageSections/CommentFeature";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
 import HomePageTitle from "@/components/textComponents/HomePageTitle";
 import { Container, Stack, useMediaQuery } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -26,16 +28,15 @@ const Home = () => {
     <>
       <Stack>
         <Stack
-          className="homepage-hero-section"
           alignItems="center"
           justifyContent="center"
-          spacing={6}
+          spacing={4}
           style={{
             padding: mobileScreenSize
-              ? "100px 30px"
+              ? "60px 30px"
               : tabletScreenSize
-              ? "110px 60px"
-              : "120px 60px",
+              ? "80px 60px"
+              : "90px 60px",
             textAlign: "center",
           }}
         >
@@ -57,15 +58,28 @@ const Home = () => {
               color="#fff"
               title="Create Account"
               handleClick={() => router.push("/sign-up")}
-              bgColor="#000"
             />
             <Link href={"/feed"} style={{ textDecoration: "underline" }}>
               or check what&apos;s happening!
             </Link>
           </Stack>
+          <Stack style={{ paddingTop: "4rem" }}>
+            <Image
+              src={`https://firebasestorage.googleapis.com/v0/b/libertas-frontend.appspot.com/o/posts%2Flibertas-loggedin-feed.pngdff6666e-db66-4b07-ba24-ff983323d1b1?alt=media&token=6b625105-88ea-4700-aa6c-6ffe13955ab1`}
+              alt="Libertas news feed page"
+              width={1200}
+              height={300}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+              }}
+            />
+          </Stack>
         </Stack>
         <Container>
           <HowItWorks />
+          <CommentFeature />
         </Container>
         <Footer />
       </Stack>

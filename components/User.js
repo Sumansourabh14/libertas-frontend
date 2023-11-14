@@ -1,10 +1,10 @@
 import { GlobalContext } from "@/services/globalContext";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Paper, Stack } from "@mui/material";
+import { Avatar, Button, Paper, Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { relativeTime } from "./utils/relativeTime";
 
 const User = () => {
@@ -33,6 +33,11 @@ const User = () => {
               alignItems="center"
               spacing={2}
             >
+              <Avatar
+                alt={user?.name}
+                src={user.avatar}
+                sx={{ width: 100, height: 100 }}
+              />
               <h1 style={{ fontSize: "1.3rem" }}>{user?.name}</h1>
               <Stack direction="row" spacing={1} alignItems="center">
                 <p>{user?.username}</p>

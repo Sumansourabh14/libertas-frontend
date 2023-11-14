@@ -97,8 +97,24 @@ const Header = ({ themeMode, handleTheme }) => {
             {/* <Link href="/about">About</Link> */}
             {isAuthenticated ? (
               <>
-                {matches && <Link href="/create-post">Create Post</Link>}
-                <Link href="/profile">Profile</Link>
+                {matches && (
+                  <Link
+                    href="/create-post"
+                    style={{
+                      color: "#FFF",
+                    }}
+                  >
+                    Create Post
+                  </Link>
+                )}
+                <Link
+                  href="/profile"
+                  style={{
+                    color: "#FFF",
+                  }}
+                >
+                  Profile
+                </Link>
                 <Button
                   variant="outlined"
                   onClick={handleLogout}

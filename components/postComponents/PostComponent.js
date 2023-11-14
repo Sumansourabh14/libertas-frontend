@@ -8,7 +8,14 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import { IconButton, Stack, TextField, useMediaQuery } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
+import {
+  Avatar,
+  IconButton,
+  Stack,
+  TextField,
+  useMediaQuery,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -73,10 +80,16 @@ const PostComponent = ({
                 width: "100%",
               }}
             >
-              <Stack direction="row" justifyContent="space-between" spacing={2}>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Avatar
+                  alt={post?.author?.name}
+                  src={post?.author?.avatar ? post?.author?.avatar : ""}
+                  sx={{ width: 40, height: 40 }}
+                />
                 <p style={{ fontSize: "1rem", fontWeight: "600" }}>
                   {post?.author?.username}
                 </p>
+                <CircleIcon style={{ fontSize: "6px" }} />
                 <p
                   style={{
                     fontSize: "0.875rem",
@@ -237,6 +250,11 @@ const PostComponent = ({
             >
               <Stack spacing={2}>
                 <Stack direction="row" alignItems="center" spacing={2}>
+                  <Avatar
+                    alt={post?.author?.name}
+                    src={post?.author?.avatar ? post?.author?.avatar : ""}
+                    sx={{ width: 30, height: 30 }}
+                  />
                   <p
                     style={{
                       fontSize: "1rem",
@@ -246,14 +264,12 @@ const PostComponent = ({
                   >
                     {post?.author?.username}
                   </p>
+                  <CircleIcon style={{ fontSize: "6px" }} />
                   <p
                     style={{
                       fontSize: "0.875rem",
                       fontWeight: "300",
                       color: "#000",
-                      padding: 4,
-                      borderRadius: "0.2rem",
-                      backgroundColor: "#C3C5BF",
                     }}
                   >
                     {relativeTime(Date.parse(post?.createdAt))}

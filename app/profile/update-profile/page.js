@@ -4,9 +4,23 @@ import ConfirmedModal from "@/components/modalComponents/ConfirmedModal";
 import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
-import { Button, Snackbar, Stack, TextField } from "@mui/material";
+import { storage } from "@/utils/firebase";
+import EditIcon from "@mui/icons-material/Edit";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Snackbar,
+  Stack,
+  TextField,
+} from "@mui/material";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { FileUploader } from "react-drag-drop-files";
+import { v4 } from "uuid";
+
+const fileTypes = ["JPG", "PNG"];
 
 const ProfileUpdate = () => {
   const [name, setName] = useState("");
@@ -15,6 +29,12 @@ const ProfileUpdate = () => {
   const [bio, setBio] = useState("");
   const [website, setWebsite] = useState("");
   const [twitter, setTwitter] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [loadingAvatar, setLoadingAvatar] = useState(false);
+
+  const [profileImage, setProfileImage] = useState(null);
+
   const [isChangesSaved, setIsChangesSaved] = useState(false);
 
   const { user, updateUserDetails, loading } = useContext(GlobalContext);
@@ -35,8 +55,32 @@ const ProfileUpdate = () => {
       setBio(user?.bio);
       setWebsite(user?.website);
       setTwitter(user?.twitter);
+      setAvatar(user?.avatar);
     }
   }, [user]);
+
+  const uploadAvatar = async () => {
+    if (profileImage) {
+      setLoadingAvatar(true);
+      const imageRef = ref(storage, `avatars/${profileImage.name + v4()}`);
+
+      const response = await uploadBytes(imageRef, profileImage);
+
+      if (response) {
+        const url = await getDownloadURL(response.ref);
+        console.log({ url });
+        setAvatarUrl(url);
+      }
+      setLoadingAvatar(false);
+    }
+  };
+
+  const handleChange = (image) => {
+    setProfileImage(image);
+
+    // if (!!profileImage) {
+    uploadAvatar();
+  };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -49,6 +93,7 @@ const ProfileUpdate = () => {
     formData.append("bio", bio);
     formData.append("website", website);
     formData.append("twitter", twitter);
+    formData.append("avatar", avatarUrl);
 
     console.log(...formData);
 
@@ -68,6 +113,37 @@ const ProfileUpdate = () => {
       <h1>Update Profile</h1>
       <form onSubmit={handleUpdate}>
         <Stack spacing={3}>
+          <FileUploader
+            handleChange={handleChange}
+            name="file"
+            types={fileTypes}
+          >
+            <Avatar
+              alt={name ? name : ""}
+              sx={{ width: 120, height: 120 }}
+              src={
+                loadingAvatar
+                  ? ""
+                  : !!profileImage
+                  ? URL.createObjectURL(profileImage)
+                  : !!avatar
+                  ? avatar
+                  : ""
+              }
+            />
+            <IconButton
+              aria-label="edit user avatar"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 80,
+                background: "#000",
+                color: "#FFF",
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+          </FileUploader>
           <TextInput
             type="text"
             // nameOfInput="name"

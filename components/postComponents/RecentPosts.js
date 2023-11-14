@@ -1,8 +1,9 @@
 import { GlobalContext } from "@/services/globalContext";
-import { Stack } from "@mui/material";
+import { Avatar, Stack } from "@mui/material";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { relativeTime } from "../utils/relativeTime";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const RecentPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -51,15 +52,16 @@ const RecentPosts = () => {
                     borderRadius: "0.5rem",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    spacing={2}
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Avatar
+                      alt={post?.author?.name}
+                      src={post?.author?.avatar ? post?.author?.avatar : ""}
+                      sx={{ width: 20, height: 20 }}
+                    />
                     <p style={{ fontSize: "0.8rem", fontWeight: "600" }}>
                       {post?.author?.username}
                     </p>
+                    <CircleIcon style={{ fontSize: "6px" }} />
                     <p style={{ fontSize: "0.75rem", fontWeight: "300" }}>
                       {relativeTime(Date.parse(post?.createdAt))}
                     </p>

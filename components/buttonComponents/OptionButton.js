@@ -1,3 +1,4 @@
+import { colors } from "@/theme/colors";
 import { Button } from "@mui/material";
 
 const OptionButton = ({
@@ -17,8 +18,8 @@ const OptionButton = ({
       startIcon={icon}
       style={{
         textTransform: "capitalize",
-        backgroundColor: bgColor ? bgColor : "blue",
-        color: color ? color : "#fff",
+        backgroundColor: bgColor ? bgColor : colors.primary,
+        color: color ? color : colors.secondary,
         borderRadius: 0,
       }}
     >

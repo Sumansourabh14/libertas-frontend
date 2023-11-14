@@ -23,8 +23,6 @@ const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
         <OptionButton
           title={`Add`}
           handleClick={handleAddComment}
-          color="#000"
-          bgColor="#F4E869"
           icon={<InsertCommentIcon />}
         />
       </div>

@@ -1,4 +1,4 @@
-import { Button, IconButton, Stack, Tooltip } from "@mui/material";
+import { Avatar, Button, IconButton, Stack, Tooltip } from "@mui/material";
 import { relativeTime } from "../utils/relativeTime";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/services/globalContext";
@@ -45,13 +45,19 @@ const CommentSingle = ({ comment }) => {
     <Stack
       spacing={2}
       style={{
-        backgroundColor: "#F1F6F9",
-        padding: 16,
-        borderRadius: "0.5rem",
-        boxShadow: `rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px`,
+        padding: "1rem 0",
+        // boxShadow: `rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px`,
+        borderBottom: "1px solid #e5e7eb",
       }}
     >
-      <strong>{author?.username}</strong>
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <Avatar
+          alt={author?.name}
+          src={author?.avatar ? author?.avatar : ""}
+          sx={{ width: 30, height: 30 }}
+        />
+        <strong>{author?.username}</strong>
+      </Stack>
       <p>{comment.body}</p>
       <Stack direction="row" spacing={2} alignItems="center">
         <p style={{ fontSize: "0.875rem", fontWeight: "300", color: "gray" }}>
