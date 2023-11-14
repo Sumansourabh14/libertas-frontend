@@ -77,7 +77,7 @@ const SignUp = () => {
   }, [user]);
 
   useEffect(() => {
-    if (username) checkUsername(username);
+    if (!!username) checkUsername(username);
   }, [username]);
 
   return (
