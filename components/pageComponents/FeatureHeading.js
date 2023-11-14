@@ -8,7 +8,7 @@ const FeatureHeading = ({ title }) => {
     <h2
       className={openSans.className}
       style={{
-        fontSize: mobileScreenSize ? "1.2rem" : "2.4rem",
+        fontSize: mobileScreenSize ? "1.8rem" : "2.4rem",
         fontWeight: "800",
         lineHeight: 1.2,
       }}
