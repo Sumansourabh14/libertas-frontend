@@ -31,7 +31,7 @@ const CreatePost = () => {
   };
 
   const handleImageFile = (e) => {
-    setImage(e.target.files[0]);
+    setImage(e);
   };
 
   const uploadImage = async () => {
