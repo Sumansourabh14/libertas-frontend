@@ -40,7 +40,7 @@ const PostComponent = ({
       <Stack
         spacing={2}
         style={{
-          backgroundColor: "#F0F0F0",
+          backgroundColor: "#FFF",
           padding: 12,
           borderRadius: "0.5rem",
           boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",

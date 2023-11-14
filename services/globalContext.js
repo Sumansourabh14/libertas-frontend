@@ -39,7 +39,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const [passwordResetError, setPasswordResetError] = useState(null);
   const [isPasswordRecoveryEmailSuccess, setIsPasswordRecoveryEmailSuccess] =
     useState(false);
-  const [usernameMessage, setUsernameMessage] = useState(null);
+  const [usernameMessage, setUsernameMessage] = useState("");
   const [usernameErrorCode, setUsernameErrorCode] = useState(null);
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -71,8 +71,8 @@ export const GlobalContextProvider = ({ children, theme }) => {
   };
 
   const checkUsername = async (username) => {
-    setUsernameMessage(null);
-    setUsernameErrorCode(null);
+    // setUsernameMessage("");
+    // setUsernameErrorCode(null);
 
     try {
       // setLoading(true);
@@ -83,8 +83,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
         setUsernameMessage(data?.data?.message);
       }
 
-      // console.log(data);
-      // setLoading(false);
       return data;
     } catch (error) {
       console.log(error);
