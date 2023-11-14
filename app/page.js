@@ -2,6 +2,7 @@
 import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import Footer from "@/components/pageComponents/Footer";
 import CommentFeature from "@/components/pageComponents/homePageSections/CommentFeature";
+import CreatePostFeature from "@/components/pageComponents/homePageSections/CreatePostFeature";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
 import HomePageTitle from "@/components/textComponents/HomePageTitle";
 import { Container, Stack, useMediaQuery } from "@mui/material";
@@ -79,6 +80,7 @@ const Home = () => {
         </Stack>
         <Container>
           <HowItWorks />
+          <CreatePostFeature />
           <CommentFeature />
         </Container>
         <Footer />
