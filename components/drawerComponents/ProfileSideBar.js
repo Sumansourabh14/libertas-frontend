@@ -89,7 +89,7 @@ const ProfileSideBar = () => {
           left: 10,
         }}
       >
-        <p>Libertas © 2023. All rights reserved.</p>
+        <p>Libertas © {new Date().getFullYear()}. All rights reserved.</p>
       </div> */}
     </Drawer>
   );
