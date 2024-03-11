@@ -211,12 +211,15 @@ export const getPost = async (postId) => {
   return data;
 };
 
-export const getAllPosts = async () => {
-  const data = await axios.get(`${API_URL}/api/user/submitted/posts`, {
-    withCredentials: true,
-  });
+export const getAllPosts = async (count) => {
+  const data = await axios.get(
+    `${API_URL}/api/user/submitted/posts?count=${count}`,
+    {
+      withCredentials: true,
+    }
+  );
 
-  // console.log(data);
+  console.log(data);
 
   return data;
 };

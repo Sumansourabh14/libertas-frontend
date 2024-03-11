@@ -351,9 +351,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
   };
 
   // fetch all posts (regardless of the user)
-  const fetchAllPosts = async () => {
+  const fetchAllPosts = async (count) => {
     try {
-      const data = await getAllPosts();
+      const data = await getAllPosts(count);
       // console.log(data);
       setPosts(data?.data?.data);
       return data;
