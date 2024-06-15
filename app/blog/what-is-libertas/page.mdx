@@ -1,0 +1,66 @@
+import MdxLayout from "@/components/mdx-layout";
+import Author from "@/components/blogComponents/Author";
+import PostedOn from "@/components/blogComponents/PostedOn";
+import LinkBtn from "@/components/blogComponents/LinkBtn";
+
+<PostedOn date={"15th June 2024"} />
+
+<br />
+
+# Introducing Libertas 1.0
+
+<Author
+  name="Suman Sourabh"
+  link={`https://x.com/sumansourabh48`}
+  twitterHandle={`sumansourabh48`}
+/>
+<br />
+
+---
+
+<br />
+
+Hi, I am Suman Sourabh and I am launching Libertas.
+
+Libertas is a FREE online discussion platform which aims to allow people like you and me to discuss anything.
+
+## Why though?
+
+If you want to discuss about something or even the most obscure thing on the planet, you will surely find some info on Reddit. It is a great platform to discuss things and on many cases, getting a solution of a problem.
+
+But in recent times, the karma limitations and the cruelty of moderators (removing any post that they don’t like and more) has put some question marks on the popular platform.
+
+That, I don’t like.
+
+And one day, thinking about this problem, I got an idea!
+
+Why don’t I try to build something like Reddit? Minus the idea of karma and moderators.
+
+I, for certain, don’t fully know the limitations of not having these things but here’s a start.
+
+On that day itself, I fired up my VS Code editor and created a bare minimum Next.js application and named it **Libertas**.
+
+The idea is to provide freedom to the user on their ability to just discuss.
+
+And discuss them freely, no boundaries. Information should be free.
+
+## What you can do at the moment:
+
+- [Sign up](/sign-up), login
+- Reset password with a simple UX
+- Email feedback to the user on sign up and login
+- Create a post (with title, body and optional image), edit and delete it
+- Upvote/downvote a post
+- Comment under a post
+- See profile details and edit them
+- Delete account
+
+For a start, the above are the functionalities that you can perform on Libertas. More will be coming soon!
+
+<br />
+
+<LinkBtn link={`/sign-up`} title={"Join Libertas, it's Free!"} />
+
+export default function MDXPage({ children }) {
+  return <MdxLayout>{children}</MdxLayout>;
+}

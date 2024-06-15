@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "title": "Blog 1",
+    "description": "Launching Libertas, the online discussion platform where people can just discuss.",
+    "author": {
+      "name": "Suman Sourabh",
+      "social": {
+        "twitter": {
+          "handle": "sumansourabh48",
+          "profile": "https://x.com/sumansourabh48"
+        }
+      }
+    },
+    "link": "/blog/what-is-libertas",
+    "publishedAt": "15th June 2024"
+  }
+]

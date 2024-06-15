@@ -133,15 +133,26 @@ const Header = ({ themeMode, handleTheme }) => {
             ) : (
               <>
                 {matches && (
-                  <Link
-                    href="/about"
-                    style={{
-                      fontWeight: "500",
-                      color: "#FFF",
-                    }}
-                  >
-                    About
-                  </Link>
+                  <>
+                    <Link
+                      href="/about"
+                      style={{
+                        fontWeight: "500",
+                        color: "#FFF",
+                      }}
+                    >
+                      About
+                    </Link>
+                    <Link
+                      href="/blog"
+                      style={{
+                        fontWeight: "500",
+                        color: "#FFF",
+                      }}
+                    >
+                      Blog
+                    </Link>
+                  </>
                 )}
                 <Link
                   href="/login"
