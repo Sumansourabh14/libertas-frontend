@@ -8,7 +8,10 @@ const TitleText = ({ title, text }) => {
       spacing={2}
       style={{ marginBottom: "2rem", textAlign: "center" }}
     >
-      <h1 className={openSans.className} style={{ fontSize: "2.5rem" }}>
+      <h1
+        className={openSans.className}
+        style={{ fontSize: "2.5rem", color: "#FFF" }}
+      >
         {title}
       </h1>
       {!!text && <p>{text}</p>}

@@ -44,7 +44,8 @@ const Home = () => {
           <HomePageTitle title={`Discuss about anything`} />
           <h2
             style={{
-              fontSize: mobileScreenSize ? "1.3rem" : "1.8rem",
+              color: "gray",
+              fontSize: mobileScreenSize ? "1.2rem" : "1.5rem",
               fontWeight: "400",
             }}
           >
@@ -56,11 +57,15 @@ const Home = () => {
             alignItems="center"
           >
             <PrimaryButton
-              color="#fff"
+              bgColor="#FFF"
+              color="#000"
               title="Create Account"
               handleClick={() => router.push("/sign-up")}
             />
-            <Link href={"/feed"} style={{ textDecoration: "underline" }}>
+            <Link
+              href={"/feed"}
+              style={{ textDecoration: "underline", color: "#FFF" }}
+            >
               or check what&apos;s happening!
             </Link>
           </Stack>

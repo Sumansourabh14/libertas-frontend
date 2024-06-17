@@ -148,17 +148,16 @@ const SignUp = () => {
             <Button
               variant="contained"
               type="submit"
-              style={{
+              sx={{
                 textTransform: "capitalize",
-                backgroundColor: colors.button.background,
+                backgroundColor: "#FFF",
+                color: "#000",
                 fontWeight: "600",
                 borderRadius: "0rem",
                 marginTop: 30,
-              }}
-              sx={{
                 "&.Mui-disabled": {
-                  background: "#eaeaea",
-                  color: "#c0c0c0",
+                  backgroundColor: "#1A1A1A",
+                  color: "#2F2F2F",
                 },
               }}
               disabled={!(isPasswordLength && isAnyLowerCase && isAnyUpperCase)}
@@ -175,7 +174,7 @@ const SignUp = () => {
                 Already have an account?{" "}
                 <Link
                   href="/login"
-                  style={{ color: "#000", textDecoration: "underline" }}
+                  style={{ color: "#FFF", textDecoration: "underline" }}
                 >
                   Login
                 </Link>

@@ -10,6 +10,7 @@ const Heading = ({ title }) => {
       style={{
         fontSize: mobileScreenSize ? "2rem" : "3rem",
         fontWeight: "800",
+        color: "#FFF",
       }}
     >
       {title}
