@@ -10,6 +10,7 @@ const NormalTitle = ({ title }) => {
       style={{
         fontSize: mobileScreenSize ? "3rem" : "4rem",
         fontWeight: "800",
+        color: "#FFF",
       }}
     >
       {title}
