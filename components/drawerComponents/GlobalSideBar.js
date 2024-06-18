@@ -23,6 +23,8 @@ const GlobalSideBar = () => {
         "& .MuiDrawer-paper": {
           width: 240,
           boxSizing: "border-box",
+          backgroundColor: "#000",
+          color: "#FFF",
         },
       }}
       variant="permanent"
@@ -34,7 +36,7 @@ const GlobalSideBar = () => {
         <ListItem disablePadding onClick={() => router.push("/feed")}>
           <ListItemButton>
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon color="#FFF" />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItemButton>
