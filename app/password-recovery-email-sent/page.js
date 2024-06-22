@@ -26,8 +26,6 @@ const PasswordRecoveryEmailSent = () => {
             href="/login"
             style={{
               fontSize: "0.875rem",
-              color: "#000",
-              textDecoration: "underline",
             }}
           >
             Back to login
