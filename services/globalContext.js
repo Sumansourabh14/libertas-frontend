@@ -288,10 +288,10 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const editPost = async (id, title, body) => {
     try {
       const data = await updatePost(id, title, body);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

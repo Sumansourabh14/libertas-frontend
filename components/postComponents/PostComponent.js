@@ -102,14 +102,13 @@ const PostComponent = ({
                 {isEdit ? (
                   <Stack
                     style={{
-                      backgroundColor: "#f3f3f3",
                       borderRadius: 10,
                     }}
                     spacing={2}
                   >
                     <TextField
                       type="text"
-                      placeholder="Enter title"
+                      placeholder="Enter title*"
                       fullWidth
                       size="small"
                       value={title}
