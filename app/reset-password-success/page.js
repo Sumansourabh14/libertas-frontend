@@ -24,8 +24,6 @@ const ResetPasswordSuccess = () => {
             href="/login"
             style={{
               fontSize: "0.875rem",
-              color: "#000",
-              textDecoration: "underline",
             }}
           >
             Login

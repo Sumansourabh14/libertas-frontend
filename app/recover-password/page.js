@@ -1,11 +1,10 @@
 "use client";
 import ErrorText from "@/components/errorComponents/ErrorText";
 import TextInput from "@/components/formComponents/TextInput";
-import LoadingButton from "@/components/pageComponents/LoadingButton";
 import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
-import { colors } from "@/theme/colors";
-import { Button, Stack } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Stack } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 
 const RecoverPassword = () => {
@@ -51,29 +50,21 @@ const RecoverPassword = () => {
               onChange={(e) => setEmailOrUsername(e.target.value)}
               required={true}
             />
-            <Button
+            <LoadingButton
+              loading={loading}
               variant="contained"
               type="submit"
-              style={{
-                textTransform: "none",
-                backgroundColor: colors.button.background,
+              sx={{
+                textTransform: "capitalize",
+                backgroundColor: "#FFFFFF",
                 fontWeight: "600",
                 borderRadius: "0rem",
-              }}
-              sx={{
-                "&.Mui-disabled": {
-                  color: "grey",
-                },
+                marginTop: 30,
               }}
               disabled={isButtonDisabled}
             >
               Send me a reset password email
-              {loading && (
-                <div style={{ marginLeft: "0.6rem" }}>
-                  <LoadingButton />
-                </div>
-              )}
-            </Button>
+            </LoadingButton>
           </Stack>
         </form>
       </div>
