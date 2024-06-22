@@ -42,9 +42,6 @@ const ProfileUpdate = () => {
 
   useEffect(() => {
     if (!user) router.push("/login");
-    if (user) {
-      console.log(user);
-    }
   }, []);
 
   useEffect(() => {
@@ -68,7 +65,6 @@ const ProfileUpdate = () => {
 
       if (response) {
         const url = await getDownloadURL(response.ref);
-        console.log({ url });
         setAvatarUrl(url);
       }
       setLoadingAvatar(false);
@@ -94,8 +90,6 @@ const ProfileUpdate = () => {
     formData.append("website", website);
     formData.append("twitter", twitter);
     formData.append("avatar", avatarUrl);
-
-    console.log(...formData);
 
     const data = await updateUserDetails(user?._id, formData);
 

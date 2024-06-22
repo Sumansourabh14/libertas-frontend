@@ -40,7 +40,6 @@ const Post = ({ params }) => {
 
     async function fetchPostData() {
       const data = await fetchPost(post);
-      console.log(data?.data?.post);
 
       if (mounted) {
         setPostData(data?.data?.post);
@@ -152,7 +151,6 @@ const Post = ({ params }) => {
       // Fetch the updated list of posts after downvoting (re-render)
       const updatedPost = await fetchPost(postId);
 
-      console.log(updatedPost);
       setPostData(updatedPost?.data?.post);
     } catch (error) {
       console.error("Error downvoting post:", error);

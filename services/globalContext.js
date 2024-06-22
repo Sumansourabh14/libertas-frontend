@@ -53,16 +53,10 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setLoading(true);
       const data = await signUpApi(name, username, email, password);
 
-      console.log(data);
-      console.log("Signed up");
-
       setLoading(false);
       router.push("/login");
     } catch (error) {
-      console.log(error);
-
       if (error.response.status === 400) {
-        // setSignUpError("Another user is already registered with this email");
         setSignUpError(error.response?.data.message);
       }
 
@@ -71,11 +65,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
   };
 
   const checkUsername = async (username) => {
-    // setUsernameMessage("");
-    // setUsernameErrorCode(null);
-
     try {
-      // setLoading(true);
       const data = await checkUsernameApi(username);
 
       if (data?.data?.success) {
@@ -85,10 +75,8 @@ export const GlobalContextProvider = ({ children, theme }) => {
 
       return data;
     } catch (error) {
-      console.log(error);
       setUsernameMessage(error?.response?.data?.message);
       setUsernameErrorCode(error?.response?.status);
-      setLoading(false);
     }
   };
 
@@ -105,18 +93,15 @@ export const GlobalContextProvider = ({ children, theme }) => {
         const fetchUser = await getSpecificUserByEmailOrUsername(
           emailOrUsername
         );
-        console.log(fetchUser);
 
         if (fetchUser?.data?.success) {
           router.push("/password-recovery-email-sent");
         }
       }
 
-      console.log(data);
       setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
       setPasswordRecoveryEmailError(error?.response?.data?.message);
       setLoading(false);
     }
@@ -128,7 +113,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setPasswordResetError(null);
 
       const data = await resetPassword(id, password, confirmPassword);
-      console.log(data);
 
       if (data?.data?.success) {
         router.push("/reset-password-success");
@@ -137,7 +121,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
       setPasswordResetError(error?.response?.data?.message);
       setLoading(false);
     }
@@ -164,14 +147,11 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setLoading(true);
       const data = await logoutApi();
 
-      console.log(data);
-      console.log("Logged out");
-
       setIsAuthenticated(false);
       setLoading(false);
+
       router.push("/login");
     } catch (error) {
-      console.log(error);
       setIsAuthenticated(true);
       setLoading(false);
     }
@@ -180,11 +160,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const getUser = async () => {
     try {
       const data = await userApi();
-      // console.log(data.data.user);
       setUser(data.data.user);
       setIsAuthenticated(true);
     } catch (error) {
-      // console.log(error);
       setUser(null);
       setIsAuthenticated(false);
     }
@@ -195,7 +173,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
       const data = await getUserById(id);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -204,7 +182,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
       const data = await getUserByEmailOrUsername(emailOrUsername);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -212,11 +190,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
     try {
       setLoading(true);
       const data = await updateUser(id, body);
-      console.log(data);
       setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };
@@ -225,11 +201,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
     try {
       setLoading(true);
       const data = await deleteUser(id);
-      console.log(data);
       setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };
@@ -239,7 +213,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
       const data = await randomQuoteApi();
       return data.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -251,7 +225,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
       setLoading(false);
       return data;
     } catch (error) {
-      // console.log(error);
       setLoading(false);
     }
   };
@@ -263,10 +236,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
         router.push("/login");
       }
       const data = await upvotePost(id);
-      console.log("upvote: ", data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -277,10 +249,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
         router.push("/login");
       }
       const data = await downvotePost(id);
-      console.log("downvote: ", data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -288,7 +259,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const editPost = async (id, title, body) => {
     try {
       const data = await updatePost(id, title, body);
-      // console.log(data);
       return data;
     } catch (error) {
       // console.log(error);
@@ -298,30 +268,27 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const createComment = async (id, body) => {
     try {
       const data = await addComment(id, body);
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const getCommentsByPostId = async (id) => {
     try {
       const data = await getComments(id);
-      // console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const removeComment = async (id, commentId) => {
     try {
       const data = await deleteComment(id, commentId);
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -329,10 +296,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const fetchPosts = async (userId) => {
     try {
       const data = await getPosts(userId);
-      console.log(data.data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -340,10 +306,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const fetchPost = async (postId) => {
     try {
       const data = await getPost(postId);
-      // console.log(data.data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -351,21 +316,19 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const fetchAllPosts = async () => {
     try {
       const data = await getAllPosts();
-      // console.log(data);
       setPosts(data?.data?.data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const removePost = async (postId) => {
     try {
       const data = await deletePost(postId);
-      console.log(data.data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -377,14 +340,6 @@ export const GlobalContextProvider = ({ children, theme }) => {
     setPasswordRecoveryEmailError(null);
     setPasswordResetError(null);
   }, []);
-
-  // useEffect(() => {
-  //   console.log({ user });
-  // }, [user]);
-
-  // useEffect(() => {
-  //   fetchAllPosts();
-  // }, []);
 
   return (
     <GlobalContext.Provider

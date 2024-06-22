@@ -27,8 +27,6 @@ const RandomQuote = () => {
     };
   }, []);
 
-  console.log(randomQuote);
-
   return (
     <div>
       {randomQuote && (

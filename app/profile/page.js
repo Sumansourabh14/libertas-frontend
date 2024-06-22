@@ -26,11 +26,6 @@ const Profile = () => {
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   useEffect(() => {
-    console.log(
-      new Date(user?.createdAt).toDateString().split(" ").splice(1, 3).join(" ")
-    );
-    console.log(new Date(user?.createdAt).toDateString());
-
     if (!user) {
       router.push("/login");
     }
@@ -39,7 +34,6 @@ const Profile = () => {
   useEffect(() => {
     const getAllPosts = async () => {
       const data = await fetchPosts(user?._id);
-      console.log(data);
 
       if (data) setPosts(data?.data.posts?.reverse());
     };
