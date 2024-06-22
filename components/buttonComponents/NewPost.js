@@ -8,6 +8,8 @@ const NewPost = () => {
     <PrimaryButton
       title="New Post"
       handleClick={() => router.push("/create-post")}
+      color="#000"
+      bgColor="#FFF"
     />
   );
 };

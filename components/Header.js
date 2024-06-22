@@ -7,6 +7,7 @@ import {
   AppBar,
   Box,
   Button,
+  Divider,
   IconButton,
   Stack,
   TextField,
@@ -41,7 +42,7 @@ const Header = ({ themeMode, handleTheme }) => {
       <AppBar
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        style={{ backgroundColor: "#000" }}
+        style={{ backgroundColor: "#000", borderBottom: "1px solid white" }}
       >
         <Toolbar>
           <h2
@@ -167,9 +168,11 @@ const Header = ({ themeMode, handleTheme }) => {
                   href="/sign-up"
                   style={{
                     padding: "0.5rem 1rem",
-                    backgroundColor: "#FFC700",
+                    backgroundColor: "#FFF",
                     borderRadius: "0rem",
                     fontWeight: "600",
+                    color: "#000",
+                    textDecoration: "none",
                   }}
                 >
                   Sign Up

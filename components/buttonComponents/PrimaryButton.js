@@ -7,7 +7,7 @@ const PrimaryButton = ({ color, handleClick, title, bgColor }) => {
       variant="contained"
       onClick={handleClick}
       style={{
-        color: "#FFF",
+        color: color ? color : "#FFF",
         borderRadius: "0rem",
         padding: "0.5rem 2rem",
         fontSize: "1rem",

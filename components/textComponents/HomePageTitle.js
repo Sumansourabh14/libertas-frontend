@@ -14,6 +14,7 @@ const HomePageTitle = ({ title }) => {
     <h1
       className={openSans.className}
       style={{
+        color: "#FFF",
         fontSize: mobileScreenSize
           ? "3rem"
           : tabletScreenSize

@@ -46,17 +46,16 @@ const HowItWorks = () => {
             alignItems="center"
             style={{
               padding: "2rem 1rem",
-              backgroundColor: "#F5FCCD",
-              borderRadius: "0.5rem",
+              backgroundColor: "#F3F3F3",
+              color: "#000",
             }}
           >
             {step.icon}
-            <h2>{step.title}</h2>
+            <h3>{step.title}</h3>
             <p>{step.body}</p>
           </Stack>
         ))}
       </Stack>
-      <h2>It is that simple!</h2>
     </Stack>
   );
 };

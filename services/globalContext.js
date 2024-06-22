@@ -144,22 +144,16 @@ export const GlobalContextProvider = ({ children, theme }) => {
   };
 
   const login = async (email, password) => {
-    setLoginError(null);
-
     try {
+      setLoginError(null);
       setLoading(true);
       const data = await loginApi(email, password);
-
-      // console.log(data);
-      // console.log("Logged in");
 
       setIsAuthenticated(true);
       setLoading(false);
 
       router.push("/feed");
     } catch (error) {
-      console.log(error);
-
       setLoginError(error?.response?.data.message);
       setLoading(false);
     }

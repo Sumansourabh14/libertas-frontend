@@ -22,15 +22,15 @@ const About = () => {
           </p>
           <div>
             <PrimaryButton
-              color="#fff"
               title="Check out Libertas"
               handleClick={() => router.push("/feed")}
-              bgColor="#000"
+              bgColor="#FFF"
+              color="#000"
             />
           </div>
         </Stack>
       </Stack>
-      <Stack style={{ padding: 40, textAlign: "center" }} alignItems="center">
+      <Stack style={{ padding: 140, textAlign: "center" }} alignItems="center">
         <p
           style={{
             fontSize: "2rem",
@@ -43,7 +43,7 @@ const About = () => {
         </p>
       </Stack>
       <Stack
-        style={{ padding: 40, textAlign: "center" }}
+        style={{ padding: 120, textAlign: "center" }}
         alignItems="center"
         spacing={2}
       >
@@ -51,11 +51,12 @@ const About = () => {
         <Stack spacing={1}>
           <Link
             href="https://sumansourabh.netlify.app/"
-            style={{ fontSize: "1.5rem" }}
+            target="_blank"
+            style={{ fontSize: "1.5rem", color: "#FFF" }}
           >
             Suman Sourabh
           </Link>
-          <p style={{ color: "grey" }}>Full Stack Developer</p>
+          <p style={{ color: "grey" }}>Frontend Developer</p>
         </Stack>
       </Stack>
       <Footer />

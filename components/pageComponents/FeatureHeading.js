@@ -11,6 +11,7 @@ const FeatureHeading = ({ title }) => {
         fontSize: mobileScreenSize ? "1.8rem" : "2.4rem",
         fontWeight: "800",
         lineHeight: 1.2,
+        color: "#FFFFFF",
       }}
     >
       {title}

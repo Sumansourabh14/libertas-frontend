@@ -8,9 +8,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      style={{ backgroundColor: colors.primary, color: colors.secondary }}
-    >
+    <footer style={{ backgroundColor: "#000", color: colors.secondary }}>
       <Stack style={{ padding: 40 }} alignItems="center" spacing={3}>
         <Stack>
           <Link href={`/about`} style={{ color: colors.secondary }}>
@@ -39,6 +37,7 @@ const Footer = () => {
           style={{
             textAlign: "center",
             fontSize: "0.875rem",
+            color: "gray",
           }}
         >
           <p>Libertas © {year}. All rights reserved.</p>
