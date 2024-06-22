@@ -135,15 +135,15 @@ const Profile = () => {
               </p>
               <div>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   onClick={() => router.push("/create-post")}
                   style={{
-                    borderRadius: "0.4rem",
                     padding: "0.5rem 2rem",
                     fontWeight: "600",
                     textTransform: "none",
-                    borderColor: "#000",
+                    backgroundColor: "#FFF",
                     color: "#000",
+                    borderRadius: 0,
                   }}
                 >
                   Create a post now!

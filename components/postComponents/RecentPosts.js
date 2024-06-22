@@ -33,7 +33,7 @@ const RecentPosts = () => {
       <Stack
         style={{
           width: 240,
-          backgroundColor: "#f3f3f3",
+          backgroundColor: "#000",
           padding: 12,
           borderRadius: "0.4rem",
         }}
@@ -43,11 +43,15 @@ const RecentPosts = () => {
 
           {posts?.length > 0 &&
             posts?.slice(0, 4)?.map((post) => (
-              <Link key={post?._id} href={`/post/${post?._id}`}>
+              <Link
+                key={post?._id}
+                href={`/post/${post?._id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Stack
                   spacing={2}
                   style={{
-                    backgroundColor: "#fff",
+                    backgroundColor: "#3a3a3a",
                     padding: 12,
                     borderRadius: "0.5rem",
                   }}
@@ -73,7 +77,6 @@ const RecentPosts = () => {
                         style={{
                           fontSize: "0.7rem",
                           fontWeight: "300",
-                          color: "gray",
                         }}
                       >
                         1 comment
@@ -83,7 +86,6 @@ const RecentPosts = () => {
                         style={{
                           fontSize: "0.7rem",
                           fontWeight: "300",
-                          color: "gray",
                         }}
                       >
                         {post?.comments?.length} comments
@@ -94,7 +96,6 @@ const RecentPosts = () => {
                       style={{
                         fontSize: "0.7rem",
                         fontWeight: "300",
-                        color: "gray",
                       }}
                     >
                       0 comments

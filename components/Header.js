@@ -55,6 +55,7 @@ const Header = ({ themeMode, handleTheme }) => {
               href={"/"}
               style={{
                 color: "#FFF",
+                textDecoration: "none",
               }}
             >
               <span
@@ -121,7 +122,7 @@ const Header = ({ themeMode, handleTheme }) => {
                   onClick={handleLogout}
                   style={{
                     color: "#FFF",
-                    border: "1px solid #FFF",
+                    border: "1px solid red",
                     textTransform: "capitalize",
                     fontSize: "1rem",
                     fontWeight: "500",

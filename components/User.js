@@ -80,17 +80,6 @@ const User = () => {
                   </Stack>
                 </Link>
               )}
-
-              {/* <Stack>
-              <p>
-                Joined on{" "}
-                {new Date(user?.createdAt)
-                  .toDateString()
-                  .split(" ")
-                  .splice(1, 3)
-                  .join(" ")}
-              </p>
-            </Stack> */}
               <Stack direction="row" spacing={1}>
                 <Button
                   variant="contained"
@@ -101,6 +90,7 @@ const User = () => {
                     fontWeight: "600",
                     textTransform: "capitalize",
                     backgroundColor: "#000",
+                    color: "#FFF",
                   }}
                 >
                   New Post
@@ -114,7 +104,7 @@ const User = () => {
                     fontWeight: "600",
                     textTransform: "capitalize",
                     borderColor: "#000",
-                    color: "#000",
+                    color: "#FFF",
                   }}
                 >
                   Edit profile
