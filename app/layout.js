@@ -15,7 +15,7 @@ import GlobalSideBar from "@/components/drawerComponents/GlobalSideBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-  const [themeMode, setThemeMode] = useState("light");
+  const [themeMode, setThemeMode] = useState("dark");
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   const theme = createTheme({

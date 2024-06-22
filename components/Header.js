@@ -171,6 +171,8 @@ const Header = ({ themeMode, handleTheme }) => {
                     backgroundColor: "#FFF",
                     borderRadius: "0rem",
                     fontWeight: "600",
+                    color: "#000",
+                    textDecoration: "none",
                   }}
                 >
                   Sign Up

@@ -4,15 +4,14 @@ import UsernameError from "@/components/errorComponents/UsernameError";
 import PasswordChecks from "@/components/formComponents/PasswordChecks";
 import PasswordInput from "@/components/formComponents/PasswordInput";
 import TextInput from "@/components/formComponents/TextInput";
-import LoadingButton from "@/components/pageComponents/LoadingButton";
 import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
-import { colors } from "@/theme/colors";
 import {
   faCircleCheck,
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button, Stack } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Stack } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -145,7 +144,8 @@ const SignUp = () => {
                 message="1 uppercase letter"
               />
             </Stack>
-            <Button
+            <LoadingButton
+              loading={loading}
               variant="contained"
               type="submit"
               sx={{
@@ -155,20 +155,11 @@ const SignUp = () => {
                 fontWeight: "600",
                 borderRadius: "0rem",
                 marginTop: 30,
-                "&.Mui-disabled": {
-                  backgroundColor: "#1A1A1A",
-                  color: "#2F2F2F",
-                },
               }}
               disabled={!(isPasswordLength && isAnyLowerCase && isAnyUpperCase)}
             >
               Sign Up
-              {loading && (
-                <div style={{ marginLeft: "0.6rem" }}>
-                  <LoadingButton />
-                </div>
-              )}
-            </Button>
+            </LoadingButton>
             <div style={{ textAlign: "center" }}>
               <p style={{ fontSize: "0.875rem" }}>
                 Already have an account?{" "}

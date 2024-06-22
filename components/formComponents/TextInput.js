@@ -19,9 +19,6 @@ const TextInput = ({
       required={required ? required : false}
       size="small"
       name={nameOfInput}
-      sx={{
-        input: { color: "#F3f3f3" },
-      }}
     />
   );
 };

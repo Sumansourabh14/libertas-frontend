@@ -1,15 +1,15 @@
 "use client";
 import ErrorText from "@/components/errorComponents/ErrorText";
-import LoadingButton from "@/components/pageComponents/LoadingButton";
-import { GlobalContext } from "@/services/globalContext";
-import { Button, Stack } from "@mui/material";
-import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import TextInput from "../../components/formComponents/TextInput";
-import { useRouter } from "next/navigation";
-import { colors } from "@/theme/colors";
 import PasswordInput from "@/components/formComponents/PasswordInput";
 import TitleText from "@/components/pageComponents/TitleText";
+import { GlobalContext } from "@/services/globalContext";
+import { colors } from "@/theme/colors";
+import { LoadingButton } from "@mui/lab";
+import { Stack } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import TextInput from "../../components/formComponents/TextInput";
 
 const Login = () => {
   const { loading, login, loginError, user } = useContext(GlobalContext);
@@ -63,39 +63,28 @@ const Login = () => {
                 href="/recover-password"
                 style={{
                   fontSize: "0.875rem",
-                  color: "#000",
-                  textDecoration: "underline",
                 }}
               >
                 Forgot password?
               </Link>
             </Stack>
-            <Button
+            <LoadingButton
+              loading={loading}
               variant="contained"
               type="submit"
-              style={{
+              sx={{
                 textTransform: "capitalize",
-                backgroundColor: colors.button.background,
+                backgroundColor: "#FFFFFF",
                 fontWeight: "600",
                 borderRadius: "0rem",
                 marginTop: 30,
               }}
+              disabled={!(email && password)}
             >
               Login
-              {loading && (
-                <div style={{ marginLeft: "0.6rem" }}>
-                  <LoadingButton />
-                </div>
-              )}
-            </Button>
+            </LoadingButton>
             <p style={{ textAlign: "center", fontSize: "0.875rem" }}>
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/sign-up"
-                style={{ color: "#000", textDecoration: "underline" }}
-              >
-                Sign up
-              </Link>
+              Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
             </p>
           </Stack>
         </form>
