@@ -1,11 +1,11 @@
 "use client";
 import TextInput from "@/components/formComponents/TextInput";
 import ConfirmedModal from "@/components/modalComponents/ConfirmedModal";
-import LoadingButton from "@/components/pageComponents/LoadingButton";
 import { GlobalContext } from "@/services/globalContext";
 import { colors } from "@/theme/colors";
 import { storage } from "@/utils/firebase";
 import EditIcon from "@mui/icons-material/Edit";
+import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
   Button,
@@ -186,23 +186,21 @@ const ProfileUpdate = () => {
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
           />
-          <Button
-            variant="contained"
-            type="submit"
-            style={{
-              textTransform: "capitalize",
-              backgroundColor: colors.button.background,
-              fontWeight: "600",
-              width: "200px",
-            }}
-          >
-            Save Changes
-            {loading && (
-              <div style={{ marginLeft: "0.6rem" }}>
-                <LoadingButton />
-              </div>
-            )}
-          </Button>
+          <div>
+            <LoadingButton
+              loading={loading}
+              variant="contained"
+              type="submit"
+              sx={{
+                textTransform: "capitalize",
+                backgroundColor: "#FFFFFF",
+                fontWeight: "600",
+                borderRadius: "0rem",
+              }}
+            >
+              Save Changes
+            </LoadingButton>
+          </div>
         </Stack>
       </form>
 

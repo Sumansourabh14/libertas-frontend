@@ -47,10 +47,8 @@ const PostComponent = ({
       <Stack
         spacing={2}
         style={{
-          backgroundColor: "#FFF",
+          backgroundColor: "#000",
           padding: 12,
-          borderRadius: "0.5rem",
-          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
         }}
       >
         <Stack direction="row" spacing={3}>
@@ -94,7 +92,6 @@ const PostComponent = ({
                   style={{
                     fontSize: "0.875rem",
                     fontWeight: "300",
-                    color: "grey",
                   }}
                 >
                   {relativeTime(Date.parse(post?.createdAt))}
@@ -105,32 +102,18 @@ const PostComponent = ({
                 {isEdit ? (
                   <Stack
                     style={{
-                      backgroundColor: "#f3f3f3",
                       borderRadius: 10,
                     }}
                     spacing={2}
                   >
                     <TextField
                       type="text"
-                      placeholder="Enter title"
+                      placeholder="Enter title*"
                       fullWidth
                       size="small"
                       value={title}
                       onChange={handleTitle}
                     />
-                    {/* <TextareaAutosize
-                      aria-label="textarea for text body"
-                      placeholder="Enter text"
-                      minRows={10}
-                      value={body}
-                      onChange={handleBody}
-                      style={{
-                        width: "100%",
-                        fontFamily: "inherit",
-                        fontSize: "1rem",
-                        padding: 10,
-                      }}
-                    /> */}
                     <TextEditor value={body} setValue={handleBody} />
                   </Stack>
                 ) : (
@@ -146,15 +129,12 @@ const PostComponent = ({
                     {post?.post?.imageUrl && (
                       <Image
                         src={post?.post?.imageUrl}
-                        alt=""
+                        alt="some image alt text"
                         width={640}
                         height={335}
                         style={{ maxWidth: "100%", height: "auto" }}
                       />
                     )}
-                    {/* <p style={{ fontSize: individualView ? "1rem" : "0.9rem" }}>
-                      {post?.post?.body}
-                    </p> */}
                     <div
                       dangerouslySetInnerHTML={{ __html: post?.post?.body }}
                     />
@@ -245,7 +225,9 @@ const PostComponent = ({
               key={post?._id}
               href={`/post/${post?._id}`}
               style={{
+                padding: "0.75rem 1rem 0 0",
                 width: "100%",
+                textDecoration: "none",
               }}
             >
               <Stack spacing={2}>
@@ -269,7 +251,6 @@ const PostComponent = ({
                     style={{
                       fontSize: "0.875rem",
                       fontWeight: "300",
-                      color: "#000",
                     }}
                   >
                     {relativeTime(Date.parse(post?.createdAt))}
@@ -279,24 +260,12 @@ const PostComponent = ({
                 {post?.post?.imageUrl && (
                   <Image
                     src={post?.post?.imageUrl}
-                    alt=""
+                    alt="image alt text"
                     width={500}
                     height={260}
                     style={{ width: "100%", height: "auto" }}
                   />
                 )}
-                {/* <p
-                  style={{
-                    fontSize: "0.9rem",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: "8", // how many lines we want to show
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {post?.post?.body}
-                </p> */}
                 <div dangerouslySetInnerHTML={{ __html: post?.post?.body }} />
 
                 {post?.comments?.length !== 0 ? (

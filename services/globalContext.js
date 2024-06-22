@@ -246,10 +246,13 @@ export const GlobalContextProvider = ({ children, theme }) => {
   // create a post (text)
   const postPost = async (title, body, imageUrl) => {
     try {
+      setLoading(true);
       const data = await createPost(title, body, imageUrl);
+      setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      setLoading(false);
     }
   };
 
@@ -285,10 +288,10 @@ export const GlobalContextProvider = ({ children, theme }) => {
   const editPost = async (id, title, body) => {
     try {
       const data = await updatePost(id, title, body);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

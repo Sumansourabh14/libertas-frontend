@@ -31,10 +31,9 @@ const DeletePostModal = ({
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: mobileScreenSize ? 350 : 500,
-          backgroundColor: "#fff",
+          backgroundColor: "#171717",
           boxShadow: 24,
           padding: 40,
-          borderRadius: "0.4rem",
         }}
       >
         <div style={{ position: "absolute", top: 10, right: 10 }}>
@@ -49,7 +48,12 @@ const DeletePostModal = ({
             <Button
               variant="outlined"
               onClick={handleDeleteModalClose}
-              style={{ textTransform: "capitalize", borderRadius: 0 }}
+              sx={{
+                textTransform: "capitalize",
+                borderRadius: 0,
+                color: "#FFF",
+                border: "1px solid #FFF",
+              }}
             >
               Cancel
             </Button>
@@ -57,7 +61,7 @@ const DeletePostModal = ({
               variant="contained"
               color="error"
               onClick={handleDeletePost}
-              style={{ textTransform: "capitalize", borderRadius: 0 }}
+              sx={{ textTransform: "capitalize", borderRadius: 0 }}
             >
               Delete
             </Button>

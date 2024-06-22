@@ -22,10 +22,9 @@ const ConfirmedModal = ({
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: 500,
-          backgroundColor: "#fff",
+          backgroundColor: "#000",
           boxShadow: 24,
           padding: 40,
-          borderRadius: "1rem",
         }}
       >
         <div style={{ position: "absolute", top: 10, right: 10 }}>
@@ -41,7 +40,12 @@ const ConfirmedModal = ({
             <Button
               variant="contained"
               onClick={handleConfirmation}
-              style={{ textTransform: "capitalize", backgroundColor: "#000" }}
+              style={{
+                textTransform: "capitalize",
+                backgroundColor: "#FFF",
+                borderRadius: 0,
+                color: "#000",
+              }}
             >
               Okay
             </Button>

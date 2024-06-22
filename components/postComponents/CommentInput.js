@@ -24,6 +24,8 @@ const CommentInput = ({ commentText, handleCommentText, handleAddComment }) => {
           title={`Add`}
           handleClick={handleAddComment}
           icon={<InsertCommentIcon />}
+          bgColor="#FFF"
+          color="#000"
         />
       </div>
     </Stack>
