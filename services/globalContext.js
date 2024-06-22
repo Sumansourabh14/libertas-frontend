@@ -246,10 +246,13 @@ export const GlobalContextProvider = ({ children, theme }) => {
   // create a post (text)
   const postPost = async (title, body, imageUrl) => {
     try {
+      setLoading(true);
       const data = await createPost(title, body, imageUrl);
+      setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      setLoading(false);
     }
   };
 

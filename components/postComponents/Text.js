@@ -5,6 +5,7 @@ import { Button, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import TextEditor from "../textEditor/TextEditor";
 import { FileUploader } from "react-drag-drop-files";
+import { LoadingButton } from "@mui/lab";
 
 const Text = ({
   title,
@@ -16,6 +17,8 @@ const Text = ({
   handleImageFile,
   handleImageUpload,
   imageUrl,
+  loading,
+  imageUploadLoading,
 }) => {
   return (
     <div>
@@ -24,12 +27,11 @@ const Text = ({
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title *"
+          placeholder="Enter title*"
           fullWidth
           size="small"
           InputProps={{
             style: {
-              backgroundColor: "#fff",
               fontFamily: "inherit",
               fontSize: "1rem",
             },
@@ -41,98 +43,86 @@ const Text = ({
           <FileUploader
             handleChange={handleImageFile}
             name="file"
-            types={["PNG", "JPG"]}
+            types={["PNG", "JPG", "GIF"]}
           >
-            <Stack style={{ border: "1px dashed black", padding: "1rem 8rem" }}>
-              <Button sx={{ textTransform: "none", color: "#000" }}>
-                Drag and drop an image here
-              </Button>
-            </Stack>
-          </FileUploader>
-          {image && (
-            <Stack spacing={4} alignItems="center">
-              <Image
-                src={URL.createObjectURL(image)}
-                width={600}
-                height={300}
-                alt=""
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-              {imageUrl ? (
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  style={{
-                    padding: 10,
-                    backgroundColor: "#99cc33",
-                    borderRadius: "0.5rem",
-                  }}
-                >
-                  <CheckIcon />
-                  <p>Image uploaded!</p>
+            <Stack style={{ border: "1px dashed #FFF", padding: "1rem 8rem" }}>
+              {image ? (
+                <Stack spacing={4} alignItems="center">
+                  <Image
+                    src={URL.createObjectURL(image)}
+                    width={600}
+                    height={300}
+                    alt="some image"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                  {imageUrl ? (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      style={{
+                        padding: 10,
+                      }}
+                    >
+                      <CheckIcon />
+                      <p>Image uploaded!</p>
+                    </Stack>
+                  ) : (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      style={{
+                        padding: 10,
+                        borderRadius: "0.5rem",
+                      }}
+                    >
+                      <InfoIcon />
+                      <p>Click on the button below to upload the image</p>
+                    </Stack>
+                  )}
                 </Stack>
               ) : (
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  style={{
-                    padding: 10,
-                    backgroundColor: "#ff9966",
-                    borderRadius: "0.5rem",
-                  }}
-                >
-                  <InfoIcon />
-                  <p>Click on the button below to upload the image</p>
-                </Stack>
+                <Button sx={{ textTransform: "none", color: "#FFF" }}>
+                  Drag and drop an image here
+                </Button>
               )}
             </Stack>
-          )}
+          </FileUploader>
           <div>
-            <Button
+            <LoadingButton
               variant="outlined"
+              loading={imageUploadLoading}
               onClick={handleImageUpload}
-              style={{
+              sx={{
                 textTransform: "capitalize",
-                fontWeight: "500",
-                border: "1px solid black",
-                color: "#000",
+                color: "#FFFFFF",
+                fontWeight: "600",
+                borderRadius: "0rem",
               }}
               startIcon={<AddPhotoAlternateIcon />}
             >
-              Upload image
-            </Button>
+              Upload Image
+            </LoadingButton>
           </div>
         </Stack>
 
-        {/* <TextareaAutosize
-          aria-label="textarea for text body"
-          placeholder="Enter text *"
-          minRows={10}
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          style={{
-            width: "100%",
-            fontFamily: "inherit",
-            fontSize: "1rem",
-            padding: 10,
-          }}
-          required
-        /> */}
         <TextEditor value={body} setValue={setBody} />
+
         <div>
-          <Button
+          <LoadingButton
+            loading={loading}
             variant="contained"
             onClick={handleTextPost}
-            style={{
+            sx={{
               textTransform: "capitalize",
-              backgroundColor: "#000",
+              backgroundColor: "#FFFFFF",
               fontWeight: "600",
-              width: 100,
-              borderRadius: 0,
+              borderRadius: "0rem",
+              width: "6rem",
             }}
+            disabled={!title}
           >
             Post
-          </Button>
+          </LoadingButton>
         </div>
       </Stack>
     </div>

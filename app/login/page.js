@@ -3,7 +3,6 @@ import ErrorText from "@/components/errorComponents/ErrorText";
 import PasswordInput from "@/components/formComponents/PasswordInput";
 import TitleText from "@/components/pageComponents/TitleText";
 import { GlobalContext } from "@/services/globalContext";
-import { colors } from "@/theme/colors";
 import { LoadingButton } from "@mui/lab";
 import { Stack } from "@mui/material";
 import Link from "next/link";

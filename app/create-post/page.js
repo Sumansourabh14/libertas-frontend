@@ -15,9 +15,10 @@ const CreatePost = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [body, setBody] = useState("");
   const [open, setOpen] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
   const [postMessage, setPostMessage] = useState(false);
 
-  const { postPost, user } = useContext(GlobalContext);
+  const { postPost, user, loading } = useContext(GlobalContext);
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   const router = useRouter();
@@ -35,22 +36,25 @@ const CreatePost = () => {
   };
 
   const uploadImage = async () => {
-    if (image === null) return;
+    try {
+      setUploadLoading(true);
+      if (image === null) return;
 
-    const imageRef = ref(storage, `posts/${image.name + v4()}`);
-    const data = await uploadBytes(imageRef, image);
-    console.log(data);
+      const imageRef = ref(storage, `posts/${image.name + v4()}`);
+      const data = await uploadBytes(imageRef, image);
 
-    if (data) {
-      // alert("Image uploaded!");
-      const url = await getDownloadURL(data.ref);
-      setImageUrl(url);
+      if (data) {
+        const url = await getDownloadURL(data.ref);
+        setImageUrl(url);
+        setUploadLoading(false);
+      } else {
+        setUploadLoading(false);
+      }
+    } catch (error) {
+      setUploadLoading(false);
+      // console.log(error);
     }
   };
-
-  useEffect(() => {
-    console.log(imageUrl);
-  }, [imageUrl]);
 
   useEffect(() => {
     if (postMessage?.length !== undefined) setOpen(true);
@@ -82,6 +86,8 @@ const CreatePost = () => {
               handleImageFile={handleImageFile}
               handleImageUpload={uploadImage}
               imageUrl={imageUrl}
+              loading={loading}
+              imageUploadLoading={uploadLoading}
             />
             <Snackbar
               open={open}
