@@ -6,7 +6,7 @@ import PostComponent from "@/components/postComponents/PostComponent";
 import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
 import { Container, Divider, Stack } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 const Post = ({ params }) => {
@@ -17,7 +17,6 @@ const Post = ({ params }) => {
   const [body, setBody] = useState("");
   const [commentText, setCommentText] = useState("");
   const [isPostRemove, setIsPostRemove] = useState(false);
-  // const [isPostRemoved, setIsPostRemoved] = useState(false);
   const [comments, setComments] = useState([]);
 
   const {
@@ -27,7 +26,6 @@ const Post = ({ params }) => {
     upvoteAPost,
     downvoteAPost,
     createComment,
-    fetchAllPosts,
     getCommentsByPostId,
     user,
   } = useContext(GlobalContext);
@@ -126,10 +124,6 @@ const Post = ({ params }) => {
     setIsPostRemove(true);
   };
 
-  // useEffect(() => {
-  //   console.log({ isEdit });
-  // }, [isEdit]);
-
   const handleUpvote = async (postId) => {
     try {
       // Call the upvoteAPost function
@@ -168,6 +162,8 @@ const Post = ({ params }) => {
     setPostData(data?.data?.post);
   };
 
+  const pathname = usePathname();
+
   return (
     <Stack spacing={4} style={{ paddingTop: 30, paddingBottom: 20 }}>
       <PostComponent
@@ -184,9 +180,9 @@ const Post = ({ params }) => {
         handleSave={handleSave}
         title={title}
         body={body}
-        // handleBody={(e) => setBody(e.target.value)}
         handleBody={(e) => setBody(e)}
         handleTitle={(e) => setTitle(e.target.value)}
+        path={pathname}
       />
 
       <Container maxWidth="md" style={{ paddingLeft: 0 }}>
@@ -208,12 +204,6 @@ const Post = ({ params }) => {
           <Comments comments={comments} />
         </Stack>
       </Container>
-
-      {/* <Snackbar
-        open={isPostRemoved}
-        message="Post removed successfully"
-        autoHideDuration={3000}
-      /> */}
 
       <DeletePostModal
         title="Delete post?"

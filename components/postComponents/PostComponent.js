@@ -1,6 +1,8 @@
 import { GlobalContext } from "@/services/globalContext";
 import { openSans } from "@/theme/fonts";
 import CancelIcon from "@mui/icons-material/Cancel";
+import CircleIcon from "@mui/icons-material/Circle";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
@@ -8,17 +10,18 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import CircleIcon from "@mui/icons-material/Circle";
+import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
   IconButton,
+  Snackbar,
   Stack,
   TextField,
   useMediaQuery,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import OptionButton from "../buttonComponents/OptionButton";
 import TextEditor from "../textEditor/TextEditor";
 import { relativeTime } from "../utils/relativeTime";
@@ -38,9 +41,29 @@ const PostComponent = ({
   body,
   handleTitle,
   handleBody,
+  path,
 }) => {
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const { user } = useContext(GlobalContext);
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
+
+  const copyLink = () => {
+    try {
+      setIsLoading(true);
+      setIsLinkCopied(false);
+
+      const url = `http://localhost:7002${path}`;
+      navigator.clipboard.writeText(url);
+
+      setIsLoading(false);
+      setIsLinkCopied(true);
+    } catch (error) {
+      setIsLoading(false);
+      setIsLinkCopied(false);
+    }
+  };
 
   return (
     <Stack key={id}>
@@ -219,6 +242,27 @@ const PostComponent = ({
                   )}
                 </Stack>
               </>
+              <div>
+                <LoadingButton
+                  loading={isLoading}
+                  variant="contained"
+                  onClick={copyLink}
+                  startIcon={<ContentCopyIcon />}
+                  sx={{
+                    textTransform: "capitalize",
+                    backgroundColor: "#FFFFFF",
+                    fontWeight: "600",
+                    borderRadius: "0rem",
+                  }}
+                >
+                  Copy link
+                </LoadingButton>
+              </div>
+              <Snackbar
+                open={isLinkCopied}
+                message="Link copied"
+                autoHideDuration={3000}
+              />
             </Stack>
           ) : (
             <Link
