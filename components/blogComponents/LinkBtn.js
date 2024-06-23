@@ -7,9 +7,11 @@ const LinkBtn = ({ title, link }) => {
       href={link}
       style={{
         padding: "0.5rem 1rem",
-        backgroundColor: "#FFC700",
+        backgroundColor: "#FFF",
         borderRadius: "0rem",
         fontWeight: "600",
+        color: "#000",
+        textDecoration: "none",
       }}
     >
       {title}
