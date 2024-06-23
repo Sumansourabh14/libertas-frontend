@@ -40,8 +40,7 @@ const Header = () => {
     <Box>
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        style={{ backgroundColor: "#000", borderBottom: "1px solid white" }}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, background: "#000" }}
       >
         <Toolbar>
           <h2
