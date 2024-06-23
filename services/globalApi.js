@@ -221,6 +221,11 @@ export const getAllPosts = async () => {
   return data;
 };
 
+export const searchAllPosts = async (query) => {
+  const data = await axios.get(`${API_URL}/api/posts/search?query=${query}`);
+  return data;
+};
+
 export const deletePost = async (postId) => {
   const data = await axios.delete(`${API_URL}/api/user/post/${postId}`, {
     withCredentials: true,

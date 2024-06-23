@@ -1,37 +1,36 @@
 "use client"; // For MUI to work
 import { GlobalContext } from "@/services/globalContext";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Box,
   Button,
-  Divider,
-  IconButton,
+  InputAdornment,
   Stack,
   TextField,
   Toolbar,
-  Tooltip,
   useMediaQuery,
 } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-const Header = ({ themeMode, handleTheme }) => {
-  const { isAuthenticated, logout, searchBook, theme } =
-    useContext(GlobalContext);
+const Header = () => {
+  const { isAuthenticated, logout, theme } = useContext(GlobalContext);
 
   const [searchTerm, setSearchTerm] = useState("");
   const matches = useMediaQuery("(min-width:600px)");
+  const router = useRouter();
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    searchBook(searchTerm);
-  };
+    const query = encodeURI(searchTerm);
 
-  // console.log({ isAuthenticated });
+    if (query.trim().length > 0) {
+      router.push(`/search?query=${query}`);
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -69,34 +68,25 @@ const Header = ({ themeMode, handleTheme }) => {
             </Link>
           </h2>
           <Stack direction="row" alignItems="center" spacing={3}>
-            {/* <form onSubmit={handleSearch}>
-              <TextField
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search"
-                size="small"
-              />
-              <IconButton type="submit">
-                <SearchIcon />
-              </IconButton>
-            </form> */}
-            {/* <IconButton onClick={handleTheme}>
-              {themeMode === "light" ? (
-                <Tooltip title="Change theme to Dark mode">
-                  <div>
-                    <LightModeIcon />
-                  </div>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Change theme to Light mode">
-                  <div>
-                    <DarkModeIcon />
-                  </div>
-                </Tooltip>
-              )}
-            </IconButton> */}
-            {/* <Link href="/about">About</Link> */}
+            {matches && (
+              <form onSubmit={handleSearch}>
+                <TextField
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search"
+                  size="small"
+                  sx={{ backgroundColor: "#000" }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </form>
+            )}
             {isAuthenticated ? (
               <>
                 {matches && (

@@ -20,6 +20,7 @@ import {
   passwordRecoveryEmailApi,
   randomQuoteApi,
   resetPassword,
+  searchAllPosts,
   signUpApi,
   updatePost,
   updateUser,
@@ -323,6 +324,18 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // search all posts (regardless of the user)
+  const searchPosts = async (query) => {
+    try {
+      setLoading(true);
+      const data = await searchAllPosts(query);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   const removePost = async (postId) => {
     try {
       const data = await deletePost(postId);
@@ -377,6 +390,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         fetchAllPosts,
         upvoteAPost,
         downvoteAPost,
+        searchPosts,
       }}
     >
       {children}
