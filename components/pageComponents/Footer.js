@@ -17,6 +17,9 @@ const Footer = () => {
           <Link href={`/about`} style={{ color: colors.secondary }}>
             About
           </Link>
+          <Link href={`/contact`} style={{ color: colors.secondary }}>
+            Contact
+          </Link>
         </Stack>
         <Stack direction="row" spacing={2}>
           <Link

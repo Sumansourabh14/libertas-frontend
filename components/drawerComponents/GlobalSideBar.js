@@ -1,3 +1,8 @@
+import { ContactEmergency } from "@mui/icons-material";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import PersonIcon from "@mui/icons-material/Person";
 import {
   Divider,
   Drawer,
@@ -8,11 +13,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
-import InfoIcon from "@mui/icons-material/Info";
 import { useRouter } from "next/navigation";
-import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 const GlobalSideBar = () => {
   const router = useRouter();
@@ -64,6 +65,14 @@ const GlobalSideBar = () => {
               <InfoIcon />
             </ListItemIcon>
             <ListItemText primary="About Libertas" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding onClick={() => router.push("/contact")}>
+          <ListItemButton>
+            <ListItemIcon>
+              <ContactEmergency />
+            </ListItemIcon>
+            <ListItemText primary="Contact" />
           </ListItemButton>
         </ListItem>
       </List>

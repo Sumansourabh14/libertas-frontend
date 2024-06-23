@@ -126,6 +126,15 @@ const Header = () => {
                 {matches && (
                   <>
                     <Link
+                      href="/blog"
+                      style={{
+                        fontWeight: "500",
+                        color: "#FFF",
+                      }}
+                    >
+                      Blog
+                    </Link>
+                    <Link
                       href="/about"
                       style={{
                         fontWeight: "500",
@@ -135,13 +144,13 @@ const Header = () => {
                       About
                     </Link>
                     <Link
-                      href="/blog"
+                      href="/contact"
                       style={{
                         fontWeight: "500",
                         color: "#FFF",
                       }}
                     >
-                      Blog
+                      Contact
                     </Link>
                   </>
                 )}

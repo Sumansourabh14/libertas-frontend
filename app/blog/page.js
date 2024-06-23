@@ -1,4 +1,5 @@
 import Author from "@/components/blogComponents/Author";
+import Footer from "@/components/pageComponents/Footer";
 import TitleText from "@/components/pageComponents/TitleText";
 import blogs from "@/utils/content/blogs.json";
 import { Stack } from "@mui/material";
@@ -7,7 +8,7 @@ import Link from "next/link";
 const Blog = () => {
   return (
     <div style={{ padding: "4rem 0" }}>
-      <div style={{ padding: "0 1.5rem" }}>
+      <div style={{ padding: "0 1.5rem", minHeight: "60vh" }}>
         <TitleText title="Blog" text="All the things happening on Libertas" />
 
         {!!blogs && (
@@ -29,6 +30,7 @@ const Blog = () => {
           </section>
         )}
       </div>
+      <Footer />
     </div>
   );
 };
