@@ -54,7 +54,7 @@ const PostComponent = ({
       setIsLoading(true);
       setIsLinkCopied(false);
 
-      const url = `http://localhost:7002${path}`;
+      const url = `https://libertas-vert.vercel.app${path}`;
       navigator.clipboard.writeText(url);
 
       setIsLoading(false);
