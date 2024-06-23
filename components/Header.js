@@ -40,8 +40,7 @@ const Header = () => {
     <Box>
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        style={{ backgroundColor: "#000", borderBottom: "1px solid white" }}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, background: "#000" }}
       >
         <Toolbar>
           <h2
@@ -59,7 +58,7 @@ const Header = () => {
             >
               <span
                 style={{
-                  color: "#FFC700",
+                  color: "#FFF",
                 }}
               >
                 L
@@ -127,6 +126,15 @@ const Header = () => {
                 {matches && (
                   <>
                     <Link
+                      href="/blog"
+                      style={{
+                        fontWeight: "500",
+                        color: "#FFF",
+                      }}
+                    >
+                      Blog
+                    </Link>
+                    <Link
                       href="/about"
                       style={{
                         fontWeight: "500",
@@ -136,13 +144,13 @@ const Header = () => {
                       About
                     </Link>
                     <Link
-                      href="/blog"
+                      href="/contact"
                       style={{
                         fontWeight: "500",
                         color: "#FFF",
                       }}
                     >
-                      Blog
+                      Contact
                     </Link>
                   </>
                 )}

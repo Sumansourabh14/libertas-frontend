@@ -5,6 +5,7 @@ import CommentFeature from "@/components/pageComponents/homePageSections/Comment
 import CreatePostFeature from "@/components/pageComponents/homePageSections/CreatePostFeature";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
 import HomePageTitle from "@/components/textComponents/HomePageTitle";
+import { openSans } from "@/theme/fonts";
 import { Container, Stack, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -83,11 +84,54 @@ const Home = () => {
             />
           </Stack>
         </Stack>
+        <HowItWorks />
         <Container>
-          <HowItWorks />
           <CreatePostFeature />
           <CommentFeature />
         </Container>
+        <Stack sx={{ bgcolor: "#FFF" }}>
+          <Container>
+            <Stack
+              alignItems="center"
+              spacing={2}
+              style={{
+                padding: mobileScreenSize ? "100px 30px" : "140px 60px",
+                textAlign: "center",
+              }}
+            >
+              <h2
+                className={openSans.className}
+                style={{
+                  fontSize: mobileScreenSize ? "2rem" : "3rem",
+                  fontWeight: "100",
+                  color: "#000",
+                }}
+              >
+                What are you waiting for?
+              </h2>
+              <Stack gap={2} style={{ marginBottom: "1rem" }}>
+                <p style={{ color: "#000" }}>
+                  Discussion is completey FREE here!
+                </p>
+                <p style={{ color: "#000" }}>
+                  Just click the button below to start your journey on Libertas.
+                </p>
+              </Stack>
+              <Link
+                href={`/sign-up`}
+                style={{
+                  color: "#FFF",
+                  textDecoration: "none",
+                  backgroundColor: "#000",
+                  padding: "0.75rem 3.75rem",
+                  fontSize: "1.2rem",
+                }}
+              >
+                Sign up now!
+              </Link>
+            </Stack>
+          </Container>
+        </Stack>
         <Footer />
       </Stack>
     </>

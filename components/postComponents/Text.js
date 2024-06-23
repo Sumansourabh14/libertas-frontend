@@ -27,13 +27,14 @@ const Text = ({
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title*"
+          placeholder="Enter a title for your post*"
           fullWidth
           size="small"
           InputProps={{
             style: {
               fontFamily: "inherit",
-              fontSize: "1rem",
+              fontSize: "1.2rem",
+              backgroundColor: "#000",
             },
           }}
           required

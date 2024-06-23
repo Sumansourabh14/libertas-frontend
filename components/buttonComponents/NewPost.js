@@ -6,7 +6,7 @@ const NewPost = () => {
 
   return (
     <PrimaryButton
-      title="New Post"
+      title="Create Post"
       handleClick={() => router.push("/create-post")}
       color="#000"
       bgColor="#FFF"
