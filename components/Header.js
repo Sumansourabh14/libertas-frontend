@@ -59,7 +59,7 @@ const Header = () => {
             >
               <span
                 style={{
-                  color: "#FFC700",
+                  color: "#FFF",
                 }}
               >
                 L

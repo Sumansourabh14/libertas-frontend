@@ -94,6 +94,7 @@ a {
 }
 
 .ql-editor {
-  min-height: 100px;
-  background-color: white;
+  min-height: 150px;
+  background-color: #000;
+  font-size: 1rem;
 }

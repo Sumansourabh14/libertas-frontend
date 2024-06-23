@@ -13,7 +13,7 @@ const useFetchPosts = () => {
       const data = await fetchAllPosts();
 
       if (mounted) {
-        setPosts(data?.data?.data?.reverse());
+        setPosts(data?.data?.data);
       }
     }
 

@@ -61,7 +61,7 @@ const CreatePost = () => {
   }, [postMessage]);
 
   useEffect(() => {
-    document.title = "Create a post | Libertas";
+    document.title = "Create Post | Libertas";
   }, []);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const CreatePost = () => {
       <Container style={{ paddingTop: 20 }}>
         <Stack direction="row" spacing={4} style={{ paddingBottom: "1rem" }}>
           <div style={{ flex: 1 }}>
-            <h1 style={{ marginBottom: "1rem" }}>Create a post</h1>
+            <h1 style={{ marginBottom: "1rem" }}>Create Post</h1>
             <Text
               title={title}
               setTitle={setTitle}

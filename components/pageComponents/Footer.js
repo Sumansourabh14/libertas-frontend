@@ -10,7 +10,10 @@ const Footer = () => {
   return (
     <footer style={{ backgroundColor: "#000", color: colors.secondary }}>
       <Stack style={{ padding: 40 }} alignItems="center" spacing={3}>
-        <Stack>
+        <Stack direction="row" gap={2}>
+          <Link href={`/blog`} style={{ color: colors.secondary }}>
+            Blog
+          </Link>
           <Link href={`/about`} style={{ color: colors.secondary }}>
             About
           </Link>
