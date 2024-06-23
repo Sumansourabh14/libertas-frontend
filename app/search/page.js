@@ -1,10 +1,9 @@
 "use client";
-import FeedPresentation from "@/components/postComponents/FeedPresentation";
 import PostComponent from "@/components/postComponents/PostComponent";
 import { GlobalContext } from "@/services/globalContext";
 import { Container, Stack } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 
 const Search = () => {
   const [posts, setPosts] = useState([]);
@@ -82,4 +81,12 @@ const Search = () => {
   );
 };
 
-export default Search;
+const SearchPage = () => {
+  return (
+    <Suspense fallback={<p>Loading search results...</p>}>
+      <Search />
+    </Suspense>
+  );
+};
+
+export default SearchPage;
