@@ -12,6 +12,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import InfoIcon from "@mui/icons-material/Info";
 import { useRouter } from "next/navigation";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 const GlobalSideBar = () => {
   const router = useRouter();
@@ -47,6 +48,14 @@ const GlobalSideBar = () => {
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding onClick={() => router.push("/blog")}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AutoStoriesIcon />
+            </ListItemIcon>
+            <ListItemText primary="Blog" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding onClick={() => router.push("/about")}>
