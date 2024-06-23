@@ -13,7 +13,6 @@ const Search = () => {
     useContext(GlobalContext);
 
   const query = searchParams.get("query");
-  console.log(query);
 
   useEffect(() => {
     let mounted = true;
@@ -33,10 +32,6 @@ const Search = () => {
     };
   }, [query]);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
-
   const handleVote = async (method, postId) => {
     try {
       // Call the upvote/downvote function
@@ -48,6 +43,10 @@ const Search = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    document.title = `Search results - ${query} | Libertas`;
+  }, [query, posts]);
 
   if (loading) {
     <p>Loading...</p>;

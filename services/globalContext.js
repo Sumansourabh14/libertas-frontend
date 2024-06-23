@@ -329,12 +329,9 @@ export const GlobalContextProvider = ({ children, theme }) => {
     try {
       setLoading(true);
       const data = await searchAllPosts(query);
-      console.log(data);
-      // setPosts(data?.data?.data);
       setLoading(false);
       return data;
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };
