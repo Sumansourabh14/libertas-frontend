@@ -26,7 +26,7 @@ const useFetchPosts = () => {
 
   const updatePosts = async () => {
     const data = await fetchAllPosts();
-    setPosts(data?.data?.data?.reverse());
+    setPosts(data?.data?.data);
   };
 
   return [posts, updatePosts];
