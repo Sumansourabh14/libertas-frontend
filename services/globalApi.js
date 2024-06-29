@@ -240,10 +240,10 @@ export const randomQuoteApi = async () => {
   return data;
 };
 
-export const reportPostApi = async (postId, reporterId, reason, comment) => {
+export const reportPostApi = async (postId, reporterId, reason, comments) => {
   const data = await axios.post(
     `${API_URL}/api/posts/report`,
-    { postId, reporterId, reason, comment },
+    { postId, reporterId, reason, comments },
     {
       withCredentials: true,
     }

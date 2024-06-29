@@ -101,246 +101,48 @@ const PostComponent = ({
 
   return (
     <Stack key={id}>
-      <Stack
-        spacing={2}
-        style={{
-          backgroundColor: "#000",
-          padding: 12,
-        }}
-      >
-        <Stack direction="row" spacing={3}>
-          <Stack alignItems="center">
-            <IconButton onClick={handleUpvote}>
-              {post?.upvotes?.includes(user?._id) ? (
-                <ThumbUpIcon />
-              ) : (
-                <ThumbUpOutlinedIcon />
-              )}
-            </IconButton>
-
-            <p>{post?.upvotes?.length - post?.downvotes?.length}</p>
-
-            <IconButton onClick={handleDownvote}>
-              {post?.downvotes?.includes(user?._id) ? (
-                <ThumbDownIcon />
-              ) : (
-                <ThumbDownOutlinedIcon />
-              )}
-            </IconButton>
-          </Stack>
-          {individualView ? (
-            <Stack
-              spacing={2}
-              style={{
-                width: "100%",
-              }}
-            >
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <Avatar
-                  alt={post?.author?.name}
-                  src={post?.author?.avatar ? post?.author?.avatar : ""}
-                  sx={{ width: 40, height: 40 }}
-                />
-                <p style={{ fontSize: "1rem", fontWeight: "600" }}>
-                  {post?.author?.username}
-                </p>
-                <CircleIcon style={{ fontSize: "6px" }} />
-                <p
-                  style={{
-                    fontSize: "0.875rem",
-                    fontWeight: "300",
-                  }}
-                >
-                  {relativeTime(Date.parse(post?.createdAt))}
-                </p>
-              </Stack>
-
-              <>
-                {isEdit ? (
-                  <Stack
-                    style={{
-                      borderRadius: 10,
-                    }}
-                    spacing={2}
-                  >
-                    <TextField
-                      type="text"
-                      placeholder="Enter title*"
-                      fullWidth
-                      size="small"
-                      value={title}
-                      onChange={handleTitle}
-                    />
-                    <TextEditor value={body} setValue={handleBody} />
-                  </Stack>
+      {!post?.reportedByUsers?.includes(user?._id) && (
+        <Stack
+          spacing={2}
+          style={{
+            backgroundColor: "#000",
+            padding: 12,
+          }}
+        >
+          <Stack direction="row" spacing={3}>
+            <Stack alignItems="center">
+              <IconButton onClick={handleUpvote}>
+                {post?.upvotes?.includes(user?._id) ? (
+                  <ThumbUpIcon />
                 ) : (
-                  <>
-                    <h2
-                      className={openSans.className}
-                      style={{
-                        fontSize: mobileScreenSize ? "1.2rem" : "1.7rem",
-                      }}
-                    >
-                      {post?.post?.title}
-                    </h2>
-                    {post?.post?.imageUrl && (
-                      <Image
-                        src={post?.post?.imageUrl}
-                        alt="some image alt text"
-                        width={640}
-                        height={335}
-                        style={{ maxWidth: "100%", height: "auto" }}
-                      />
-                    )}
-                    <div
-                      dangerouslySetInnerHTML={{ __html: post?.post?.body }}
-                    />
-                    {post?.comments?.length !== 0 ? (
-                      post?.comments?.length === 1 ? (
-                        <p
-                          style={{
-                            fontSize: "0.9rem",
-                            fontWeight: "300",
-                            color: "gray",
-                          }}
-                        >
-                          1 comment
-                        </p>
-                      ) : (
-                        <p
-                          style={{
-                            fontSize: "0.9rem",
-                            fontWeight: "300",
-                            color: "gray",
-                          }}
-                        >
-                          {post?.comments?.length} comments
-                        </p>
-                      )
-                    ) : (
-                      <p
-                        style={{
-                          fontSize: "0.9rem",
-                          fontWeight: "300",
-                          color: "gray",
-                        }}
-                      >
-                        0 comments
-                      </p>
-                    )}
-                  </>
+                  <ThumbUpOutlinedIcon />
                 )}
-                <Stack>
-                  {!isEdit ? (
-                    user?._id === post?.author?._id && (
-                      <Stack direction="row" alignItems="center" spacing={2}>
-                        <Stack
-                          direction="row"
-                          spacing={2}
-                          style={{
-                            padding: 2,
-                          }}
-                        >
-                          <OptionButton
-                            title="Edit"
-                            icon={<EditIcon />}
-                            handleClick={handleEdit}
-                          />
-                          <OptionButton
-                            title="Delete"
-                            icon={<DeleteIcon />}
-                            handleClick={handleDelete}
-                            bgColor="red"
-                          />
-                        </Stack>
-                      </Stack>
-                    )
-                  ) : (
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      style={{ marginTop: 40 }}
-                    >
-                      <OptionButton
-                        title="Cancel"
-                        icon={<CancelIcon />}
-                        handleClick={handleCancel}
-                        bgColor="red"
-                      />
-                      <OptionButton
-                        title="Save"
-                        icon={<SaveIcon />}
-                        handleClick={handleSave}
-                      />
-                    </Stack>
-                  )}
-                </Stack>
-              </>
+              </IconButton>
 
-              <Stack direction="row" gap={2} alignItems={"center"}>
-                <div>
-                  <LoadingButton
-                    loading={isLoading}
-                    variant="contained"
-                    onClick={copyLink}
-                    startIcon={<ContentCopyIcon />}
-                    sx={{
-                      textTransform: "capitalize",
-                      backgroundColor: "#FFFFFF",
-                      fontWeight: "600",
-                      borderRadius: "0rem",
-                    }}
-                  >
-                    Copy link
-                  </LoadingButton>
-                </div>
+              <p>{post?.upvotes?.length - post?.downvotes?.length}</p>
 
-                {user?._id !== post?.author?._id && (
-                  <div>
-                    <Button
-                      variant="text"
-                      onClick={handleReportPopUp}
-                      sx={{
-                        textTransform: "capitalize",
-                        fontWeight: "100",
-                        color: colors.error,
-                      }}
-                    >
-                      Report post
-                    </Button>
-                  </div>
+              <IconButton onClick={handleDownvote}>
+                {post?.downvotes?.includes(user?._id) ? (
+                  <ThumbDownIcon />
+                ) : (
+                  <ThumbDownOutlinedIcon />
                 )}
-              </Stack>
-              <Snackbar
-                open={isLinkCopied}
-                message="Link copied"
-                autoHideDuration={3000}
-              />
+              </IconButton>
             </Stack>
-          ) : (
-            <Link
-              key={post?._id}
-              href={`/post/${post?._id}`}
-              style={{
-                padding: "0.75rem 1rem 0 0",
-                width: "100%",
-                textDecoration: "none",
-              }}
-            >
-              <Stack spacing={2}>
+            {individualView ? (
+              <Stack
+                spacing={2}
+                style={{
+                  width: "100%",
+                }}
+              >
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Avatar
                     alt={post?.author?.name}
                     src={post?.author?.avatar ? post?.author?.avatar : ""}
-                    sx={{ width: 30, height: 30 }}
+                    sx={{ width: 40, height: 40 }}
                   />
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: "600",
-                      color: "gray",
-                    }}
-                  >
+                  <p style={{ fontSize: "1rem", fontWeight: "600" }}>
                     {post?.author?.username}
                   </p>
                   <CircleIcon style={{ fontSize: "6px" }} />
@@ -353,29 +155,239 @@ const PostComponent = ({
                     {relativeTime(Date.parse(post?.createdAt))}
                   </p>
                 </Stack>
-                <h3 className={openSans.className}>{post?.post?.title}</h3>
-                {post?.post?.imageUrl && (
-                  <Image
-                    src={post?.post?.imageUrl}
-                    alt="image alt text"
-                    width={500}
-                    height={260}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                )}
-                <div dangerouslySetInnerHTML={{ __html: post?.post?.body }} />
 
-                {post?.comments?.length !== 0 ? (
-                  post?.comments?.length === 1 ? (
+                <>
+                  {isEdit ? (
+                    <Stack
+                      style={{
+                        borderRadius: 10,
+                      }}
+                      spacing={2}
+                    >
+                      <TextField
+                        type="text"
+                        placeholder="Enter title*"
+                        fullWidth
+                        size="small"
+                        value={title}
+                        onChange={handleTitle}
+                      />
+                      <TextEditor value={body} setValue={handleBody} />
+                    </Stack>
+                  ) : (
+                    <>
+                      <h2
+                        className={openSans.className}
+                        style={{
+                          fontSize: mobileScreenSize ? "1.2rem" : "1.7rem",
+                        }}
+                      >
+                        {post?.post?.title}
+                      </h2>
+                      {post?.post?.imageUrl && (
+                        <Image
+                          src={post?.post?.imageUrl}
+                          alt="some image alt text"
+                          width={640}
+                          height={335}
+                          style={{ maxWidth: "100%", height: "auto" }}
+                        />
+                      )}
+                      <div
+                        dangerouslySetInnerHTML={{ __html: post?.post?.body }}
+                      />
+                      {post?.comments?.length !== 0 ? (
+                        post?.comments?.length === 1 ? (
+                          <p
+                            style={{
+                              fontSize: "0.9rem",
+                              fontWeight: "300",
+                              color: "gray",
+                            }}
+                          >
+                            1 comment
+                          </p>
+                        ) : (
+                          <p
+                            style={{
+                              fontSize: "0.9rem",
+                              fontWeight: "300",
+                              color: "gray",
+                            }}
+                          >
+                            {post?.comments?.length} comments
+                          </p>
+                        )
+                      ) : (
+                        <p
+                          style={{
+                            fontSize: "0.9rem",
+                            fontWeight: "300",
+                            color: "gray",
+                          }}
+                        >
+                          0 comments
+                        </p>
+                      )}
+                    </>
+                  )}
+                  <Stack>
+                    {!isEdit ? (
+                      user?._id === post?.author?._id && (
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                          <Stack
+                            direction="row"
+                            spacing={2}
+                            style={{
+                              padding: 2,
+                            }}
+                          >
+                            <OptionButton
+                              title="Edit"
+                              icon={<EditIcon />}
+                              handleClick={handleEdit}
+                            />
+                            <OptionButton
+                              title="Delete"
+                              icon={<DeleteIcon />}
+                              handleClick={handleDelete}
+                              bgColor="red"
+                            />
+                          </Stack>
+                        </Stack>
+                      )
+                    ) : (
+                      <Stack
+                        direction="row"
+                        spacing={2}
+                        style={{ marginTop: 40 }}
+                      >
+                        <OptionButton
+                          title="Cancel"
+                          icon={<CancelIcon />}
+                          handleClick={handleCancel}
+                          bgColor="red"
+                        />
+                        <OptionButton
+                          title="Save"
+                          icon={<SaveIcon />}
+                          handleClick={handleSave}
+                        />
+                      </Stack>
+                    )}
+                  </Stack>
+                </>
+
+                <Stack direction="row" gap={2} alignItems={"center"}>
+                  <div>
+                    <LoadingButton
+                      loading={isLoading}
+                      variant="contained"
+                      onClick={copyLink}
+                      startIcon={<ContentCopyIcon />}
+                      sx={{
+                        textTransform: "capitalize",
+                        backgroundColor: "#FFFFFF",
+                        fontWeight: "600",
+                        borderRadius: "0rem",
+                      }}
+                    >
+                      Copy link
+                    </LoadingButton>
+                  </div>
+
+                  {user?._id !== post?.author?._id && (
+                    <div>
+                      <Button
+                        variant="text"
+                        onClick={handleReportPopUp}
+                        sx={{
+                          textTransform: "capitalize",
+                          fontWeight: "100",
+                          color: colors.error,
+                        }}
+                      >
+                        Report post
+                      </Button>
+                    </div>
+                  )}
+                </Stack>
+                <Snackbar
+                  open={isLinkCopied}
+                  message="Link copied"
+                  autoHideDuration={3000}
+                />
+              </Stack>
+            ) : (
+              <Link
+                key={post?._id}
+                href={`/post/${post?._id}`}
+                style={{
+                  padding: "0.75rem 1rem 0 0",
+                  width: "100%",
+                  textDecoration: "none",
+                }}
+              >
+                <Stack spacing={2}>
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Avatar
+                      alt={post?.author?.name}
+                      src={post?.author?.avatar ? post?.author?.avatar : ""}
+                      sx={{ width: 30, height: 30 }}
+                    />
                     <p
                       style={{
-                        fontSize: "0.9rem",
-                        fontWeight: "300",
+                        fontSize: "1rem",
+                        fontWeight: "600",
                         color: "gray",
                       }}
                     >
-                      1 comment
+                      {post?.author?.username}
                     </p>
+                    <CircleIcon style={{ fontSize: "6px" }} />
+                    <p
+                      style={{
+                        fontSize: "0.875rem",
+                        fontWeight: "300",
+                      }}
+                    >
+                      {relativeTime(Date.parse(post?.createdAt))}
+                    </p>
+                  </Stack>
+                  <h3 className={openSans.className}>{post?.post?.title}</h3>
+                  {post?.post?.imageUrl && (
+                    <Image
+                      src={post?.post?.imageUrl}
+                      alt="image alt text"
+                      width={500}
+                      height={260}
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                  )}
+                  <div dangerouslySetInnerHTML={{ __html: post?.post?.body }} />
+
+                  {post?.comments?.length !== 0 ? (
+                    post?.comments?.length === 1 ? (
+                      <p
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: "300",
+                          color: "gray",
+                        }}
+                      >
+                        1 comment
+                      </p>
+                    ) : (
+                      <p
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: "300",
+                          color: "gray",
+                        }}
+                      >
+                        {post?.comments?.length} comments
+                      </p>
+                    )
                   ) : (
                     <p
                       style={{
@@ -384,25 +396,15 @@ const PostComponent = ({
                         color: "gray",
                       }}
                     >
-                      {post?.comments?.length} comments
+                      0 comments
                     </p>
-                  )
-                ) : (
-                  <p
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "300",
-                      color: "gray",
-                    }}
-                  >
-                    0 comments
-                  </p>
-                )}
-              </Stack>
-            </Link>
-          )}
+                  )}
+                </Stack>
+              </Link>
+            )}
+          </Stack>
         </Stack>
-      </Stack>
+      )}
 
       <ReportPostPopup
         open={openReportPopUp}
