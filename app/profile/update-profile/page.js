@@ -73,10 +73,13 @@ const ProfileUpdate = () => {
 
   const handleChange = (image) => {
     setProfileImage(image);
-
-    // if (!!profileImage) {
-    uploadAvatar();
   };
+
+  useEffect(() => {
+    if (!!profileImage) {
+      uploadAvatar();
+    }
+  }, [profileImage]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
