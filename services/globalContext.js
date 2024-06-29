@@ -19,6 +19,7 @@ import {
   logoutApi,
   passwordRecoveryEmailApi,
   randomQuoteApi,
+  reportPostApi,
   resetPassword,
   searchAllPosts,
   signUpApi,
@@ -345,6 +346,18 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // report a post
+  const reportPost = async (postId, reporterId, reason, comment) => {
+    try {
+      setLoading(true);
+      const data = await reportPostApi(postId, reporterId, reason, comment);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getUser();
   }, [isAuthenticated]);
@@ -391,6 +404,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         upvoteAPost,
         downvoteAPost,
         searchPosts,
+        reportPost,
       }}
     >
       {children}
