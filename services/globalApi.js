@@ -251,3 +251,15 @@ export const reportPostApi = async (postId, reporterId, reason, comments) => {
 
   return data;
 };
+
+export const savePostApi = async (postId) => {
+  const data = await axios.put(
+    `${API_URL}/api/posts/save`,
+    { postId },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};

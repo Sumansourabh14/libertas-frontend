@@ -21,6 +21,7 @@ import {
   randomQuoteApi,
   reportPostApi,
   resetPassword,
+  savePostApi,
   searchAllPosts,
   signUpApi,
   updatePost,
@@ -358,6 +359,18 @@ export const GlobalContextProvider = ({ children, theme }) => {
     }
   };
 
+  // report a post
+  const savePost = async (postId) => {
+    try {
+      setLoading(true);
+      const data = await savePostApi(postId);
+      setLoading(false);
+      return data;
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getUser();
   }, [isAuthenticated]);
@@ -405,6 +418,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         downvoteAPost,
         searchPosts,
         reportPost,
+        savePost,
       }}
     >
       {children}
