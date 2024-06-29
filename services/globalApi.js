@@ -239,3 +239,15 @@ export const randomQuoteApi = async () => {
 
   return data;
 };
+
+export const reportPostApi = async (postId, reporterId, reason, comments) => {
+  const data = await axios.post(
+    `${API_URL}/api/posts/report`,
+    { postId, reporterId, reason, comments },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return data;
+};
