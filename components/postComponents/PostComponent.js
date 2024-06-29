@@ -13,6 +13,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import { LoadingButton } from "@mui/lab";
 import {
   Avatar,
+  Button,
   IconButton,
   Snackbar,
   Stack,
@@ -21,10 +22,12 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import OptionButton from "../buttonComponents/OptionButton";
 import TextEditor from "../textEditor/TextEditor";
 import { relativeTime } from "../utils/relativeTime";
+import { colors } from "@/styles/colors";
+import ReportPostPopup from "../dialogComponents/ReportPostPopup";
 
 const PostComponent = ({
   id,
@@ -44,9 +47,13 @@ const PostComponent = ({
   path,
 }) => {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const [openReportPopUp, setOpenReportPopUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [reportMessage, setReportMessage] = useState("");
+  const [comment, setComment] = useState("");
+  const [reason, setReason] = useState("");
 
-  const { user } = useContext(GlobalContext);
+  const { user, reportPost, loading } = useContext(GlobalContext);
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
 
   const copyLink = () => {
@@ -62,6 +69,33 @@ const PostComponent = ({
     } catch (error) {
       setIsLoading(false);
       setIsLinkCopied(false);
+    }
+  };
+
+  const handleReportPopUp = () => {
+    setOpenReportPopUp(true);
+  };
+
+  const handleReportPopUpClose = () => {
+    setOpenReportPopUp(false);
+  };
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleReasonChange = (e) => {
+    setReason(e.target.value);
+  };
+
+  const handleSubmitReport = async () => {
+    setReportMessage("");
+    const response = await reportPost(post?._id, user?._id, reason, comment);
+
+    if (response.status === 201) {
+      setReportMessage(
+        "Thank you for reporting this content. We take reports seriously and will investigate accordingly. Your feedback helps us maintain a safer community."
+      );
     }
   };
 
@@ -242,22 +276,41 @@ const PostComponent = ({
                   )}
                 </Stack>
               </>
-              <div>
-                <LoadingButton
-                  loading={isLoading}
-                  variant="contained"
-                  onClick={copyLink}
-                  startIcon={<ContentCopyIcon />}
-                  sx={{
-                    textTransform: "capitalize",
-                    backgroundColor: "#FFFFFF",
-                    fontWeight: "600",
-                    borderRadius: "0rem",
-                  }}
-                >
-                  Copy link
-                </LoadingButton>
-              </div>
+
+              <Stack direction="row" gap={2} alignItems={"center"}>
+                <div>
+                  <LoadingButton
+                    loading={isLoading}
+                    variant="contained"
+                    onClick={copyLink}
+                    startIcon={<ContentCopyIcon />}
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#FFFFFF",
+                      fontWeight: "600",
+                      borderRadius: "0rem",
+                    }}
+                  >
+                    Copy link
+                  </LoadingButton>
+                </div>
+
+                {user?._id !== post?.author?._id && (
+                  <div>
+                    <Button
+                      variant="text"
+                      onClick={handleReportPopUp}
+                      sx={{
+                        textTransform: "capitalize",
+                        fontWeight: "100",
+                        color: colors.error,
+                      }}
+                    >
+                      Report post
+                    </Button>
+                  </div>
+                )}
+              </Stack>
               <Snackbar
                 open={isLinkCopied}
                 message="Link copied"
@@ -350,6 +403,18 @@ const PostComponent = ({
           )}
         </Stack>
       </Stack>
+
+      <ReportPostPopup
+        open={openReportPopUp}
+        closePopUp={handleReportPopUpClose}
+        comment={comment}
+        onCommentChange={handleCommentChange}
+        loading={loading}
+        reason={reason}
+        onReasonChange={handleReasonChange}
+        handleSubmitReport={handleSubmitReport}
+        reportMessage={reportMessage}
+      />
     </Stack>
   );
 };

@@ -1,0 +1,34 @@
+[
+  { "id": 1, "category": "Spam", "value": "spam" },
+  { "id": 2, "category": "Harassment", "value": "harassment" },
+  { "id": 3, "category": "Hate speech", "value": "hate speech" },
+  { "id": 4, "category": "Misinformation", "value": "misinformation" },
+  {
+    "id": 5,
+    "category": "Inappropriate content",
+    "value": "inappropriate content"
+  },
+  { "id": 6, "category": "Rash driving", "value": "rash driving" },
+  { "id": 7, "category": "Impersonation", "value": "impersonation" },
+  { "id": 8, "category": "Scam/fraud", "value": "scam/fraud" },
+  { "id": 9, "category": "Threats/violence", "value": "threats/violence" },
+  { "id": 10, "category": "Self-harm/suicide", "value": "self-harm/suicide" },
+  { "id": 11, "category": "Bullying", "value": "bullying" },
+  { "id": 12, "category": "Privacy violation", "value": "privacy violation" },
+  {
+    "id": 13,
+    "category": "Copyright infringement",
+    "value": "copyright infringement"
+  },
+  {
+    "id": 14,
+    "category": "Terrorism/extremism",
+    "value": "terrorism/extremism"
+  },
+  { "id": 15, "category": "Sexual content", "value": "sexual content" },
+  { "id": 16, "category": "Child exploitation", "value": "child exploitation" },
+  { "id": 17, "category": "Illegal activities", "value": "illegal activities" },
+  { "id": 18, "category": "Animal cruelty", "value": "animal cruelty" },
+  { "id": 19, "category": "Sensitive media", "value": "sensitive media" },
+  { "id": 20, "category": "Promotion of drugs", "value": "promotion of drugs" }
+]
