@@ -28,6 +28,10 @@ import TextEditor from "../textEditor/TextEditor";
 import { relativeTime } from "../utils/relativeTime";
 import { colors } from "@/styles/colors";
 import ReportPostPopup from "../dialogComponents/ReportPostPopup";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import FlagIcon from "@mui/icons-material/Flag";
+import { useRouter } from "next/navigation";
 
 const PostComponent = ({
   id,
@@ -53,8 +57,9 @@ const PostComponent = ({
   const [comment, setComment] = useState("");
   const [reason, setReason] = useState("");
 
-  const { user, reportPost, loading } = useContext(GlobalContext);
+  const { user, reportPost, loading, savePost } = useContext(GlobalContext);
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
+  const router = useRouter();
 
   const copyLink = () => {
     try {
@@ -73,6 +78,10 @@ const PostComponent = ({
   };
 
   const handleReportPopUp = () => {
+    if (!user) {
+      router.push("/login");
+    }
+
     setOpenReportPopUp(true);
   };
 
@@ -97,6 +106,14 @@ const PostComponent = ({
         "Thank you for reporting this content. We take reports seriously and will investigate accordingly. Your feedback helps us maintain a safer community."
       );
     }
+  };
+
+  const handleSavePost = async () => {
+    if (!user) {
+      router.push("/login");
+    }
+
+    const response = await savePost(post?._id);
   };
 
   return (
@@ -297,7 +314,34 @@ const PostComponent = ({
                   </div>
 
                   {user?._id !== post?.author?._id && (
-                    <div>
+                    <Stack gap={2} direction="row">
+                      <LoadingButton
+                        variant="contained"
+                        loading={loading}
+                        onClick={handleSavePost}
+                        sx={{
+                          textTransform: "capitalize",
+                          backgroundColor: "#FFFFFF",
+                          fontWeight: "600",
+                          borderRadius: "0rem",
+                        }}
+                        startIcon={
+                          user?.savedPosts?.includes(post?._id) ? (
+                            <BookmarkIcon />
+                          ) : (
+                            <BookmarkBorderIcon />
+                          )
+                        }
+                        title={
+                          user?.savedPosts?.includes(post?._id)
+                            ? "Remove this post from your saved collection"
+                            : "Save this post to your private collection"
+                        }
+                      >
+                        {user?.savedPosts?.includes(post?._id)
+                          ? "Remove post"
+                          : "Save post"}
+                      </LoadingButton>
                       <Button
                         variant="text"
                         onClick={handleReportPopUp}
@@ -306,10 +350,11 @@ const PostComponent = ({
                           fontWeight: "100",
                           color: colors.error,
                         }}
+                        startIcon={<FlagIcon />}
                       >
                         Report post
                       </Button>
-                    </div>
+                    </Stack>
                   )}
                 </Stack>
                 <Snackbar
