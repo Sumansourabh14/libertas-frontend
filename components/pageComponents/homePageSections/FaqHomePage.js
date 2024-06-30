@@ -11,6 +11,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import Link from "next/link";
 
 const FaqHomePage = () => {
   const mobileScreenSize = useMediaQuery("(max-width:600px)");
@@ -58,6 +59,8 @@ const FaqHomePage = () => {
               </Grid>
             ))}
           </Grid>
+
+          <Link href={`/frequently-asked-questions`}>Learn more</Link>
         </Stack>
       </Container>
     </Stack>
