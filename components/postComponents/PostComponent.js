@@ -210,6 +210,13 @@ const PostComponent = ({
                           style={{ maxWidth: "100%", height: "auto" }}
                         />
                       )}
+                      {post?.post?.videoUrl && (
+                        <video
+                          src={post?.post?.videoUrl}
+                          style={{ maxWidth: "100%", height: "auto" }}
+                          controls
+                        />
+                      )}
                       <div
                         dangerouslySetInnerHTML={{ __html: post?.post?.body }}
                       />
@@ -407,6 +414,13 @@ const PostComponent = ({
                       width={500}
                       height={260}
                       style={{ width: "100%", height: "auto" }}
+                    />
+                  )}
+                  {post?.post?.videoUrl && (
+                    <video
+                      src={post?.post?.videoUrl}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                      controls
                     />
                   )}
                   <div dangerouslySetInnerHTML={{ __html: post?.post?.body }} />

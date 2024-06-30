@@ -115,10 +115,10 @@ export const deleteUser = async (id) => {
   return data;
 };
 
-export const createPost = async (title, body, imageUrl) => {
+export const createPost = async (title, body, imageUrl, videoUrl) => {
   const data = await axios.post(
     `${API_URL}/api/user/create-post`,
-    { title, body, imageUrl },
+    { title, body, imageUrl, videoUrl },
     {
       withCredentials: true,
     }

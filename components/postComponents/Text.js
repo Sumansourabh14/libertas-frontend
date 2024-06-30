@@ -15,8 +15,10 @@ const Text = ({
   handleTextPost,
   image,
   handleImageFile,
-  handleImageUpload,
+  video,
+  handleMediaUpload,
   imageUrl,
+  videoUrl,
   loading,
   imageUploadLoading,
 }) => {
@@ -44,7 +46,7 @@ const Text = ({
           <FileUploader
             handleChange={handleImageFile}
             name="file"
-            types={["PNG", "JPG", "GIF"]}
+            types={["PNG", "JPG", "GIF", "MP4"]}
           >
             <Stack style={{ border: "1px dashed #FFF", padding: "1rem 8rem" }}>
               {image ? (
@@ -81,29 +83,63 @@ const Text = ({
                     </Stack>
                   )}
                 </Stack>
+              ) : video ? (
+                <Stack>
+                  <video
+                    src={URL.createObjectURL(video)}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                    controls
+                  />
+                  {videoUrl ? (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      style={{
+                        padding: 10,
+                      }}
+                    >
+                      <CheckIcon />
+                      <p>Video uploaded!</p>
+                    </Stack>
+                  ) : (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      style={{
+                        padding: 10,
+                        borderRadius: "0.5rem",
+                      }}
+                    >
+                      <InfoIcon />
+                      <p>Click on the button below to upload the video</p>
+                    </Stack>
+                  )}
+                </Stack>
               ) : (
                 <Button sx={{ textTransform: "none", color: "#FFF" }}>
-                  Drag and drop an image here
+                  Drag and drop a media file here
                 </Button>
               )}
             </Stack>
           </FileUploader>
-          <div>
-            <LoadingButton
-              variant="outlined"
-              loading={imageUploadLoading}
-              onClick={handleImageUpload}
-              sx={{
-                textTransform: "capitalize",
-                color: "#FFFFFF",
-                fontWeight: "600",
-                borderRadius: "0rem",
-              }}
-              startIcon={<AddPhotoAlternateIcon />}
-            >
-              Upload Image
-            </LoadingButton>
-          </div>
+          {(video || image) && (
+            <div>
+              <LoadingButton
+                variant="outlined"
+                loading={imageUploadLoading}
+                onClick={handleMediaUpload}
+                sx={{
+                  textTransform: "capitalize",
+                  color: "#FFFFFF",
+                  fontWeight: "600",
+                  borderRadius: "0rem",
+                }}
+                startIcon={<AddPhotoAlternateIcon />}
+              >
+                Upload Media
+              </LoadingButton>
+            </div>
+          )}
         </Stack>
 
         <TextEditor value={body} setValue={setBody} />

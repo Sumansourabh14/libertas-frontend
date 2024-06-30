@@ -12,7 +12,9 @@ import { v4 } from "uuid";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [videoUrl, setVideoUrl] = useState(null);
   const [body, setBody] = useState("");
   const [open, setOpen] = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false);
@@ -24,7 +26,7 @@ const CreatePost = () => {
   const router = useRouter();
 
   const handleTextPost = async () => {
-    const data = await postPost(title, body, imageUrl);
+    const data = await postPost(title, body, imageUrl, videoUrl);
 
     if (data?.data?.success) setPostMessage("Your post is live!");
 
@@ -32,27 +34,53 @@ const CreatePost = () => {
   };
 
   const handleImageFile = (e) => {
-    setImage(e);
+    if (e.type === "video/mp4") {
+      setVideo(e);
+    } else {
+      setImage(e);
+    }
   };
 
-  const uploadImage = async () => {
+  const uploadMedia = async () => {
     try {
       setUploadLoading(true);
-      if (image === null) return;
+      if (image === null && video === null) {
+        setUploadLoading(false);
+        return;
+      }
 
-      const imageRef = ref(storage, `posts/${image.name + v4()}`);
-      const data = await uploadBytes(imageRef, image);
+      let data;
+
+      if (video) {
+        const videoRef = ref(storage, `videos/${video.name + v4()}`);
+        try {
+          data = await uploadBytes(videoRef, video);
+        } catch (uploadError) {
+          throw uploadError;
+        }
+      } else if (image) {
+        const imageRef = ref(storage, `posts/${image.name + v4()}`);
+        try {
+          data = await uploadBytes(imageRef, image);
+        } catch (uploadError) {
+          throw uploadError;
+        }
+      }
 
       if (data) {
         const url = await getDownloadURL(data.ref);
-        setImageUrl(url);
-        setUploadLoading(false);
+        if (video) {
+          setVideoUrl(url);
+          setUploadLoading(false);
+        } else if (image) {
+          setImageUrl(url);
+          setUploadLoading(false);
+        }
       } else {
         setUploadLoading(false);
       }
     } catch (error) {
       setUploadLoading(false);
-      // console.log(error);
     }
   };
 
@@ -84,8 +112,10 @@ const CreatePost = () => {
               handleTextPost={handleTextPost}
               image={image}
               handleImageFile={handleImageFile}
-              handleImageUpload={uploadImage}
+              video={video}
+              handleMediaUpload={uploadMedia}
               imageUrl={imageUrl}
+              videoUrl={videoUrl}
               loading={loading}
               imageUploadLoading={uploadLoading}
             />
