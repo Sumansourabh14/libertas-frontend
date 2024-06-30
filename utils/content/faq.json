@@ -1,0 +1,92 @@
+{
+  "General FAQs": [
+    {
+      "question": "What is Reddit?",
+      "answer": "Reddit is a social media platform where users can post content, comment, and vote on other users' posts. It consists of various communities called 'subreddits,' each focused on a specific topic."
+    },
+    {
+      "question": "How do I create an account on Reddit?",
+      "answer": "You can create an account by visiting the Reddit homepage and clicking on the 'Sign Up' button. You can sign up using your email address, Google account, or Apple ID."
+    },
+    {
+      "question": "What are subreddits?",
+      "answer": "Subreddits are individual communities within Reddit, each dedicated to a particular topic, interest, or theme. They are denoted by /r/ followed by the community name (e.g., /r/technology)."
+    },
+    {
+      "question": "How do I join a subreddit?",
+      "answer": "To join a subreddit, simply navigate to the subreddit and click the 'Join' button. Once you join, posts from that subreddit will appear in your home feed."
+    },
+    {
+      "question": "How do I post on Reddit?",
+      "answer": "To post on Reddit, go to the subreddit where you want to post and click the 'Create Post' button. You can choose to post text, images, links, or videos."
+    }
+  ],
+  "Voting and Karma": [
+    {
+      "question": "What is karma on Reddit?",
+      "answer": "Karma is a point system on Reddit. You earn karma when your posts or comments are upvoted by other users. There are two types of karma: post karma and comment karma."
+    },
+    {
+      "question": "How does voting work on Reddit?",
+      "answer": "Users can upvote or downvote posts and comments. Upvotes increase the visibility of the content, while downvotes decrease it. The total score of a post or comment is the number of upvotes minus the number of downvotes."
+    },
+    {
+      "question": "Why is karma important?",
+      "answer": "Karma is a way to measure the quality and contribution of a user's content on Reddit. High karma can increase your credibility within the community."
+    }
+  ],
+  "Moderation and Rules": [
+    {
+      "question": "Who moderates Reddit?",
+      "answer": "Subreddits are moderated by volunteer users called moderators (mods). They enforce subreddit-specific rules and Reddit's content policy. Reddit also has site-wide administrators who handle broader policy enforcement."
+    },
+    {
+      "question": "What are Reddit's content policies?",
+      "answer": "Reddit has content policies to ensure a safe and respectful environment. These policies include rules against harassment, hate speech, spam, and explicit content. Each subreddit may also have its own rules."
+    },
+    {
+      "question": "What should I do if I see inappropriate content?",
+      "answer": "If you encounter inappropriate content, you can report it to the moderators of the subreddit or to Reddit administrators. Use the 'Report' button located next to the post or comment."
+    }
+  ],
+  "Features and Tools": [
+    {
+      "question": "What are awards on Reddit?",
+      "answer": "Awards are virtual items that users can give to posts or comments to show appreciation. Some awards are free, while others cost Reddit coins, which can be purchased with real money."
+    },
+    {
+      "question": "What is Reddit Gold?",
+      "answer": "Reddit Gold, now part of Reddit Premium, is a subscription service that offers extra features such as an ad-free experience, access to exclusive subreddits, and more Reddit coins for giving awards."
+    },
+    {
+      "question": "How do I customize my Reddit experience?",
+      "answer": "You can customize your Reddit experience by joining subreddits that interest you, setting your preferences in the account settings, and using Reddit's themes and layout options."
+    },
+    {
+      "question": "What is the difference between Reddit’s old and new design?",
+      "answer": "Reddit introduced a new design in 2018 with a more modern look and additional features. Users can still switch to the old design by visiting old.reddit.com or enabling it in their user preferences."
+    }
+  ],
+  "Using Reddit": [
+    {
+      "question": "How can I search for content on Reddit?",
+      "answer": "You can search for content using the search bar at the top of the Reddit homepage or within a specific subreddit. Use keywords or phrases related to the topic you are interested in."
+    },
+    {
+      "question": "Can I create my own subreddit?",
+      "answer": "Yes, users can create their own subreddits. To do so, click on the 'Create Community' button on the sidebar or from the profile dropdown menu."
+    },
+    {
+      "question": "How do I send private messages on Reddit?",
+      "answer": "You can send private messages to other users by clicking on their username and selecting the 'Chat' or 'Message' option."
+    },
+    {
+      "question": "What is a Reddit AMA?",
+      "answer": "AMA stands for 'Ask Me Anything,' a popular type of post where users can ask questions to someone with an interesting background, profession, or experience. AMAs are typically hosted in the /r/IAmA subreddit."
+    },
+    {
+      "question": "How can I delete my Reddit account?",
+      "answer": "To delete your Reddit account, go to your account settings, scroll down to the 'Deactivate Account' section, and follow the prompts. Note that deactivating your account is permanent and cannot be undone."
+    }
+  ]
+}
