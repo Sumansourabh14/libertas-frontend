@@ -3,6 +3,7 @@ import PrimaryButton from "@/components/buttonComponents/PrimaryButton";
 import Footer from "@/components/pageComponents/Footer";
 import CommentFeature from "@/components/pageComponents/homePageSections/CommentFeature";
 import CreatePostFeature from "@/components/pageComponents/homePageSections/CreatePostFeature";
+import FaqHomePage from "@/components/pageComponents/homePageSections/FaqHomePage";
 import HowItWorks from "@/components/pageComponents/homePageSections/HowItWorks";
 import HomePageTitle from "@/components/textComponents/HomePageTitle";
 import { openSans } from "@/theme/fonts";
@@ -89,6 +90,8 @@ const Home = () => {
           <CreatePostFeature />
           <CommentFeature />
         </Container>
+        <hr />
+        <FaqHomePage />
         <Stack sx={{ bgcolor: "#FFF" }}>
           <Container>
             <Stack
