@@ -23,10 +23,6 @@ const Feed = () => {
     document.title = "What's Happening | Libertas";
   }, []);
 
-  // useEffect(() => {
-  //   console.log(posts);
-  // }, [posts]);
-
   return <FeedPresentation posts={posts} handleVote={handleVote} />;
 };
 
