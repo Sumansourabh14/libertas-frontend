@@ -3,6 +3,7 @@ import DeletePostModal from "@/components/modalComponents/DeletePostModal";
 import CommentInput from "@/components/postComponents/CommentInput";
 import Comments from "@/components/postComponents/Comments";
 import PostComponent from "@/components/postComponents/PostComponent";
+import PostSkeleton from "@/components/skeletonComponents/PostSkeleton";
 import { relativeTime } from "@/components/utils/relativeTime";
 import { GlobalContext } from "@/services/globalContext";
 import { Container, Divider, Stack } from "@mui/material";
@@ -166,24 +167,28 @@ const Post = ({ params }) => {
 
   return (
     <Stack spacing={4} style={{ paddingTop: 30, paddingBottom: 20 }}>
-      <PostComponent
-        key={postData?._id}
-        post={postData}
-        id={postData?._id}
-        handleUpvote={() => handleUpvote(postData?._id)}
-        handleDownvote={() => handleDownvote(postData?._id)}
-        individualView={true}
-        isEdit={isEdit}
-        handleEdit={handleEdit}
-        handleCancel={handleCancel}
-        handleDelete={handleDelete}
-        handleSave={handleSave}
-        title={title}
-        body={body}
-        handleBody={(e) => setBody(e)}
-        handleTitle={(e) => setTitle(e.target.value)}
-        path={pathname}
-      />
+      {!!postData ? (
+        <PostComponent
+          key={postData?._id}
+          post={postData}
+          id={postData?._id}
+          handleUpvote={() => handleUpvote(postData?._id)}
+          handleDownvote={() => handleDownvote(postData?._id)}
+          individualView={true}
+          isEdit={isEdit}
+          handleEdit={handleEdit}
+          handleCancel={handleCancel}
+          handleDelete={handleDelete}
+          handleSave={handleSave}
+          title={title}
+          body={body}
+          handleBody={(e) => setBody(e)}
+          handleTitle={(e) => setTitle(e.target.value)}
+          path={pathname}
+        />
+      ) : (
+        <PostSkeleton />
+      )}
 
       <Container maxWidth="md" style={{ paddingLeft: 0 }}>
         <CommentInput

@@ -34,6 +34,7 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children, theme }) => {
   const [loading, setLoading] = useState(false);
+  const [postsLoading, setPostsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [signUpError, setSignUpError] = useState(null);
@@ -318,11 +319,13 @@ export const GlobalContextProvider = ({ children, theme }) => {
   // fetch all posts (regardless of the user)
   const fetchAllPosts = async () => {
     try {
+      setPostsLoading(true);
       const data = await getAllPosts();
       setPosts(data?.data?.data);
+      setPostsLoading(false);
       return data;
     } catch (error) {
-      // console.log(error);
+      setPostsLoading(false);
     }
   };
 
@@ -419,6 +422,7 @@ export const GlobalContextProvider = ({ children, theme }) => {
         searchPosts,
         reportPost,
         savePost,
+        postsLoading,
       }}
     >
       {children}
